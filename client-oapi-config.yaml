@@ -1,0 +1,14 @@
+package: api
+output: api/client.gen.go
+generate:
+  models: true
+  client: true
+output-options:
+  # The API names response schemas after their operation (Auth_CreateTokenResponse
+  # vs operation Auth_createToken), which collides with oapi-codegen's default
+  # "Response" wrapper suffix.
+  response-type-suffix: APIResponse
+  include-tags:
+    - Auth
+    - Identity
+    - Gardener

@@ -1,0 +1,4 @@
+__debug*
+*.env
+.DS_Store
+warnings.txt
