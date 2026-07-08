@@ -16,18 +16,11 @@ regeneration may rename generated identifiers. Surface-affecting regenerations
 bump the minor version; the hand-written `cleura` package only grows —
 additions, no changes.
 
-## Fetching (private repository)
-
-The module is not available through the public Go module proxy. One-time setup:
+## Installing
 
 ```sh
-git config --global url."git@github.com:".insteadOf "https://github.com/"  # or a token credential helper
-export GOPRIVATE='github.com/cleura/*'
+go get github.com/cleura/cleura-client-go@latest
 ```
-
-Then `go get github.com/cleura/cleura-client-go@latest` works as usual. In CI,
-substitute a token rewrite:
-`git config --global url."https://x-access-token:${TOKEN}@github.com/".insteadOf "https://github.com/"`.
 
 ## Usage
 
