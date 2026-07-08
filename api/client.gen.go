@@ -611,6 +611,31 @@ type CommonCurrency struct {
 	Name string `json:"name"`
 }
 
+// CommonOpenStackDomain defines model for Common_OpenStackDomain.
+type CommonOpenStackDomain struct {
+	Area    CommonOpenStackDomainArea `json:"area"`
+	Enabled *bool                     `json:"enabled,omitempty"`
+	Error   *string                   `json:"error,omitempty"`
+	Id      string                    `json:"id"`
+	Name    *string                   `json:"name,omitempty"`
+	Status  string                    `json:"status"`
+}
+
+// CommonOpenStackDomainArea defines model for Common_OpenStackDomainArea.
+type CommonOpenStackDomainArea struct {
+	Id      int                     `json:"id"`
+	Name    string                  `json:"name"`
+	Regions []CommonOpenStackRegion `json:"regions"`
+	Tag     string                  `json:"tag"`
+}
+
+// CommonOpenStackRegion defines model for Common_OpenStackRegion.
+type CommonOpenStackRegion struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+	Tag  string `json:"tag"`
+}
+
 // CommonTwoFactorLoginSms defines model for Common_TwoFactorLoginSms.
 type CommonTwoFactorLoginSms struct {
 	Created  time.Time                  `json:"created"`
@@ -1437,6 +1462,174 @@ type IdentityVerifyCurrentUserEmailRequest struct {
 	Email string `json:"email"`
 }
 
+// OpenStackIdentityCreateProjectRequest defines model for OpenStack_Identity_CreateProjectRequest.
+type OpenStackIdentityCreateProjectRequest struct {
+	Description *string `json:"description,omitempty"`
+	Name        string  `json:"name"`
+}
+
+// OpenStackIdentityCreateUserRequest defines model for OpenStack_Identity_CreateUserRequest.
+type OpenStackIdentityCreateUserRequest struct {
+	Description *string                                  `json:"description,omitempty"`
+	Name        string                                   `json:"name"`
+	Password    string                                   `json:"password"`
+	Projects    *[]OpenStackIdentityProjectAccessRequest `json:"projects,omitempty"`
+}
+
+// OpenStackIdentityDomainEndpoint defines model for OpenStack_Identity_DomainEndpoint.
+type OpenStackIdentityDomainEndpoint struct {
+	Id        string `json:"id"`
+	Interface string `json:"interface"`
+	Region    string `json:"region"`
+	RegionId  string `json:"region_id"`
+	Url       string `json:"url"`
+}
+
+// OpenStackIdentityDomainEndpoints defines model for OpenStack_Identity_DomainEndpoints.
+type OpenStackIdentityDomainEndpoints struct {
+	Endpoints []OpenStackIdentityDomainEndpoint `json:"endpoints"`
+	Name      string                            `json:"name"`
+}
+
+// OpenStackIdentityEditProjectRequest defines model for OpenStack_Identity_EditProjectRequest.
+type OpenStackIdentityEditProjectRequest struct {
+	Description *string `json:"description,omitempty"`
+	Enabled     *bool   `json:"enabled,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
+// OpenStackIdentityEditUserRequest defines model for OpenStack_Identity_EditUserRequest.
+type OpenStackIdentityEditUserRequest struct {
+	Description *string `json:"description,omitempty"`
+	Enabled     *bool   `json:"enabled,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Password    *string `json:"password,omitempty"`
+}
+
+// OpenStackIdentityGrantProjectAccessRequest defines model for OpenStack_Identity_GrantProjectAccessRequest.
+type OpenStackIdentityGrantProjectAccessRequest struct {
+	Projects []OpenStackIdentityProjectAccessRequest `json:"projects"`
+}
+
+// OpenStackIdentityProject defines model for OpenStack_Identity_Project.
+type OpenStackIdentityProject struct {
+	Description *string `json:"description,omitempty"`
+	DomainId    string  `json:"domain_id"`
+	Enabled     bool    `json:"enabled"`
+	Id          string  `json:"id"`
+	Name        string  `json:"name"`
+}
+
+// OpenStackIdentityProjectAccessRequest defines model for OpenStack_Identity_ProjectAccessRequest.
+type OpenStackIdentityProjectAccessRequest struct {
+	ProjectId string   `json:"project_id"`
+	Roles     []string `json:"roles"`
+}
+
+// OpenStackIdentityProjectBlockStorageQuota defines model for OpenStack_Identity_ProjectBlockStorageQuota.
+type OpenStackIdentityProjectBlockStorageQuota struct {
+	BackupGigabytes int `json:"backup_gigabytes"`
+	Backups         int `json:"backups"`
+	Gigabytes       int `json:"gigabytes"`
+	Snapshots       int `json:"snapshots"`
+	Volumes         int `json:"volumes"`
+}
+
+// OpenStackIdentityProjectComputeQuota defines model for OpenStack_Identity_ProjectComputeQuota.
+type OpenStackIdentityProjectComputeQuota struct {
+	Cores     int `json:"cores"`
+	Instances int `json:"instances"`
+	Ram       int `json:"ram"`
+}
+
+// OpenStackIdentityProjectLog defines model for OpenStack_Identity_ProjectLog.
+type OpenStackIdentityProjectLog struct {
+	Action      string    `json:"action"`
+	Date        time.Time `json:"date"`
+	Ip          string    `json:"ip"`
+	Login       string    `json:"login"`
+	Meta        string    `json:"meta"`
+	ProjectId   string    `json:"project_id"`
+	RegionId    int       `json:"region_id"`
+	RegionName  *string   `json:"region_name,omitempty"`
+	Target      *string   `json:"target,omitempty"`
+	Text        *string   `json:"text,omitempty"`
+	UserLoginId int       `json:"user_login_id"`
+}
+
+// OpenStackIdentityProjectMembership defines model for OpenStack_Identity_ProjectMembership.
+type OpenStackIdentityProjectMembership struct {
+	DomainId string                          `json:"domain_id"`
+	Id       string                          `json:"id"`
+	Name     string                          `json:"name"`
+	Roles    *[]OpenStackIdentityProjectRole `json:"roles,omitempty"`
+}
+
+// OpenStackIdentityProjectNetworkingQuota defines model for OpenStack_Identity_ProjectNetworkingQuota.
+type OpenStackIdentityProjectNetworkingQuota struct {
+	FloatingIp    int `json:"floating_ip"`
+	Network       int `json:"network"`
+	Port          int `json:"port"`
+	Router        int `json:"router"`
+	SecurityGroup int `json:"security_group"`
+}
+
+// OpenStackIdentityProjectQuota defines model for OpenStack_Identity_ProjectQuota.
+type OpenStackIdentityProjectQuota struct {
+	BlockStorage OpenStackIdentityProjectBlockStorageQuota `json:"block_storage"`
+	Compute      OpenStackIdentityProjectComputeQuota      `json:"compute"`
+	Networking   OpenStackIdentityProjectNetworkingQuota   `json:"networking"`
+}
+
+// OpenStackIdentityProjectRole defines model for OpenStack_Identity_ProjectRole.
+type OpenStackIdentityProjectRole struct {
+	Id   string `json:"id"`
+	Name string `json:"name"`
+}
+
+// OpenStackIdentityRegion defines model for OpenStack_Identity_Region.
+type OpenStackIdentityRegion struct {
+	Id                   int     `json:"id"`
+	Name                 string  `json:"name"`
+	NameserversIpv4      *string `json:"nameservers_ipv4,omitempty"`
+	NameserversIpv6      *string `json:"nameservers_ipv6,omitempty"`
+	NetworkProvider      string  `json:"network_provider"`
+	ObjectStorageEnabled bool    `json:"object_storage_enabled"`
+	Tag                  string  `json:"tag"`
+}
+
+// OpenStackIdentityRegionWithProjects defines model for OpenStack_Identity_RegionWithProjects.
+type OpenStackIdentityRegionWithProjects struct {
+	Projects []OpenStackIdentityProject `json:"projects"`
+	Region   OpenStackIdentityRegion    `json:"region"`
+}
+
+// OpenStackIdentityUser defines model for OpenStack_Identity_User.
+type OpenStackIdentityUser struct {
+	DefaultProjectId *string `json:"default_project_id,omitempty"`
+	Description      *string `json:"description,omitempty"`
+	DomainId         string  `json:"domain_id"`
+	Enabled          bool    `json:"enabled"`
+	Id               string  `json:"id"`
+	Name             string  `json:"name"`
+}
+
+// OpenStackIdentityUserRcCredentials defines model for OpenStack_Identity_UserRcCredentials.
+type OpenStackIdentityUserRcCredentials struct {
+	RcData string `json:"rc_data"`
+}
+
+// OpenStackIdentityUserWithProjectsAccess defines model for OpenStack_Identity_UserWithProjectsAccess.
+type OpenStackIdentityUserWithProjectsAccess struct {
+	DefaultProjectId *string                               `json:"default_project_id,omitempty"`
+	Description      *string                               `json:"description,omitempty"`
+	DomainId         string                                `json:"domain_id"`
+	Enabled          bool                                  `json:"enabled"`
+	Id               string                                `json:"id"`
+	Name             string                                `json:"name"`
+	Projects         *[]OpenStackIdentityProjectMembership `json:"projects,omitempty"`
+}
+
 // UserUserLoginPrivilegeType defines model for User_UserLoginPrivilegeType.
 type UserUserLoginPrivilegeType string
 
@@ -1462,6 +1655,12 @@ type GardenerPrepareShootUpgradeConditionsParams struct {
 // GardenerRevertShootUpgradeConditionsParams defines parameters for GardenerRevertShootUpgradeConditions.
 type GardenerRevertShootUpgradeConditionsParams struct {
 	TargetVersion string `form:"target_version" json:"target_version"`
+}
+
+// OpenStackIdentityListProjectLogsParams defines parameters for OpenStackIdentityListProjectLogs.
+type OpenStackIdentityListProjectLogsParams struct {
+	Limit  *int `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset *int `form:"offset,omitempty" json:"offset,omitempty"`
 }
 
 // AuthRequestLoginJSONRequestBody defines body for AuthRequestLogin for application/json ContentType.
@@ -1517,6 +1716,21 @@ type IdentityCreateUserJSONRequestBody = IdentityCreateUserRequest
 
 // IdentityEditUserJSONRequestBody defines body for IdentityEditUser for application/json ContentType.
 type IdentityEditUserJSONRequestBody = IdentityEditUserRequest
+
+// OpenStackIdentityCreateProjectJSONRequestBody defines body for OpenStackIdentityCreateProject for application/json ContentType.
+type OpenStackIdentityCreateProjectJSONRequestBody = OpenStackIdentityCreateProjectRequest
+
+// OpenStackIdentityEditProjectJSONRequestBody defines body for OpenStackIdentityEditProject for application/json ContentType.
+type OpenStackIdentityEditProjectJSONRequestBody = OpenStackIdentityEditProjectRequest
+
+// OpenStackIdentityCreateUserJSONRequestBody defines body for OpenStackIdentityCreateUser for application/json ContentType.
+type OpenStackIdentityCreateUserJSONRequestBody = OpenStackIdentityCreateUserRequest
+
+// OpenStackIdentityEditUserJSONRequestBody defines body for OpenStackIdentityEditUser for application/json ContentType.
+type OpenStackIdentityEditUserJSONRequestBody = OpenStackIdentityEditUserRequest
+
+// OpenStackIdentityGrantProjectAccessJSONRequestBody defines body for OpenStackIdentityGrantProjectAccess for application/json ContentType.
+type OpenStackIdentityGrantProjectAccessJSONRequestBody = OpenStackIdentityGrantProjectAccessRequest
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1773,6 +1987,67 @@ type ClientInterface interface {
 	IdentityEditUserWithBody(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	IdentityEditUser(ctx context.Context, userId string, body IdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListRegionsWithProjects request
+	OpenStackIdentityListRegionsWithProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListDomains request
+	OpenStackIdentityListDomains(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListDomainEndpoints request
+	OpenStackIdentityListDomainEndpoints(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityCreateProjectWithBody request with any body
+	OpenStackIdentityCreateProjectWithBody(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackIdentityCreateProject(ctx context.Context, domainId string, body OpenStackIdentityCreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityEditProjectWithBody request with any body
+	OpenStackIdentityEditProjectWithBody(ctx context.Context, domainId string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackIdentityEditProject(ctx context.Context, domainId string, openStackProjectId string, body OpenStackIdentityEditProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityGetProjectQuota request
+	OpenStackIdentityGetProjectQuota(ctx context.Context, domainId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListProjectUsers request
+	OpenStackIdentityListProjectUsers(ctx context.Context, domainId string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListRoles request
+	OpenStackIdentityListRoles(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListUsers request
+	OpenStackIdentityListUsers(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityCreateUserWithBody request with any body
+	OpenStackIdentityCreateUserWithBody(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackIdentityCreateUser(ctx context.Context, domainId string, body OpenStackIdentityCreateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityDeleteUser request
+	OpenStackIdentityDeleteUser(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityEditUserWithBody request with any body
+	OpenStackIdentityEditUserWithBody(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackIdentityEditUser(ctx context.Context, domainId string, userId string, body OpenStackIdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityGrantProjectAccessWithBody request with any body
+	OpenStackIdentityGrantProjectAccessWithBody(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackIdentityGrantProjectAccess(ctx context.Context, domainId string, userId string, body OpenStackIdentityGrantProjectAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListUserProjects request
+	OpenStackIdentityListUserProjects(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityGetUserRcCredentials request
+	OpenStackIdentityGetUserRcCredentials(ctx context.Context, domainId string, userId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityRevokeProjectAccess request
+	OpenStackIdentityRevokeProjectAccess(ctx context.Context, domainId string, userId string, openStackProjectId string, roleId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListProjectLogs request
+	OpenStackIdentityListProjectLogs(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) AuthRequestLoginWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -2569,6 +2844,270 @@ func (c *Client) IdentityEditUserWithBody(ctx context.Context, userId string, co
 
 func (c *Client) IdentityEditUser(ctx context.Context, userId string, body IdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewIdentityEditUserRequest(c.Server, userId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListRegionsWithProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListRegionsWithProjectsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListDomains(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListDomainsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListDomainEndpoints(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListDomainEndpointsRequest(c.Server, domainId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityCreateProjectWithBody(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityCreateProjectRequestWithBody(c.Server, domainId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityCreateProject(ctx context.Context, domainId string, body OpenStackIdentityCreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityCreateProjectRequest(c.Server, domainId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityEditProjectWithBody(ctx context.Context, domainId string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityEditProjectRequestWithBody(c.Server, domainId, openStackProjectId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityEditProject(ctx context.Context, domainId string, openStackProjectId string, body OpenStackIdentityEditProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityEditProjectRequest(c.Server, domainId, openStackProjectId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityGetProjectQuota(ctx context.Context, domainId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityGetProjectQuotaRequest(c.Server, domainId, openStackProjectId, openStackRegionTag)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListProjectUsers(ctx context.Context, domainId string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListProjectUsersRequest(c.Server, domainId, openStackProjectId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListRoles(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListRolesRequest(c.Server, domainId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListUsers(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListUsersRequest(c.Server, domainId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityCreateUserWithBody(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityCreateUserRequestWithBody(c.Server, domainId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityCreateUser(ctx context.Context, domainId string, body OpenStackIdentityCreateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityCreateUserRequest(c.Server, domainId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityDeleteUser(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityDeleteUserRequest(c.Server, domainId, userId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityEditUserWithBody(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityEditUserRequestWithBody(c.Server, domainId, userId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityEditUser(ctx context.Context, domainId string, userId string, body OpenStackIdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityEditUserRequest(c.Server, domainId, userId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityGrantProjectAccessWithBody(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityGrantProjectAccessRequestWithBody(c.Server, domainId, userId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityGrantProjectAccess(ctx context.Context, domainId string, userId string, body OpenStackIdentityGrantProjectAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityGrantProjectAccessRequest(c.Server, domainId, userId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListUserProjects(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListUserProjectsRequest(c.Server, domainId, userId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityGetUserRcCredentials(ctx context.Context, domainId string, userId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityGetUserRcCredentialsRequest(c.Server, domainId, userId, openStackProjectId, openStackRegionTag)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityRevokeProjectAccess(ctx context.Context, domainId string, userId string, openStackProjectId string, roleId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityRevokeProjectAccessRequest(c.Server, domainId, userId, openStackProjectId, roleId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListProjectLogs(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListProjectLogsRequest(c.Server, projectName, params)
 	if err != nil {
 		return nil, err
 	}
@@ -5024,6 +5563,772 @@ func NewIdentityEditUserRequestWithBody(server string, userId string, contentTyp
 	return req, nil
 }
 
+// NewOpenStackIdentityListRegionsWithProjectsRequest generates requests for OpenStackIdentityListRegionsWithProjects
+func NewOpenStackIdentityListRegionsWithProjectsRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v1/current-user/projects")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListDomainsRequest generates requests for OpenStackIdentityListDomains
+func NewOpenStackIdentityListDomainsRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListDomainEndpointsRequest generates requests for OpenStackIdentityListDomainEndpoints
+func NewOpenStackIdentityListDomainEndpointsRequest(server string, domainId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/endpoints", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityCreateProjectRequest calls the generic OpenStackIdentityCreateProject builder with application/json body
+func NewOpenStackIdentityCreateProjectRequest(server string, domainId string, body OpenStackIdentityCreateProjectJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackIdentityCreateProjectRequestWithBody(server, domainId, "application/json", bodyReader)
+}
+
+// NewOpenStackIdentityCreateProjectRequestWithBody generates requests for OpenStackIdentityCreateProject with any type of body
+func NewOpenStackIdentityCreateProjectRequestWithBody(server string, domainId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/projects", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackIdentityEditProjectRequest calls the generic OpenStackIdentityEditProject builder with application/json body
+func NewOpenStackIdentityEditProjectRequest(server string, domainId string, openStackProjectId string, body OpenStackIdentityEditProjectJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackIdentityEditProjectRequestWithBody(server, domainId, openStackProjectId, "application/json", bodyReader)
+}
+
+// NewOpenStackIdentityEditProjectRequestWithBody generates requests for OpenStackIdentityEditProject with any type of body
+func NewOpenStackIdentityEditProjectRequestWithBody(server string, domainId string, openStackProjectId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/projects/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackIdentityGetProjectQuotaRequest generates requests for OpenStackIdentityGetProjectQuota
+func NewOpenStackIdentityGetProjectQuotaRequest(server string, domainId string, openStackProjectId string, openStackRegionTag string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/projects/%s/quotas/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListProjectUsersRequest generates requests for OpenStackIdentityListProjectUsers
+func NewOpenStackIdentityListProjectUsersRequest(server string, domainId string, openStackProjectId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/projects/%s/users", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListRolesRequest generates requests for OpenStackIdentityListRoles
+func NewOpenStackIdentityListRolesRequest(server string, domainId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/roles", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListUsersRequest generates requests for OpenStackIdentityListUsers
+func NewOpenStackIdentityListUsersRequest(server string, domainId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityCreateUserRequest calls the generic OpenStackIdentityCreateUser builder with application/json body
+func NewOpenStackIdentityCreateUserRequest(server string, domainId string, body OpenStackIdentityCreateUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackIdentityCreateUserRequestWithBody(server, domainId, "application/json", bodyReader)
+}
+
+// NewOpenStackIdentityCreateUserRequestWithBody generates requests for OpenStackIdentityCreateUser with any type of body
+func NewOpenStackIdentityCreateUserRequestWithBody(server string, domainId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackIdentityDeleteUserRequest generates requests for OpenStackIdentityDeleteUser
+func NewOpenStackIdentityDeleteUserRequest(server string, domainId string, userId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityEditUserRequest calls the generic OpenStackIdentityEditUser builder with application/json body
+func NewOpenStackIdentityEditUserRequest(server string, domainId string, userId string, body OpenStackIdentityEditUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackIdentityEditUserRequestWithBody(server, domainId, userId, "application/json", bodyReader)
+}
+
+// NewOpenStackIdentityEditUserRequestWithBody generates requests for OpenStackIdentityEditUser with any type of body
+func NewOpenStackIdentityEditUserRequestWithBody(server string, domainId string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackIdentityGrantProjectAccessRequest calls the generic OpenStackIdentityGrantProjectAccess builder with application/json body
+func NewOpenStackIdentityGrantProjectAccessRequest(server string, domainId string, userId string, body OpenStackIdentityGrantProjectAccessJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackIdentityGrantProjectAccessRequestWithBody(server, domainId, userId, "application/json", bodyReader)
+}
+
+// NewOpenStackIdentityGrantProjectAccessRequestWithBody generates requests for OpenStackIdentityGrantProjectAccess with any type of body
+func NewOpenStackIdentityGrantProjectAccessRequestWithBody(server string, domainId string, userId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users/%s/project-accesses", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListUserProjectsRequest generates requests for OpenStackIdentityListUserProjects
+func NewOpenStackIdentityListUserProjectsRequest(server string, domainId string, userId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users/%s/projects", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityGetUserRcCredentialsRequest generates requests for OpenStackIdentityGetUserRcCredentials
+func NewOpenStackIdentityGetUserRcCredentialsRequest(server string, domainId string, userId string, openStackProjectId string, openStackRegionTag string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam3 string
+
+	pathParam3, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users/%s/projects/%s/regions/%s/rc-credentials", pathParam0, pathParam1, pathParam2, pathParam3)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityRevokeProjectAccessRequest generates requests for OpenStackIdentityRevokeProjectAccess
+func NewOpenStackIdentityRevokeProjectAccessRequest(server string, domainId string, userId string, openStackProjectId string, roleId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "domainId", domainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam3 string
+
+	pathParam3, err = runtime.StyleParamWithOptions("simple", false, "roleId", roleId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "stripped_uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/domains/%s/users/%s/projects/%s/roles/%s", pathParam0, pathParam1, pathParam2, pathParam3)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListProjectLogsRequest generates requests for OpenStackIdentityListProjectLogs
+func NewOpenStackIdentityListProjectLogsRequest(server string, projectName string, params *OpenStackIdentityListProjectLogsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "projectName", projectName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v2/projects/%s/logs", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offset", *params.Offset, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -5249,6 +6554,67 @@ type ClientWithResponsesInterface interface {
 	IdentityEditUserWithBodyWithResponse(ctx context.Context, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityEditUserAPIResponse, error)
 
 	IdentityEditUserWithResponse(ctx context.Context, userId string, body IdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityEditUserAPIResponse, error)
+
+	// OpenStackIdentityListRegionsWithProjectsWithResponse request
+	OpenStackIdentityListRegionsWithProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListRegionsWithProjectsAPIResponse, error)
+
+	// OpenStackIdentityListDomainsWithResponse request
+	OpenStackIdentityListDomainsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsAPIResponse, error)
+
+	// OpenStackIdentityListDomainEndpointsWithResponse request
+	OpenStackIdentityListDomainEndpointsWithResponse(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainEndpointsAPIResponse, error)
+
+	// OpenStackIdentityCreateProjectWithBodyWithResponse request with any body
+	OpenStackIdentityCreateProjectWithBodyWithResponse(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateProjectAPIResponse, error)
+
+	OpenStackIdentityCreateProjectWithResponse(ctx context.Context, domainId string, body OpenStackIdentityCreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateProjectAPIResponse, error)
+
+	// OpenStackIdentityEditProjectWithBodyWithResponse request with any body
+	OpenStackIdentityEditProjectWithBodyWithResponse(ctx context.Context, domainId string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditProjectAPIResponse, error)
+
+	OpenStackIdentityEditProjectWithResponse(ctx context.Context, domainId string, openStackProjectId string, body OpenStackIdentityEditProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditProjectAPIResponse, error)
+
+	// OpenStackIdentityGetProjectQuotaWithResponse request
+	OpenStackIdentityGetProjectQuotaWithResponse(ctx context.Context, domainId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*OpenStackIdentityGetProjectQuotaAPIResponse, error)
+
+	// OpenStackIdentityListProjectUsersWithResponse request
+	OpenStackIdentityListProjectUsersWithResponse(ctx context.Context, domainId string, openStackProjectId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListProjectUsersAPIResponse, error)
+
+	// OpenStackIdentityListRolesWithResponse request
+	OpenStackIdentityListRolesWithResponse(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListRolesAPIResponse, error)
+
+	// OpenStackIdentityListUsersWithResponse request
+	OpenStackIdentityListUsersWithResponse(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListUsersAPIResponse, error)
+
+	// OpenStackIdentityCreateUserWithBodyWithResponse request with any body
+	OpenStackIdentityCreateUserWithBodyWithResponse(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateUserAPIResponse, error)
+
+	OpenStackIdentityCreateUserWithResponse(ctx context.Context, domainId string, body OpenStackIdentityCreateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateUserAPIResponse, error)
+
+	// OpenStackIdentityDeleteUserWithResponse request
+	OpenStackIdentityDeleteUserWithResponse(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityDeleteUserAPIResponse, error)
+
+	// OpenStackIdentityEditUserWithBodyWithResponse request with any body
+	OpenStackIdentityEditUserWithBodyWithResponse(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditUserAPIResponse, error)
+
+	OpenStackIdentityEditUserWithResponse(ctx context.Context, domainId string, userId string, body OpenStackIdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditUserAPIResponse, error)
+
+	// OpenStackIdentityGrantProjectAccessWithBodyWithResponse request with any body
+	OpenStackIdentityGrantProjectAccessWithBodyWithResponse(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityGrantProjectAccessAPIResponse, error)
+
+	OpenStackIdentityGrantProjectAccessWithResponse(ctx context.Context, domainId string, userId string, body OpenStackIdentityGrantProjectAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityGrantProjectAccessAPIResponse, error)
+
+	// OpenStackIdentityListUserProjectsWithResponse request
+	OpenStackIdentityListUserProjectsWithResponse(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListUserProjectsAPIResponse, error)
+
+	// OpenStackIdentityGetUserRcCredentialsWithResponse request
+	OpenStackIdentityGetUserRcCredentialsWithResponse(ctx context.Context, domainId string, userId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*OpenStackIdentityGetUserRcCredentialsAPIResponse, error)
+
+	// OpenStackIdentityRevokeProjectAccessWithResponse request
+	OpenStackIdentityRevokeProjectAccessWithResponse(ctx context.Context, domainId string, userId string, openStackProjectId string, roleId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityRevokeProjectAccessAPIResponse, error)
+
+	// OpenStackIdentityListProjectLogsWithResponse request
+	OpenStackIdentityListProjectLogsWithResponse(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*OpenStackIdentityListProjectLogsAPIResponse, error)
 }
 
 type AuthRequestLoginAPIResponse struct {
@@ -6862,6 +8228,571 @@ func (r IdentityEditUserAPIResponse) ContentType() string {
 	return ""
 }
 
+type OpenStackIdentityListRegionsWithProjectsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityRegionWithProjects
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListRegionsWithProjectsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListRegionsWithProjectsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListRegionsWithProjectsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListDomainsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CommonOpenStackDomain
+	JSON401      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListDomainsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListDomainsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListDomainsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListDomainEndpointsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityDomainEndpoints
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListDomainEndpointsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListDomainEndpointsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListDomainEndpointsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityCreateProjectAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OpenStackIdentityProject
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityCreateProjectAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityCreateProjectAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityCreateProjectAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityEditProjectAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackIdentityProject
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityEditProjectAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityEditProjectAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityEditProjectAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityGetProjectQuotaAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackIdentityProjectQuota
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityGetProjectQuotaAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityGetProjectQuotaAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityGetProjectQuotaAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListProjectUsersAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityUser
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListProjectUsersAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListProjectUsersAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListProjectUsersAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListRolesAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityProjectRole
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListRolesAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListRolesAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListRolesAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListUsersAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityUser
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListUsersAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListUsersAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListUsersAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityCreateUserAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OpenStackIdentityUserWithProjectsAccess
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityCreateUserAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityCreateUserAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityCreateUserAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityDeleteUserAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityDeleteUserAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityDeleteUserAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityDeleteUserAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityEditUserAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackIdentityUserWithProjectsAccess
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityEditUserAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityEditUserAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityEditUserAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityGrantProjectAccessAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityGrantProjectAccessAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityGrantProjectAccessAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityGrantProjectAccessAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListUserProjectsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityProjectMembership
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListUserProjectsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListUserProjectsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListUserProjectsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityGetUserRcCredentialsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackIdentityUserRcCredentials
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityGetUserRcCredentialsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityGetUserRcCredentialsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityGetUserRcCredentialsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityRevokeProjectAccessAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityRevokeProjectAccessAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityRevokeProjectAccessAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityRevokeProjectAccessAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListProjectLogsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityProjectLog
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListProjectLogsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListProjectLogsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListProjectLogsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // AuthRequestLoginWithBodyWithResponse request with arbitrary body returning *AuthRequestLoginAPIResponse
 func (c *ClientWithResponses) AuthRequestLoginWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AuthRequestLoginAPIResponse, error) {
 	rsp, err := c.AuthRequestLoginWithBody(ctx, contentType, body, reqEditors...)
@@ -7445,6 +9376,199 @@ func (c *ClientWithResponses) IdentityEditUserWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseIdentityEditUserAPIResponse(rsp)
+}
+
+// OpenStackIdentityListRegionsWithProjectsWithResponse request returning *OpenStackIdentityListRegionsWithProjectsAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListRegionsWithProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListRegionsWithProjectsAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListRegionsWithProjects(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListRegionsWithProjectsAPIResponse(rsp)
+}
+
+// OpenStackIdentityListDomainsWithResponse request returning *OpenStackIdentityListDomainsAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListDomainsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListDomains(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListDomainsAPIResponse(rsp)
+}
+
+// OpenStackIdentityListDomainEndpointsWithResponse request returning *OpenStackIdentityListDomainEndpointsAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListDomainEndpointsWithResponse(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainEndpointsAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListDomainEndpoints(ctx, domainId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListDomainEndpointsAPIResponse(rsp)
+}
+
+// OpenStackIdentityCreateProjectWithBodyWithResponse request with arbitrary body returning *OpenStackIdentityCreateProjectAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityCreateProjectWithBodyWithResponse(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateProjectAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityCreateProjectWithBody(ctx, domainId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityCreateProjectAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackIdentityCreateProjectWithResponse(ctx context.Context, domainId string, body OpenStackIdentityCreateProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateProjectAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityCreateProject(ctx, domainId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityCreateProjectAPIResponse(rsp)
+}
+
+// OpenStackIdentityEditProjectWithBodyWithResponse request with arbitrary body returning *OpenStackIdentityEditProjectAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityEditProjectWithBodyWithResponse(ctx context.Context, domainId string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditProjectAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityEditProjectWithBody(ctx, domainId, openStackProjectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityEditProjectAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackIdentityEditProjectWithResponse(ctx context.Context, domainId string, openStackProjectId string, body OpenStackIdentityEditProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditProjectAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityEditProject(ctx, domainId, openStackProjectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityEditProjectAPIResponse(rsp)
+}
+
+// OpenStackIdentityGetProjectQuotaWithResponse request returning *OpenStackIdentityGetProjectQuotaAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityGetProjectQuotaWithResponse(ctx context.Context, domainId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*OpenStackIdentityGetProjectQuotaAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityGetProjectQuota(ctx, domainId, openStackProjectId, openStackRegionTag, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityGetProjectQuotaAPIResponse(rsp)
+}
+
+// OpenStackIdentityListProjectUsersWithResponse request returning *OpenStackIdentityListProjectUsersAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListProjectUsersWithResponse(ctx context.Context, domainId string, openStackProjectId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListProjectUsersAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListProjectUsers(ctx, domainId, openStackProjectId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListProjectUsersAPIResponse(rsp)
+}
+
+// OpenStackIdentityListRolesWithResponse request returning *OpenStackIdentityListRolesAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListRolesWithResponse(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListRolesAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListRoles(ctx, domainId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListRolesAPIResponse(rsp)
+}
+
+// OpenStackIdentityListUsersWithResponse request returning *OpenStackIdentityListUsersAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListUsersWithResponse(ctx context.Context, domainId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListUsersAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListUsers(ctx, domainId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListUsersAPIResponse(rsp)
+}
+
+// OpenStackIdentityCreateUserWithBodyWithResponse request with arbitrary body returning *OpenStackIdentityCreateUserAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityCreateUserWithBodyWithResponse(ctx context.Context, domainId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateUserAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityCreateUserWithBody(ctx, domainId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityCreateUserAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackIdentityCreateUserWithResponse(ctx context.Context, domainId string, body OpenStackIdentityCreateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityCreateUserAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityCreateUser(ctx, domainId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityCreateUserAPIResponse(rsp)
+}
+
+// OpenStackIdentityDeleteUserWithResponse request returning *OpenStackIdentityDeleteUserAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityDeleteUserWithResponse(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityDeleteUserAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityDeleteUser(ctx, domainId, userId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityDeleteUserAPIResponse(rsp)
+}
+
+// OpenStackIdentityEditUserWithBodyWithResponse request with arbitrary body returning *OpenStackIdentityEditUserAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityEditUserWithBodyWithResponse(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditUserAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityEditUserWithBody(ctx, domainId, userId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityEditUserAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackIdentityEditUserWithResponse(ctx context.Context, domainId string, userId string, body OpenStackIdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityEditUserAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityEditUser(ctx, domainId, userId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityEditUserAPIResponse(rsp)
+}
+
+// OpenStackIdentityGrantProjectAccessWithBodyWithResponse request with arbitrary body returning *OpenStackIdentityGrantProjectAccessAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityGrantProjectAccessWithBodyWithResponse(ctx context.Context, domainId string, userId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackIdentityGrantProjectAccessAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityGrantProjectAccessWithBody(ctx, domainId, userId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityGrantProjectAccessAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackIdentityGrantProjectAccessWithResponse(ctx context.Context, domainId string, userId string, body OpenStackIdentityGrantProjectAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackIdentityGrantProjectAccessAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityGrantProjectAccess(ctx, domainId, userId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityGrantProjectAccessAPIResponse(rsp)
+}
+
+// OpenStackIdentityListUserProjectsWithResponse request returning *OpenStackIdentityListUserProjectsAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListUserProjectsWithResponse(ctx context.Context, domainId string, userId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityListUserProjectsAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListUserProjects(ctx, domainId, userId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListUserProjectsAPIResponse(rsp)
+}
+
+// OpenStackIdentityGetUserRcCredentialsWithResponse request returning *OpenStackIdentityGetUserRcCredentialsAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityGetUserRcCredentialsWithResponse(ctx context.Context, domainId string, userId string, openStackProjectId string, openStackRegionTag string, reqEditors ...RequestEditorFn) (*OpenStackIdentityGetUserRcCredentialsAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityGetUserRcCredentials(ctx, domainId, userId, openStackProjectId, openStackRegionTag, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityGetUserRcCredentialsAPIResponse(rsp)
+}
+
+// OpenStackIdentityRevokeProjectAccessWithResponse request returning *OpenStackIdentityRevokeProjectAccessAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityRevokeProjectAccessWithResponse(ctx context.Context, domainId string, userId string, openStackProjectId string, roleId string, reqEditors ...RequestEditorFn) (*OpenStackIdentityRevokeProjectAccessAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityRevokeProjectAccess(ctx, domainId, userId, openStackProjectId, roleId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityRevokeProjectAccessAPIResponse(rsp)
+}
+
+// OpenStackIdentityListProjectLogsWithResponse request returning *OpenStackIdentityListProjectLogsAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListProjectLogsWithResponse(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*OpenStackIdentityListProjectLogsAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListProjectLogs(ctx, projectName, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListProjectLogsAPIResponse(rsp)
 }
 
 // ParseAuthRequestLoginAPIResponse parses an HTTP response from a AuthRequestLoginWithResponse call
@@ -9670,6 +11794,833 @@ func ParseIdentityEditUserAPIResponse(rsp *http.Response) (*IdentityEditUserAPIR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CommonUserLogin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListRegionsWithProjectsAPIResponse parses an HTTP response from a OpenStackIdentityListRegionsWithProjectsWithResponse call
+func ParseOpenStackIdentityListRegionsWithProjectsAPIResponse(rsp *http.Response) (*OpenStackIdentityListRegionsWithProjectsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListRegionsWithProjectsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityRegionWithProjects
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListDomainsAPIResponse parses an HTTP response from a OpenStackIdentityListDomainsWithResponse call
+func ParseOpenStackIdentityListDomainsAPIResponse(rsp *http.Response) (*OpenStackIdentityListDomainsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListDomainsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CommonOpenStackDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListDomainEndpointsAPIResponse parses an HTTP response from a OpenStackIdentityListDomainEndpointsWithResponse call
+func ParseOpenStackIdentityListDomainEndpointsAPIResponse(rsp *http.Response) (*OpenStackIdentityListDomainEndpointsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListDomainEndpointsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityDomainEndpoints
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityCreateProjectAPIResponse parses an HTTP response from a OpenStackIdentityCreateProjectWithResponse call
+func ParseOpenStackIdentityCreateProjectAPIResponse(rsp *http.Response) (*OpenStackIdentityCreateProjectAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityCreateProjectAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OpenStackIdentityProject
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityEditProjectAPIResponse parses an HTTP response from a OpenStackIdentityEditProjectWithResponse call
+func ParseOpenStackIdentityEditProjectAPIResponse(rsp *http.Response) (*OpenStackIdentityEditProjectAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityEditProjectAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackIdentityProject
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityGetProjectQuotaAPIResponse parses an HTTP response from a OpenStackIdentityGetProjectQuotaWithResponse call
+func ParseOpenStackIdentityGetProjectQuotaAPIResponse(rsp *http.Response) (*OpenStackIdentityGetProjectQuotaAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityGetProjectQuotaAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackIdentityProjectQuota
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListProjectUsersAPIResponse parses an HTTP response from a OpenStackIdentityListProjectUsersWithResponse call
+func ParseOpenStackIdentityListProjectUsersAPIResponse(rsp *http.Response) (*OpenStackIdentityListProjectUsersAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListProjectUsersAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityUser
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListRolesAPIResponse parses an HTTP response from a OpenStackIdentityListRolesWithResponse call
+func ParseOpenStackIdentityListRolesAPIResponse(rsp *http.Response) (*OpenStackIdentityListRolesAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListRolesAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityProjectRole
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListUsersAPIResponse parses an HTTP response from a OpenStackIdentityListUsersWithResponse call
+func ParseOpenStackIdentityListUsersAPIResponse(rsp *http.Response) (*OpenStackIdentityListUsersAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListUsersAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityUser
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityCreateUserAPIResponse parses an HTTP response from a OpenStackIdentityCreateUserWithResponse call
+func ParseOpenStackIdentityCreateUserAPIResponse(rsp *http.Response) (*OpenStackIdentityCreateUserAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityCreateUserAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OpenStackIdentityUserWithProjectsAccess
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityDeleteUserAPIResponse parses an HTTP response from a OpenStackIdentityDeleteUserWithResponse call
+func ParseOpenStackIdentityDeleteUserAPIResponse(rsp *http.Response) (*OpenStackIdentityDeleteUserAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityDeleteUserAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityEditUserAPIResponse parses an HTTP response from a OpenStackIdentityEditUserWithResponse call
+func ParseOpenStackIdentityEditUserAPIResponse(rsp *http.Response) (*OpenStackIdentityEditUserAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityEditUserAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackIdentityUserWithProjectsAccess
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityGrantProjectAccessAPIResponse parses an HTTP response from a OpenStackIdentityGrantProjectAccessWithResponse call
+func ParseOpenStackIdentityGrantProjectAccessAPIResponse(rsp *http.Response) (*OpenStackIdentityGrantProjectAccessAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityGrantProjectAccessAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListUserProjectsAPIResponse parses an HTTP response from a OpenStackIdentityListUserProjectsWithResponse call
+func ParseOpenStackIdentityListUserProjectsAPIResponse(rsp *http.Response) (*OpenStackIdentityListUserProjectsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListUserProjectsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityProjectMembership
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityGetUserRcCredentialsAPIResponse parses an HTTP response from a OpenStackIdentityGetUserRcCredentialsWithResponse call
+func ParseOpenStackIdentityGetUserRcCredentialsAPIResponse(rsp *http.Response) (*OpenStackIdentityGetUserRcCredentialsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityGetUserRcCredentialsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackIdentityUserRcCredentials
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityRevokeProjectAccessAPIResponse parses an HTTP response from a OpenStackIdentityRevokeProjectAccessWithResponse call
+func ParseOpenStackIdentityRevokeProjectAccessAPIResponse(rsp *http.Response) (*OpenStackIdentityRevokeProjectAccessAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityRevokeProjectAccessAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListProjectLogsAPIResponse parses an HTTP response from a OpenStackIdentityListProjectLogsWithResponse call
+func ParseOpenStackIdentityListProjectLogsAPIResponse(rsp *http.Response) (*OpenStackIdentityListProjectLogsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListProjectLogsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityProjectLog
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

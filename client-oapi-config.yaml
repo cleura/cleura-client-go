@@ -12,3 +12,4 @@ output-options:
     - Auth
     - Identity
     - Gardener
+    - OpenStack_Identity
