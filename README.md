@@ -6,6 +6,29 @@ OpenAPI specification with [oapi-codegen](https://github.com/oapi-codegen/oapi-c
 Used by the [Cleura CLI](https://github.com/cleura/cleura-cli) and (eventually) the
 [Cleura Terraform provider](https://github.com/cleura/terraform-provider-cleura).
 
+## Versioning
+
+While on v0.x, no API-stability promise is made. In particular, the `api`
+package is generated from the live OpenAPI specification and is regenerated as
+the API evolves: new operations extend the generated interfaces (which breaks
+code that *implements* them, e.g. mocks — embed the interface instead), and
+regeneration may rename generated identifiers. Surface-affecting regenerations
+bump the minor version; the hand-written `cleura` package only grows —
+additions, no changes.
+
+## Fetching (private repository)
+
+The module is not available through the public Go module proxy. One-time setup:
+
+```sh
+git config --global url."git@github.com:".insteadOf "https://github.com/"  # or a token credential helper
+export GOPRIVATE='github.com/cleura/*'
+```
+
+Then `go get github.com/cleura/cleura-client-go@latest` works as usual. In CI,
+substitute a token rewrite:
+`git config --global url."https://x-access-token:${TOKEN}@github.com/".insteadOf "https://github.com/"`.
+
 ## Usage
 
 ```go
