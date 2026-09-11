@@ -742,6 +742,12 @@ type FrameworkHttpErrorResponse struct {
 	Error FrameworkHttpErrorContent `json:"error"`
 }
 
+// GardenerAdminKubeConfig defines model for Gardener_AdminKubeConfig.
+type GardenerAdminKubeConfig struct {
+	ExpiresAt  time.Time `json:"expires_at"`
+	Kubeconfig string    `json:"kubeconfig"`
+}
+
 // GardenerAnnotation defines model for Gardener_Annotation.
 type GardenerAnnotation struct {
 	Key   string `json:"key"`
@@ -915,7 +921,7 @@ type GardenerCreateShootNetworking struct {
 type GardenerCreateShootNodeTaint struct {
 	Effect GardenerShootWorkerTaintEffect `json:"effect"`
 	Key    string                         `json:"key"`
-	Value  string                         `json:"value"`
+	Value  *string                        `json:"value,omitempty"`
 }
 
 // GardenerCreateShootProvider defines model for Gardener_CreateShoot_Provider.
@@ -947,7 +953,7 @@ type GardenerCreateShootWorker struct {
 	Minimum     *int                            `json:"minimum,omitempty"`
 	Name        *string                         `json:"name,omitempty"`
 	Taints      *[]GardenerCreateShootNodeTaint `json:"taints,omitempty"`
-	VolumeSize  string                          `json:"volume_size"`
+	VolumeSize  *string                         `json:"volume_size,omitempty"`
 	Zones       *[]string                       `json:"zones,omitempty"`
 }
 
@@ -1044,7 +1050,6 @@ type GardenerLabel struct {
 
 // GardenerMachine defines model for Gardener_Machine.
 type GardenerMachine struct {
-	ImageName    *string `json:"image_name,omitempty"`
 	ImageVersion *string `json:"image_version,omitempty"`
 	Type         *string `json:"type,omitempty"`
 }
@@ -1364,7 +1369,7 @@ type GardenerShootWorkerLabel struct {
 type GardenerShootWorkerTaint struct {
 	Effect GardenerShootWorkerTaintEffect `json:"effect"`
 	Key    string                         `json:"key"`
-	Value  string                         `json:"value"`
+	Value  *string                        `json:"value,omitempty"`
 }
 
 // GardenerShootWorkerTaintEffect defines model for Gardener_Shoot_WorkerTaintEffect.
@@ -1589,6 +1594,8 @@ type OpenStackIdentityProjectRole struct {
 
 // OpenStackIdentityRegion defines model for OpenStack_Identity_Region.
 type OpenStackIdentityRegion struct {
+	BackupEnabled        bool    `json:"backup_enabled"`
+	DnsEnabled           bool    `json:"dns_enabled"`
 	Id                   int     `json:"id"`
 	Name                 string  `json:"name"`
 	NameserversIpv4      *string `json:"nameservers_ipv4,omitempty"`
@@ -1701,6 +1708,9 @@ type GardenerCreateWorkerJSONRequestBody = GardenerCreateShootWorker
 
 // GardenerUpdateWorkerJSONRequestBody defines body for GardenerUpdateWorker for application/json ContentType.
 type GardenerUpdateWorkerJSONRequestBody = GardenerEditShootWorker
+
+// GardenerCreateShootAdminKubeConfigV3JSONRequestBody defines body for GardenerCreateShootAdminKubeConfigV3 for application/json ContentType.
+type GardenerCreateShootAdminKubeConfigV3JSONRequestBody = GardenerCreateShootAdminKubeConfigRequest
 
 // IdentityVerifyCurrentUserEmailJSONRequestBody defines body for IdentityVerifyCurrentUserEmail for application/json ContentType.
 type IdentityVerifyCurrentUserEmailJSONRequestBody = IdentityVerifyCurrentUserEmailRequest
@@ -1944,6 +1954,20 @@ type ClientInterface interface {
 
 	// GardenerCommunicationBootstrap request
 	GardenerCommunicationBootstrap(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerCreateShootAdminKubeConfigV3WithBody request with any body
+	GardenerCreateShootAdminKubeConfigV3WithBody(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	GardenerCreateShootAdminKubeConfigV3(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, body GardenerCreateShootAdminKubeConfigV3JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// IdentityListGroupUsers request
+	IdentityListGroupUsers(ctx context.Context, groupName string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// IdentityRemoveUserFromGroup request
+	IdentityRemoveUserFromGroup(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// IdentityAssignUserToGroup request
+	IdentityAssignUserToGroup(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// IdentityGetCurrentUser request
 	IdentityGetCurrentUser(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2652,6 +2676,66 @@ func (c *Client) GardenerIsShootNameTaken(ctx context.Context, gardenerRegionTag
 
 func (c *Client) GardenerCommunicationBootstrap(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGardenerCommunicationBootstrapRequest(c.Server, gardenerRegionTag, openStackRegionTag, openStackProjectId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerCreateShootAdminKubeConfigV3WithBody(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerCreateShootAdminKubeConfigV3RequestWithBody(c.Server, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerCreateShootAdminKubeConfigV3(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, body GardenerCreateShootAdminKubeConfigV3JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerCreateShootAdminKubeConfigV3Request(c.Server, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityListGroupUsers(ctx context.Context, groupName string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityListGroupUsersRequest(c.Server, groupName)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityRemoveUserFromGroup(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityRemoveUserFromGroupRequest(c.Server, groupName, userId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityAssignUserToGroup(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityAssignUserToGroupRequest(c.Server, groupName, userId)
 	if err != nil {
 		return nil, err
 	}
@@ -5180,6 +5264,190 @@ func NewGardenerCommunicationBootstrapRequest(server string, gardenerRegionTag s
 	return req, nil
 }
 
+// NewGardenerCreateShootAdminKubeConfigV3Request calls the generic GardenerCreateShootAdminKubeConfigV3 builder with application/json body
+func NewGardenerCreateShootAdminKubeConfigV3Request(server string, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, body GardenerCreateShootAdminKubeConfigV3JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewGardenerCreateShootAdminKubeConfigV3RequestWithBody(server, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, "application/json", bodyReader)
+}
+
+// NewGardenerCreateShootAdminKubeConfigV3RequestWithBody generates requests for GardenerCreateShootAdminKubeConfigV3 with any type of body
+func NewGardenerCreateShootAdminKubeConfigV3RequestWithBody(server string, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam3 string
+
+	pathParam3, err = runtime.StyleParamWithOptions("simple", false, "shootName", shootName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v3/%s/shoots/%s/%s/%s/admin-kubeconfig", pathParam0, pathParam1, pathParam2, pathParam3)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewIdentityListGroupUsersRequest generates requests for IdentityListGroupUsers
+func NewIdentityListGroupUsersRequest(server string, groupName string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "groupName", groupName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/identity/v1/groups/%s/users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewIdentityRemoveUserFromGroupRequest generates requests for IdentityRemoveUserFromGroup
+func NewIdentityRemoveUserFromGroupRequest(server string, groupName string, userId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "groupName", groupName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/identity/v1/groups/%s/users/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewIdentityAssignUserToGroupRequest generates requests for IdentityAssignUserToGroup
+func NewIdentityAssignUserToGroupRequest(server string, groupName string, userId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "groupName", groupName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/identity/v1/groups/%s/users/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewIdentityGetCurrentUserRequest generates requests for IdentityGetCurrentUser
 func NewIdentityGetCurrentUserRequest(server string) (*http.Request, error) {
 	var err error
@@ -6511,6 +6779,20 @@ type ClientWithResponsesInterface interface {
 
 	// GardenerCommunicationBootstrapWithResponse request
 	GardenerCommunicationBootstrapWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*GardenerCommunicationBootstrapAPIResponse, error)
+
+	// GardenerCreateShootAdminKubeConfigV3WithBodyWithResponse request with any body
+	GardenerCreateShootAdminKubeConfigV3WithBodyWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerCreateShootAdminKubeConfigV3APIResponse, error)
+
+	GardenerCreateShootAdminKubeConfigV3WithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, body GardenerCreateShootAdminKubeConfigV3JSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerCreateShootAdminKubeConfigV3APIResponse, error)
+
+	// IdentityListGroupUsersWithResponse request
+	IdentityListGroupUsersWithResponse(ctx context.Context, groupName string, reqEditors ...RequestEditorFn) (*IdentityListGroupUsersAPIResponse, error)
+
+	// IdentityRemoveUserFromGroupWithResponse request
+	IdentityRemoveUserFromGroupWithResponse(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*IdentityRemoveUserFromGroupAPIResponse, error)
+
+	// IdentityAssignUserToGroupWithResponse request
+	IdentityAssignUserToGroupWithResponse(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*IdentityAssignUserToGroupAPIResponse, error)
 
 	// IdentityGetCurrentUserWithResponse request
 	IdentityGetCurrentUserWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*IdentityGetCurrentUserAPIResponse, error)
@@ -7866,6 +8148,144 @@ func (r GardenerCommunicationBootstrapAPIResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r GardenerCommunicationBootstrapAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerCreateShootAdminKubeConfigV3APIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *GardenerAdminKubeConfig
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerCreateShootAdminKubeConfigV3APIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerCreateShootAdminKubeConfigV3APIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerCreateShootAdminKubeConfigV3APIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type IdentityListGroupUsersAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CommonUserLogin
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityListGroupUsersAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityListGroupUsersAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r IdentityListGroupUsersAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type IdentityRemoveUserFromGroupAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityRemoveUserFromGroupAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityRemoveUserFromGroupAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r IdentityRemoveUserFromGroupAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type IdentityAssignUserToGroupAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityAssignUserToGroupAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityAssignUserToGroupAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r IdentityAssignUserToGroupAPIResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -9237,6 +9657,50 @@ func (c *ClientWithResponses) GardenerCommunicationBootstrapWithResponse(ctx con
 		return nil, err
 	}
 	return ParseGardenerCommunicationBootstrapAPIResponse(rsp)
+}
+
+// GardenerCreateShootAdminKubeConfigV3WithBodyWithResponse request with arbitrary body returning *GardenerCreateShootAdminKubeConfigV3APIResponse
+func (c *ClientWithResponses) GardenerCreateShootAdminKubeConfigV3WithBodyWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerCreateShootAdminKubeConfigV3APIResponse, error) {
+	rsp, err := c.GardenerCreateShootAdminKubeConfigV3WithBody(ctx, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerCreateShootAdminKubeConfigV3APIResponse(rsp)
+}
+
+func (c *ClientWithResponses) GardenerCreateShootAdminKubeConfigV3WithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, body GardenerCreateShootAdminKubeConfigV3JSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerCreateShootAdminKubeConfigV3APIResponse, error) {
+	rsp, err := c.GardenerCreateShootAdminKubeConfigV3(ctx, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerCreateShootAdminKubeConfigV3APIResponse(rsp)
+}
+
+// IdentityListGroupUsersWithResponse request returning *IdentityListGroupUsersAPIResponse
+func (c *ClientWithResponses) IdentityListGroupUsersWithResponse(ctx context.Context, groupName string, reqEditors ...RequestEditorFn) (*IdentityListGroupUsersAPIResponse, error) {
+	rsp, err := c.IdentityListGroupUsers(ctx, groupName, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityListGroupUsersAPIResponse(rsp)
+}
+
+// IdentityRemoveUserFromGroupWithResponse request returning *IdentityRemoveUserFromGroupAPIResponse
+func (c *ClientWithResponses) IdentityRemoveUserFromGroupWithResponse(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*IdentityRemoveUserFromGroupAPIResponse, error) {
+	rsp, err := c.IdentityRemoveUserFromGroup(ctx, groupName, userId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityRemoveUserFromGroupAPIResponse(rsp)
+}
+
+// IdentityAssignUserToGroupWithResponse request returning *IdentityAssignUserToGroupAPIResponse
+func (c *ClientWithResponses) IdentityAssignUserToGroupWithResponse(ctx context.Context, groupName string, userId string, reqEditors ...RequestEditorFn) (*IdentityAssignUserToGroupAPIResponse, error) {
+	rsp, err := c.IdentityAssignUserToGroup(ctx, groupName, userId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityAssignUserToGroupAPIResponse(rsp)
 }
 
 // IdentityGetCurrentUserWithResponse request returning *IdentityGetCurrentUserAPIResponse
@@ -11351,6 +11815,236 @@ func ParseGardenerCommunicationBootstrapAPIResponse(rsp *http.Response) (*Garden
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerCreateShootAdminKubeConfigV3APIResponse parses an HTTP response from a GardenerCreateShootAdminKubeConfigV3WithResponse call
+func ParseGardenerCreateShootAdminKubeConfigV3APIResponse(rsp *http.Response) (*GardenerCreateShootAdminKubeConfigV3APIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerCreateShootAdminKubeConfigV3APIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest GardenerAdminKubeConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityListGroupUsersAPIResponse parses an HTTP response from a IdentityListGroupUsersWithResponse call
+func ParseIdentityListGroupUsersAPIResponse(rsp *http.Response) (*IdentityListGroupUsersAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityListGroupUsersAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CommonUserLogin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityRemoveUserFromGroupAPIResponse parses an HTTP response from a IdentityRemoveUserFromGroupWithResponse call
+func ParseIdentityRemoveUserFromGroupAPIResponse(rsp *http.Response) (*IdentityRemoveUserFromGroupAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityRemoveUserFromGroupAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityAssignUserToGroupAPIResponse parses an HTTP response from a IdentityAssignUserToGroupWithResponse call
+func ParseIdentityAssignUserToGroupAPIResponse(rsp *http.Response) (*IdentityAssignUserToGroupAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityAssignUserToGroupAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
