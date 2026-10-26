@@ -249,6 +249,21 @@ func (e CommonTwoFactorMethod) Valid() bool {
 	}
 }
 
+// Defines values for GardenerAudienceMatchPolicy.
+const (
+	MatchAny GardenerAudienceMatchPolicy = "MatchAny"
+)
+
+// Valid indicates whether the value is a known member of the GardenerAudienceMatchPolicy enum.
+func (e GardenerAudienceMatchPolicy) Valid() bool {
+	switch e {
+	case MatchAny:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for GardenerCloudProfileCloudProfileKind.
 const (
 	CloudProfile           GardenerCloudProfileCloudProfileKind = "CloudProfile"
@@ -285,6 +300,27 @@ func (e GardenerGardenerClusterUpgradeResponseOutcome) Valid() bool {
 	case GardenerGardenerClusterUpgradeResponseOutcomeReady:
 		return true
 	case GardenerGardenerClusterUpgradeResponseOutcomeSuccess:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GardenerIdentityProviderShootReconcileStatus.
+const (
+	Accepted                   GardenerIdentityProviderShootReconcileStatus = "accepted"
+	Failed                     GardenerIdentityProviderShootReconcileStatus = "failed"
+	SkippedOperationInProgress GardenerIdentityProviderShootReconcileStatus = "skipped_operation_in_progress"
+)
+
+// Valid indicates whether the value is a known member of the GardenerIdentityProviderShootReconcileStatus enum.
+func (e GardenerIdentityProviderShootReconcileStatus) Valid() bool {
+	switch e {
+	case Accepted:
+		return true
+	case Failed:
+		return true
+	case SkippedOperationInProgress:
 		return true
 	default:
 		return false
@@ -708,6 +744,24 @@ func (e OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus) Valid() bool {
 	}
 }
 
+// Defines values for OpenStackIdentityIdentityAuthorityStatus.
+const (
+	Available   OpenStackIdentityIdentityAuthorityStatus = "available"
+	Provisioned OpenStackIdentityIdentityAuthorityStatus = "provisioned"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackIdentityIdentityAuthorityStatus enum.
+func (e OpenStackIdentityIdentityAuthorityStatus) Valid() bool {
+	switch e {
+	case Available:
+		return true
+	case Provisioned:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for UserUserLoginPrivilegeType.
 const (
 	Full    UserUserLoginPrivilegeType = "full"
@@ -1019,6 +1073,9 @@ type GardenerAnnotation struct {
 	Value string `json:"value"`
 }
 
+// GardenerAudienceMatchPolicy defines model for Gardener_AudienceMatchPolicy.
+type GardenerAudienceMatchPolicy string
+
 // GardenerCaRotationStage defines model for Gardener_CaRotationStage.
 type GardenerCaRotationStage struct {
 	Stage K8sCaRotationStage `json:"stage"`
@@ -1202,14 +1259,15 @@ type GardenerCreateShootProvider struct {
 
 // GardenerCreateShootShoot defines model for Gardener_CreateShoot_Shoot.
 type GardenerCreateShootShoot struct {
-	AllowedCidrs         *[]string                                 `json:"allowed_cidrs,omitempty"`
-	EnableHaControlPlane *bool                                     `json:"enable_ha_control_plane,omitempty"`
-	HibernationSchedules *[]GardenerCreateShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
-	KubernetesVersion    string                                    `json:"kubernetes_version"`
-	Maintenance          *GardenerCreateShootMaintenance           `json:"maintenance,omitempty"`
-	Name                 string                                    `json:"name"`
-	Networking           *GardenerCreateShootNetworking            `json:"networking,omitempty"`
-	ShootProvider        GardenerCreateShootProvider               `json:"shoot_provider"`
+	AllowedCidrs                    *[]string                                 `json:"allowed_cidrs,omitempty"`
+	AuthenticationConfigurationName *string                                   `json:"authentication_configuration_name,omitempty"`
+	EnableHaControlPlane            *bool                                     `json:"enable_ha_control_plane,omitempty"`
+	HibernationSchedules            *[]GardenerCreateShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
+	KubernetesVersion               string                                    `json:"kubernetes_version"`
+	Maintenance                     *GardenerCreateShootMaintenance           `json:"maintenance,omitempty"`
+	Name                            string                                    `json:"name"`
+	Networking                      *GardenerCreateShootNetworking            `json:"networking,omitempty"`
+	ShootProvider                   GardenerCreateShootProvider               `json:"shoot_provider"`
 }
 
 // GardenerCreateShootWorker defines model for Gardener_CreateShoot_Worker.
@@ -1271,12 +1329,13 @@ type GardenerEditShootNodeTaint struct {
 
 // GardenerEditShootPatchShoot defines model for Gardener_EditShoot_PatchShoot.
 type GardenerEditShootPatchShoot struct {
-	AllowedCidrs         *[]string                               `json:"allowed_cidrs,omitempty"`
-	EnableHaControlPlane *bool                                   `json:"enable_ha_control_plane,omitempty"`
-	HibernationSchedules *[]GardenerEditShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
-	Kubernetes           *string                                 `json:"kubernetes,omitempty"`
-	Maintenance          *GardenerEditShootMaintenance           `json:"maintenance,omitempty"`
-	Networking           *GardenerEditShootNetworking            `json:"networking,omitempty"`
+	AllowedCidrs                    *[]string                               `json:"allowed_cidrs,omitempty"`
+	AuthenticationConfigurationName *string                                 `json:"authentication_configuration_name,omitempty"`
+	EnableHaControlPlane            *bool                                   `json:"enable_ha_control_plane,omitempty"`
+	HibernationSchedules            *[]GardenerEditShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
+	Kubernetes                      *string                                 `json:"kubernetes,omitempty"`
+	Maintenance                     *GardenerEditShootMaintenance           `json:"maintenance,omitempty"`
+	Networking                      *GardenerEditShootNetworking            `json:"networking,omitempty"`
 }
 
 // GardenerEditShootWorker defines model for Gardener_EditShoot_Worker.
@@ -1306,6 +1365,132 @@ type GardenerGetShootMonitoringResponse struct {
 // GardenerGetShootNodeNamesResponse defines model for Gardener_GetShootNodeNamesResponse.
 type GardenerGetShootNodeNamesResponse struct {
 	NodeNames []string `json:"node_names"`
+}
+
+// GardenerIdentityProviderAudienceReference defines model for Gardener_IdentityProvider_AudienceReference.
+type GardenerIdentityProviderAudienceReference struct {
+	Key  string `json:"key"`
+	Name string `json:"name"`
+}
+
+// GardenerIdentityProviderAuthenticationConfiguration defines model for Gardener_IdentityProvider_AuthenticationConfiguration.
+type GardenerIdentityProviderAuthenticationConfiguration struct {
+	Issuers []GardenerIdentityProviderIssuer `json:"issuers"`
+	Name    string                           `json:"name"`
+}
+
+// GardenerIdentityProviderClaimMapping defines model for Gardener_IdentityProvider_ClaimMapping.
+type GardenerIdentityProviderClaimMapping struct {
+	Claim  string  `json:"claim"`
+	Prefix *string `json:"prefix,omitempty"`
+}
+
+// GardenerIdentityProviderClaimMappings defines model for Gardener_IdentityProvider_ClaimMappings.
+type GardenerIdentityProviderClaimMappings struct {
+	Extra    *[]GardenerIdentityProviderExtraClaimMapping        `json:"extra,omitempty"`
+	Groups   *GardenerIdentityProviderClaimWithExpressionMapping `json:"groups,omitempty"`
+	Uid      *GardenerIdentityProviderClaimMapping               `json:"uid,omitempty"`
+	Username GardenerIdentityProviderClaimMapping                `json:"username"`
+}
+
+// GardenerIdentityProviderClaimValidationRule defines model for Gardener_IdentityProvider_ClaimValidationRule.
+type GardenerIdentityProviderClaimValidationRule struct {
+	Claim         string `json:"claim"`
+	RequiredValue string `json:"required_value"`
+}
+
+// GardenerIdentityProviderClaimValidationRules defines model for Gardener_IdentityProvider_ClaimValidationRules.
+type GardenerIdentityProviderClaimValidationRules struct {
+	ClaimRules      *[]GardenerIdentityProviderClaimValidationRule      `json:"claim_rules,omitempty"`
+	ExpressionRules *[]GardenerIdentityProviderExpressionValidationRule `json:"expression_rules,omitempty"`
+}
+
+// GardenerIdentityProviderClaimWithExpressionMapping defines model for Gardener_IdentityProvider_ClaimWithExpressionMapping.
+type GardenerIdentityProviderClaimWithExpressionMapping struct {
+	Claim      *string `json:"claim,omitempty"`
+	Expression *string `json:"expression,omitempty"`
+	Prefix     *string `json:"prefix,omitempty"`
+}
+
+// GardenerIdentityProviderCreateAuthenticationConfiguration defines model for Gardener_IdentityProvider_CreateAuthenticationConfiguration.
+type GardenerIdentityProviderCreateAuthenticationConfiguration struct {
+	Issuers []GardenerIdentityProviderIssuer `json:"issuers"`
+	Name    string                           `json:"name"`
+}
+
+// GardenerIdentityProviderExpressionValidationRule defines model for Gardener_IdentityProvider_ExpressionValidationRule.
+type GardenerIdentityProviderExpressionValidationRule struct {
+	Expression string `json:"expression"`
+	Message    string `json:"message"`
+}
+
+// GardenerIdentityProviderExtraClaimMapping defines model for Gardener_IdentityProvider_ExtraClaimMapping.
+type GardenerIdentityProviderExtraClaimMapping struct {
+	Key             string `json:"key"`
+	ValueExpression string `json:"value_expression"`
+}
+
+// GardenerIdentityProviderIssuer defines model for Gardener_IdentityProvider_Issuer.
+type GardenerIdentityProviderIssuer struct {
+	Alias                string                                        `json:"alias"`
+	AudienceMatchPolicy  *GardenerAudienceMatchPolicy                  `json:"audience_match_policy,omitempty"`
+	Audiences            []string                                      `json:"audiences"`
+	CertificateAuthority *string                                       `json:"certificate_authority,omitempty"`
+	ClaimMappings        GardenerIdentityProviderClaimMappings         `json:"claim_mappings"`
+	ClaimValidationRules *GardenerIdentityProviderClaimValidationRules `json:"claim_validation_rules,omitempty"`
+	Url                  string                                        `json:"url"`
+	UserValidationRules  *[]GardenerIdentityProviderUserValidationRule `json:"user_validation_rules,omitempty"`
+}
+
+// GardenerIdentityProviderIssuerReference defines model for Gardener_IdentityProvider_IssuerReference.
+type GardenerIdentityProviderIssuerReference struct {
+	Alias     string                                      `json:"alias"`
+	Audiences []GardenerIdentityProviderAudienceReference `json:"audiences"`
+	Url       string                                      `json:"url"`
+}
+
+// GardenerIdentityProviderLastOperation defines model for Gardener_IdentityProvider_LastOperation.
+type GardenerIdentityProviderLastOperation struct {
+	Description    string                          `json:"description"`
+	LastUpdateTime time.Time                       `json:"last_update_time"`
+	Progress       int                             `json:"progress"`
+	State          GardenerShootLastOperationState `json:"state"`
+	Type           GardenerShootLastOperationType  `json:"type"`
+}
+
+// GardenerIdentityProviderOidcKubeconfig defines model for Gardener_IdentityProvider_OidcKubeconfig.
+type GardenerIdentityProviderOidcKubeconfig struct {
+	Kubeconfig string `json:"kubeconfig"`
+}
+
+// GardenerIdentityProviderShootReconcileResult defines model for Gardener_IdentityProvider_ShootReconcileResult.
+type GardenerIdentityProviderShootReconcileResult struct {
+	Name               string                                       `json:"name"`
+	OpenstackProjectId string                                       `json:"openstack_project_id"`
+	OpenstackRegionTag string                                       `json:"openstack_region_tag"`
+	Status             GardenerIdentityProviderShootReconcileStatus `json:"status"`
+}
+
+// GardenerIdentityProviderShootReconcileStatus defines model for Gardener_IdentityProvider_ShootReconcileStatus.
+type GardenerIdentityProviderShootReconcileStatus string
+
+// GardenerIdentityProviderShootReference defines model for Gardener_IdentityProvider_ShootReference.
+type GardenerIdentityProviderShootReference struct {
+	LastOperation      *GardenerIdentityProviderLastOperation `json:"last_operation,omitempty"`
+	Name               string                                 `json:"name"`
+	OpenstackProjectId string                                 `json:"openstack_project_id"`
+	OpenstackRegionTag string                                 `json:"openstack_region_tag"`
+}
+
+// GardenerIdentityProviderUpdateAuthenticationConfiguration defines model for Gardener_IdentityProvider_UpdateAuthenticationConfiguration.
+type GardenerIdentityProviderUpdateAuthenticationConfiguration struct {
+	Issuers []GardenerIdentityProviderIssuer `json:"issuers"`
+}
+
+// GardenerIdentityProviderUserValidationRule defines model for Gardener_IdentityProvider_UserValidationRule.
+type GardenerIdentityProviderUserValidationRule struct {
+	Expression string `json:"expression"`
+	Message    string `json:"message"`
 }
 
 // GardenerIsShootNameTaken defines model for Gardener_IsShootNameTaken.
@@ -1490,8 +1675,9 @@ type GardenerShootInfrastructureConfig struct {
 
 // GardenerShootKubernetes defines model for Gardener_Shoot_Kubernetes.
 type GardenerShootKubernetes struct {
-	EnableStaticTokenKubeconfig *bool  `json:"enable_static_token_kubeconfig,omitempty"`
-	Version                     string `json:"version"`
+	AuthenticationConfigurationName *string `json:"authentication_configuration_name,omitempty"`
+	EnableStaticTokenKubeconfig     *bool   `json:"enable_static_token_kubeconfig,omitempty"`
+	Version                         string  `json:"version"`
 }
 
 // GardenerShootLastError defines model for Gardener_Shoot_LastError.
@@ -1969,6 +2155,15 @@ type OpenStackIdentityCreateUserRequest struct {
 	Projects    *[]OpenStackIdentityProjectAccessRequest `json:"projects,omitempty"`
 }
 
+// OpenStackIdentityDomain defines model for OpenStack_Identity_Domain.
+type OpenStackIdentityDomain struct {
+	Description          *string `json:"description,omitempty"`
+	Enabled              bool    `json:"enabled"`
+	Id                   string  `json:"id"`
+	IdentityAuthorityTag string  `json:"identity_authority_tag"`
+	Name                 string  `json:"name"`
+}
+
 // OpenStackIdentityDomainEndpoint defines model for OpenStack_Identity_DomainEndpoint.
 type OpenStackIdentityDomainEndpoint struct {
 	Id        string `json:"id"`
@@ -2003,6 +2198,17 @@ type OpenStackIdentityEditUserRequest struct {
 type OpenStackIdentityGrantProjectAccessRequest struct {
 	Projects []OpenStackIdentityProjectAccessRequest `json:"projects"`
 }
+
+// OpenStackIdentityIdentityAuthority defines model for OpenStack_Identity_IdentityAuthority.
+type OpenStackIdentityIdentityAuthority struct {
+	Name    string                                   `json:"name"`
+	Regions []OpenStackIdentityRegionWithStatus      `json:"regions"`
+	Status  OpenStackIdentityIdentityAuthorityStatus `json:"status"`
+	Tag     string                                   `json:"tag"`
+}
+
+// OpenStackIdentityIdentityAuthorityStatus defines model for OpenStack_Identity_IdentityAuthorityStatus.
+type OpenStackIdentityIdentityAuthorityStatus string
 
 // OpenStackIdentityProject defines model for OpenStack_Identity_Project.
 type OpenStackIdentityProject struct {
@@ -2097,6 +2303,12 @@ type OpenStackIdentityRegion struct {
 type OpenStackIdentityRegionWithProjects struct {
 	Projects []OpenStackIdentityProject `json:"projects"`
 	Region   OpenStackIdentityRegion    `json:"region"`
+}
+
+// OpenStackIdentityRegionWithStatus defines model for OpenStack_Identity_RegionWithStatus.
+type OpenStackIdentityRegionWithStatus struct {
+	IsActive bool   `json:"is_active"`
+	Tag      string `json:"tag"`
 }
 
 // OpenStackIdentityUser defines model for OpenStack_Identity_User.
@@ -2194,6 +2406,12 @@ type AuthCreateTokenByHashJSONRequestBody = AuthCreateTokenByHashRequest
 
 // AuthCreateTokenBySmsCodeJSONRequestBody defines body for AuthCreateTokenBySmsCode for application/json ContentType.
 type AuthCreateTokenBySmsCodeJSONRequestBody = AuthCreateTokenBySmsRequest
+
+// GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody defines body for GardenerIdentityProviderCreateAuthenticationConfiguration for application/json ContentType.
+type GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody = GardenerIdentityProviderCreateAuthenticationConfiguration
+
+// GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody defines body for GardenerIdentityProviderUpdateAuthenticationConfiguration for application/json ContentType.
+type GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody = GardenerIdentityProviderUpdateAuthenticationConfiguration
 
 // GardenerCreateShootJSONRequestBody defines body for GardenerCreateShoot for application/json ContentType.
 type GardenerCreateShootJSONRequestBody = GardenerCreateShootShoot
@@ -2921,6 +3139,34 @@ type ClientInterface interface {
 	// AuthValidateToken request
 	AuthValidateToken(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GardenerIdentityProviderListAuthenticationConfigurations request
+	GardenerIdentityProviderListAuthenticationConfigurations(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderCreateAuthenticationConfigurationWithBody request with any body
+	GardenerIdentityProviderCreateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	GardenerIdentityProviderCreateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderDeleteAuthenticationConfiguration request
+	GardenerIdentityProviderDeleteAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderGetAuthenticationConfiguration request
+	GardenerIdentityProviderGetAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody request with any body
+	GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	GardenerIdentityProviderUpdateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderListIssuersForAuthenticationConfiguration request
+	GardenerIdentityProviderListIssuersForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderListShootsForAuthenticationConfiguration request
+	GardenerIdentityProviderListShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration request
+	GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GardenerListCloudProfiles request
 	GardenerListCloudProfiles(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -2961,6 +3207,9 @@ type ClientInterface interface {
 
 	// GardenerHibernateShoot request
 	GardenerHibernateShoot(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderGetShootOidcKubeConfig request
+	GardenerIdentityProviderGetShootOidcKubeConfig(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GardenerTriggerShootMaintenance request
 	GardenerTriggerShootMaintenance(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3158,6 +3407,9 @@ type ClientInterface interface {
 	// OpenStackIdentityListRegionsWithProjects request
 	OpenStackIdentityListRegionsWithProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenStackIdentityListIdentityAuthorities request
+	OpenStackIdentityListIdentityAuthorities(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenStackIdentityListDomains request
 	OpenStackIdentityListDomains(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -3215,6 +3467,9 @@ type ClientInterface interface {
 
 	// OpenStackIdentityListProjectLogs request
 	OpenStackIdentityListProjectLogs(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListDomainsV3 request
+	OpenStackIdentityListDomainsV3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) AuthRequestLoginWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -3409,6 +3664,126 @@ func (c *Client) AuthValidateToken(ctx context.Context, reqEditors ...RequestEdi
 	return c.Client.Do(req)
 }
 
+func (c *Client) GardenerIdentityProviderListAuthenticationConfigurations(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderListAuthenticationConfigurationsRequest(c.Server, gardenerRegionTag)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderCreateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody(c.Server, gardenerRegionTag, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderCreateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderCreateAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderDeleteAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderDeleteAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderGetAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderGetAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody(c.Server, gardenerRegionTag, name, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderUpdateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderListIssuersForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderListIssuersForAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderListShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderListShootsForAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GardenerListCloudProfiles(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGardenerListCloudProfilesRequest(c.Server, gardenerRegionTag)
 	if err != nil {
@@ -3579,6 +3954,18 @@ func (c *Client) GardenerEnableHighlyAvailableControlPlane(ctx context.Context, 
 
 func (c *Client) GardenerHibernateShoot(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGardenerHibernateShootRequest(c.Server, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderGetShootOidcKubeConfig(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderGetShootOidcKubeConfigRequest(c.Server, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, issuerAlias, audienceKey)
 	if err != nil {
 		return nil, err
 	}
@@ -4441,6 +4828,18 @@ func (c *Client) OpenStackIdentityListRegionsWithProjects(ctx context.Context, r
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenStackIdentityListIdentityAuthorities(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListIdentityAuthoritiesRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenStackIdentityListDomains(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenStackIdentityListDomainsRequest(c.Server)
 	if err != nil {
@@ -4683,6 +5082,18 @@ func (c *Client) OpenStackIdentityRevokeProjectAccess(ctx context.Context, domai
 
 func (c *Client) OpenStackIdentityListProjectLogs(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenStackIdentityListProjectLogsRequest(c.Server, projectName, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListDomainsV3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListDomainsV3Request(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -5010,6 +5421,346 @@ func NewAuthValidateTokenRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/auth/v2/tokens/validate")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderListAuthenticationConfigurationsRequest generates requests for GardenerIdentityProviderListAuthenticationConfigurations
+func NewGardenerIdentityProviderListAuthenticationConfigurationsRequest(server string, gardenerRegionTag string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderCreateAuthenticationConfigurationRequest calls the generic GardenerIdentityProviderCreateAuthenticationConfiguration builder with application/json body
+func NewGardenerIdentityProviderCreateAuthenticationConfigurationRequest(server string, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody(server, gardenerRegionTag, "application/json", bodyReader)
+}
+
+// NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody generates requests for GardenerIdentityProviderCreateAuthenticationConfiguration with any type of body
+func NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody(server string, gardenerRegionTag string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderDeleteAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderDeleteAuthenticationConfiguration
+func NewGardenerIdentityProviderDeleteAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderGetAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderGetAuthenticationConfiguration
+func NewGardenerIdentityProviderGetAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequest calls the generic GardenerIdentityProviderUpdateAuthenticationConfiguration builder with application/json body
+func NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody(server, gardenerRegionTag, name, "application/json", bodyReader)
+}
+
+// NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody generates requests for GardenerIdentityProviderUpdateAuthenticationConfiguration with any type of body
+func NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody(server string, gardenerRegionTag string, name string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderListIssuersForAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderListIssuersForAuthenticationConfiguration
+func NewGardenerIdentityProviderListIssuersForAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s/issuers", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderListShootsForAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderListShootsForAuthenticationConfiguration
+func NewGardenerIdentityProviderListShootsForAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s/shoots", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration
+func NewGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s/shoots/reconcile", pathParam0, pathParam1)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -5642,6 +6393,75 @@ func NewGardenerHibernateShootRequest(server string, gardenerRegionTag string, o
 	}
 
 	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderGetShootOidcKubeConfigRequest generates requests for GardenerIdentityProviderGetShootOidcKubeConfig
+func NewGardenerIdentityProviderGetShootOidcKubeConfigRequest(server string, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam3 string
+
+	pathParam3, err = runtime.StyleParamWithOptions("simple", false, "shootName", shootName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam4 string
+
+	pathParam4, err = runtime.StyleParamWithOptions("simple", false, "issuerAlias", issuerAlias, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam5 string
+
+	pathParam5, err = runtime.StyleParamWithOptions("simple", false, "audienceKey", audienceKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/shoots/%s/%s/%s/kubeconfig/%s/%s", pathParam0, pathParam1, pathParam2, pathParam3, pathParam4, pathParam5)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -8449,6 +9269,33 @@ func NewOpenStackIdentityListRegionsWithProjectsRequest(server string) (*http.Re
 	return req, nil
 }
 
+// NewOpenStackIdentityListIdentityAuthoritiesRequest generates requests for OpenStackIdentityListIdentityAuthorities
+func NewOpenStackIdentityListIdentityAuthoritiesRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v1/identity-authorities")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenStackIdentityListDomainsRequest generates requests for OpenStackIdentityListDomains
 func NewOpenStackIdentityListDomainsRequest(server string) (*http.Request, error) {
 	var err error
@@ -9188,6 +10035,33 @@ func NewOpenStackIdentityListProjectLogsRequest(server string, projectName strin
 	return req, nil
 }
 
+// NewOpenStackIdentityListDomainsV3Request generates requests for OpenStackIdentityListDomainsV3
+func NewOpenStackIdentityListDomainsV3Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v3/domains")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -9272,6 +10146,34 @@ type ClientWithResponsesInterface interface {
 	// AuthValidateTokenWithResponse request
 	AuthValidateTokenWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AuthValidateTokenAPIResponse, error)
 
+	// GardenerIdentityProviderListAuthenticationConfigurationsWithResponse request
+	GardenerIdentityProviderListAuthenticationConfigurationsWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse, error)
+
+	// GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse request with any body
+	GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error)
+
+	GardenerIdentityProviderCreateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderGetAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderGetAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse request with any body
+	GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error)
+
+	GardenerIdentityProviderUpdateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse, error)
+
 	// GardenerListCloudProfilesWithResponse request
 	GardenerListCloudProfilesWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerListCloudProfilesAPIResponse, error)
 
@@ -9312,6 +10214,9 @@ type ClientWithResponsesInterface interface {
 
 	// GardenerHibernateShootWithResponse request
 	GardenerHibernateShootWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*GardenerHibernateShootAPIResponse, error)
+
+	// GardenerIdentityProviderGetShootOidcKubeConfigWithResponse request
+	GardenerIdentityProviderGetShootOidcKubeConfigWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse, error)
 
 	// GardenerTriggerShootMaintenanceWithResponse request
 	GardenerTriggerShootMaintenanceWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*GardenerTriggerShootMaintenanceAPIResponse, error)
@@ -9509,6 +10414,9 @@ type ClientWithResponsesInterface interface {
 	// OpenStackIdentityListRegionsWithProjectsWithResponse request
 	OpenStackIdentityListRegionsWithProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListRegionsWithProjectsAPIResponse, error)
 
+	// OpenStackIdentityListIdentityAuthoritiesWithResponse request
+	OpenStackIdentityListIdentityAuthoritiesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListIdentityAuthoritiesAPIResponse, error)
+
 	// OpenStackIdentityListDomainsWithResponse request
 	OpenStackIdentityListDomainsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsAPIResponse, error)
 
@@ -9566,6 +10474,9 @@ type ClientWithResponsesInterface interface {
 
 	// OpenStackIdentityListProjectLogsWithResponse request
 	OpenStackIdentityListProjectLogsWithResponse(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*OpenStackIdentityListProjectLogsAPIResponse, error)
+
+	// OpenStackIdentityListDomainsV3WithResponse request
+	OpenStackIdentityListDomainsV3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsV3APIResponse, error)
 }
 
 type AuthRequestLoginAPIResponse struct {
@@ -9845,6 +10756,277 @@ func (r AuthValidateTokenAPIResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r AuthValidateTokenAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]GardenerIdentityProviderAuthenticationConfiguration
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *GardenerIdentityProviderAuthenticationConfiguration
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GardenerIdentityProviderAuthenticationConfiguration
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *GardenerIdentityProviderAuthenticationConfiguration
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]GardenerIdentityProviderIssuerReference
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]GardenerIdentityProviderShootReference
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *[]GardenerIdentityProviderShootReconcileResult
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -10213,6 +11395,41 @@ func (r GardenerHibernateShootAPIResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r GardenerHibernateShootAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GardenerIdentityProviderOidcKubeconfig
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -12017,6 +13234,38 @@ func (r OpenStackIdentityListRegionsWithProjectsAPIResponse) ContentType() strin
 	return ""
 }
 
+type OpenStackIdentityListIdentityAuthoritiesAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityIdentityAuthority
+	JSON401      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListIdentityAuthoritiesAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListIdentityAuthoritiesAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListIdentityAuthoritiesAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenStackIdentityListDomainsAPIResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -12547,6 +13796,38 @@ func (r OpenStackIdentityListProjectLogsAPIResponse) ContentType() string {
 	return ""
 }
 
+type OpenStackIdentityListDomainsV3APIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityDomain
+	JSON401      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListDomainsV3APIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListDomainsV3APIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListDomainsV3APIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // AuthRequestLoginWithBodyWithResponse request with arbitrary body returning *AuthRequestLoginAPIResponse
 func (c *ClientWithResponses) AuthRequestLoginWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AuthRequestLoginAPIResponse, error) {
 	rsp, err := c.AuthRequestLoginWithBody(ctx, contentType, body, reqEditors...)
@@ -12684,6 +13965,94 @@ func (c *ClientWithResponses) AuthValidateTokenWithResponse(ctx context.Context,
 	return ParseAuthValidateTokenAPIResponse(rsp)
 }
 
+// GardenerIdentityProviderListAuthenticationConfigurationsWithResponse request returning *GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderListAuthenticationConfigurationsWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderListAuthenticationConfigurations(ctx, gardenerRegionTag, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderListAuthenticationConfigurationsAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse request with arbitrary body returning *GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderCreateAuthenticationConfigurationWithBody(ctx, gardenerRegionTag, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) GardenerIdentityProviderCreateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderCreateAuthenticationConfiguration(ctx, gardenerRegionTag, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderDeleteAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderGetAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderGetAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderGetAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderGetAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse request with arbitrary body returning *GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody(ctx, gardenerRegionTag, name, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) GardenerIdentityProviderUpdateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderUpdateAuthenticationConfiguration(ctx, gardenerRegionTag, name, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderListIssuersForAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderListShootsForAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse(rsp)
+}
+
 // GardenerListCloudProfilesWithResponse request returning *GardenerListCloudProfilesAPIResponse
 func (c *ClientWithResponses) GardenerListCloudProfilesWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerListCloudProfilesAPIResponse, error) {
 	rsp, err := c.GardenerListCloudProfiles(ctx, gardenerRegionTag, reqEditors...)
@@ -12813,6 +14182,15 @@ func (c *ClientWithResponses) GardenerHibernateShootWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseGardenerHibernateShootAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderGetShootOidcKubeConfigWithResponse request returning *GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderGetShootOidcKubeConfigWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderGetShootOidcKubeConfig(ctx, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, issuerAlias, audienceKey, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderGetShootOidcKubeConfigAPIResponse(rsp)
 }
 
 // GardenerTriggerShootMaintenanceWithResponse request returning *GardenerTriggerShootMaintenanceAPIResponse
@@ -13437,6 +14815,15 @@ func (c *ClientWithResponses) OpenStackIdentityListRegionsWithProjectsWithRespon
 	return ParseOpenStackIdentityListRegionsWithProjectsAPIResponse(rsp)
 }
 
+// OpenStackIdentityListIdentityAuthoritiesWithResponse request returning *OpenStackIdentityListIdentityAuthoritiesAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListIdentityAuthoritiesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListIdentityAuthoritiesAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListIdentityAuthorities(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListIdentityAuthoritiesAPIResponse(rsp)
+}
+
 // OpenStackIdentityListDomainsWithResponse request returning *OpenStackIdentityListDomainsAPIResponse
 func (c *ClientWithResponses) OpenStackIdentityListDomainsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsAPIResponse, error) {
 	rsp, err := c.OpenStackIdentityListDomains(ctx, reqEditors...)
@@ -13619,6 +15006,15 @@ func (c *ClientWithResponses) OpenStackIdentityListProjectLogsWithResponse(ctx c
 		return nil, err
 	}
 	return ParseOpenStackIdentityListProjectLogsAPIResponse(rsp)
+}
+
+// OpenStackIdentityListDomainsV3WithResponse request returning *OpenStackIdentityListDomainsV3APIResponse
+func (c *ClientWithResponses) OpenStackIdentityListDomainsV3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsV3APIResponse, error) {
+	rsp, err := c.OpenStackIdentityListDomainsV3(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListDomainsV3APIResponse(rsp)
 }
 
 // ParseAuthRequestLoginAPIResponse parses an HTTP response from a AuthRequestLoginWithResponse call
@@ -13933,6 +15329,431 @@ func ParseAuthValidateTokenAPIResponse(rsp *http.Response) (*AuthValidateTokenAP
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderListAuthenticationConfigurationsAPIResponse parses an HTTP response from a GardenerIdentityProviderListAuthenticationConfigurationsWithResponse call
+func ParseGardenerIdentityProviderListAuthenticationConfigurationsAPIResponse(rsp *http.Response) (*GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderCreateAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderGetAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderGetAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderGetAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderUpdateAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []GardenerIdentityProviderIssuerReference
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []GardenerIdentityProviderShootReference
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest []GardenerIdentityProviderShootReconcileResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
@@ -14485,6 +16306,67 @@ func ParseGardenerHibernateShootAPIResponse(rsp *http.Response) (*GardenerHibern
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderGetShootOidcKubeConfigAPIResponse parses an HTTP response from a GardenerIdentityProviderGetShootOidcKubeConfigWithResponse call
+func ParseGardenerIdentityProviderGetShootOidcKubeConfigAPIResponse(rsp *http.Response) (*GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GardenerIdentityProviderOidcKubeconfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
@@ -17148,6 +19030,46 @@ func ParseOpenStackIdentityListRegionsWithProjectsAPIResponse(rsp *http.Response
 	return response, nil
 }
 
+// ParseOpenStackIdentityListIdentityAuthoritiesAPIResponse parses an HTTP response from a OpenStackIdentityListIdentityAuthoritiesWithResponse call
+func ParseOpenStackIdentityListIdentityAuthoritiesAPIResponse(rsp *http.Response) (*OpenStackIdentityListIdentityAuthoritiesAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListIdentityAuthoritiesAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityIdentityAuthority
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenStackIdentityListDomainsAPIResponse parses an HTTP response from a OpenStackIdentityListDomainsWithResponse call
 func ParseOpenStackIdentityListDomainsAPIResponse(rsp *http.Response) (*OpenStackIdentityListDomainsAPIResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -17901,6 +19823,46 @@ func ParseOpenStackIdentityListProjectLogsAPIResponse(rsp *http.Response) (*Open
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListDomainsV3APIResponse parses an HTTP response from a OpenStackIdentityListDomainsV3WithResponse call
+func ParseOpenStackIdentityListDomainsV3APIResponse(rsp *http.Response) (*OpenStackIdentityListDomainsV3APIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListDomainsV3APIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
