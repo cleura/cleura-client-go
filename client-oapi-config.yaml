@@ -13,3 +13,5 @@ output-options:
     - Identity
     - Gardener
     - OpenStack_Identity
+    - OpenStack_BlockStorage
+    - Gardener_IdentityProvider

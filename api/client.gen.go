@@ -17,6 +17,7 @@ import (
 	"go.yaml.in/yaml/v3"
 
 	"github.com/oapi-codegen/runtime"
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 const (
@@ -92,18 +93,138 @@ func (e AuthCreateTokenResult) Valid() bool {
 	}
 }
 
+// Defines values for BackupRecoverServiceWorkStatus.
+const (
+	BackupRecoverServiceWorkStatusError      BackupRecoverServiceWorkStatus = "error"
+	BackupRecoverServiceWorkStatusFinished   BackupRecoverServiceWorkStatus = "finished"
+	BackupRecoverServiceWorkStatusInError    BackupRecoverServiceWorkStatus = "in_error"
+	BackupRecoverServiceWorkStatusInProgress BackupRecoverServiceWorkStatus = "in_progress"
+	BackupRecoverServiceWorkStatusWaiting    BackupRecoverServiceWorkStatus = "waiting"
+)
+
+// Valid indicates whether the value is a known member of the BackupRecoverServiceWorkStatus enum.
+func (e BackupRecoverServiceWorkStatus) Valid() bool {
+	switch e {
+	case BackupRecoverServiceWorkStatusError:
+		return true
+	case BackupRecoverServiceWorkStatusFinished:
+		return true
+	case BackupRecoverServiceWorkStatusInError:
+		return true
+	case BackupRecoverServiceWorkStatusInProgress:
+		return true
+	case BackupRecoverServiceWorkStatusWaiting:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for BackupRecoveryServiceRestoreWorkTarget.
+const (
+	NewVolume  BackupRecoveryServiceRestoreWorkTarget = "new_volume"
+	SameVolume BackupRecoveryServiceRestoreWorkTarget = "same_volume"
+)
+
+// Valid indicates whether the value is a known member of the BackupRecoveryServiceRestoreWorkTarget enum.
+func (e BackupRecoveryServiceRestoreWorkTarget) Valid() bool {
+	switch e {
+	case NewVolume:
+		return true
+	case SameVolume:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for CommonOpenStackVolumeStatus.
+const (
+	CommonOpenStackVolumeStatusAttaching        CommonOpenStackVolumeStatus = "attaching"
+	CommonOpenStackVolumeStatusAvailable        CommonOpenStackVolumeStatus = "available"
+	CommonOpenStackVolumeStatusAwaitingTransfer CommonOpenStackVolumeStatus = "awaiting-transfer"
+	CommonOpenStackVolumeStatusBackingUp        CommonOpenStackVolumeStatus = "backing-up"
+	CommonOpenStackVolumeStatusCreating         CommonOpenStackVolumeStatus = "creating"
+	CommonOpenStackVolumeStatusDeleting         CommonOpenStackVolumeStatus = "deleting"
+	CommonOpenStackVolumeStatusDetaching        CommonOpenStackVolumeStatus = "detaching"
+	CommonOpenStackVolumeStatusDownloading      CommonOpenStackVolumeStatus = "downloading"
+	CommonOpenStackVolumeStatusError            CommonOpenStackVolumeStatus = "error"
+	CommonOpenStackVolumeStatusErrorBackingUp   CommonOpenStackVolumeStatus = "error_backing-up"
+	CommonOpenStackVolumeStatusErrorDeleting    CommonOpenStackVolumeStatus = "error_deleting"
+	CommonOpenStackVolumeStatusErrorExtending   CommonOpenStackVolumeStatus = "error_extending"
+	CommonOpenStackVolumeStatusErrorRestoring   CommonOpenStackVolumeStatus = "error_restoring"
+	CommonOpenStackVolumeStatusExtending        CommonOpenStackVolumeStatus = "extending"
+	CommonOpenStackVolumeStatusInUse            CommonOpenStackVolumeStatus = "in-use"
+	CommonOpenStackVolumeStatusMaintenance      CommonOpenStackVolumeStatus = "maintenance"
+	CommonOpenStackVolumeStatusReserved         CommonOpenStackVolumeStatus = "reserved"
+	CommonOpenStackVolumeStatusRestoringBackup  CommonOpenStackVolumeStatus = "restoring-backup"
+	CommonOpenStackVolumeStatusRetyping         CommonOpenStackVolumeStatus = "retyping"
+	CommonOpenStackVolumeStatusReverting        CommonOpenStackVolumeStatus = "reverting"
+	CommonOpenStackVolumeStatusUploading        CommonOpenStackVolumeStatus = "uploading"
+)
+
+// Valid indicates whether the value is a known member of the CommonOpenStackVolumeStatus enum.
+func (e CommonOpenStackVolumeStatus) Valid() bool {
+	switch e {
+	case CommonOpenStackVolumeStatusAttaching:
+		return true
+	case CommonOpenStackVolumeStatusAvailable:
+		return true
+	case CommonOpenStackVolumeStatusAwaitingTransfer:
+		return true
+	case CommonOpenStackVolumeStatusBackingUp:
+		return true
+	case CommonOpenStackVolumeStatusCreating:
+		return true
+	case CommonOpenStackVolumeStatusDeleting:
+		return true
+	case CommonOpenStackVolumeStatusDetaching:
+		return true
+	case CommonOpenStackVolumeStatusDownloading:
+		return true
+	case CommonOpenStackVolumeStatusError:
+		return true
+	case CommonOpenStackVolumeStatusErrorBackingUp:
+		return true
+	case CommonOpenStackVolumeStatusErrorDeleting:
+		return true
+	case CommonOpenStackVolumeStatusErrorExtending:
+		return true
+	case CommonOpenStackVolumeStatusErrorRestoring:
+		return true
+	case CommonOpenStackVolumeStatusExtending:
+		return true
+	case CommonOpenStackVolumeStatusInUse:
+		return true
+	case CommonOpenStackVolumeStatusMaintenance:
+		return true
+	case CommonOpenStackVolumeStatusReserved:
+		return true
+	case CommonOpenStackVolumeStatusRestoringBackup:
+		return true
+	case CommonOpenStackVolumeStatusRetyping:
+		return true
+	case CommonOpenStackVolumeStatusReverting:
+		return true
+	case CommonOpenStackVolumeStatusUploading:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for CommonTwoFactorLoginStatus.
 const (
-	Active            CommonTwoFactorLoginStatus = "active"
-	AwaitVerification CommonTwoFactorLoginStatus = "await_verification"
+	CommonTwoFactorLoginStatusActive            CommonTwoFactorLoginStatus = "active"
+	CommonTwoFactorLoginStatusAwaitVerification CommonTwoFactorLoginStatus = "await_verification"
 )
 
 // Valid indicates whether the value is a known member of the CommonTwoFactorLoginStatus enum.
 func (e CommonTwoFactorLoginStatus) Valid() bool {
 	switch e {
-	case Active:
+	case CommonTwoFactorLoginStatusActive:
 		return true
-	case AwaitVerification:
+	case CommonTwoFactorLoginStatusAwaitVerification:
 		return true
 	default:
 		return false
@@ -128,6 +249,39 @@ func (e CommonTwoFactorMethod) Valid() bool {
 	}
 }
 
+// Defines values for GardenerAudienceMatchPolicy.
+const (
+	MatchAny GardenerAudienceMatchPolicy = "MatchAny"
+)
+
+// Valid indicates whether the value is a known member of the GardenerAudienceMatchPolicy enum.
+func (e GardenerAudienceMatchPolicy) Valid() bool {
+	switch e {
+	case MatchAny:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GardenerCloudProfileCloudProfileKind.
+const (
+	CloudProfile           GardenerCloudProfileCloudProfileKind = "CloudProfile"
+	NamespacedCloudProfile GardenerCloudProfileCloudProfileKind = "NamespacedCloudProfile"
+)
+
+// Valid indicates whether the value is a known member of the GardenerCloudProfileCloudProfileKind enum.
+func (e GardenerCloudProfileCloudProfileKind) Valid() bool {
+	switch e {
+	case CloudProfile:
+		return true
+	case NamespacedCloudProfile:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for GardenerGardenerClusterUpgradeResponseOutcome.
 const (
 	GardenerGardenerClusterUpgradeResponseOutcomeNotReady GardenerGardenerClusterUpgradeResponseOutcome = "not_ready"
@@ -146,6 +300,27 @@ func (e GardenerGardenerClusterUpgradeResponseOutcome) Valid() bool {
 	case GardenerGardenerClusterUpgradeResponseOutcomeReady:
 		return true
 	case GardenerGardenerClusterUpgradeResponseOutcomeSuccess:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GardenerIdentityProviderShootReconcileStatus.
+const (
+	Accepted                   GardenerIdentityProviderShootReconcileStatus = "accepted"
+	Failed                     GardenerIdentityProviderShootReconcileStatus = "failed"
+	SkippedOperationInProgress GardenerIdentityProviderShootReconcileStatus = "skipped_operation_in_progress"
+)
+
+// Valid indicates whether the value is a known member of the GardenerIdentityProviderShootReconcileStatus enum.
+func (e GardenerIdentityProviderShootReconcileStatus) Valid() bool {
+	switch e {
+	case Accepted:
+		return true
+	case Failed:
+		return true
+	case SkippedOperationInProgress:
 		return true
 	default:
 		return false
@@ -398,6 +573,27 @@ func (e GardenerShootNetworkingType) Valid() bool {
 	}
 }
 
+// Defines values for GardenerShootServerGroupPolicy.
+const (
+	Affinity         GardenerShootServerGroupPolicy = "affinity"
+	AntiAffinity     GardenerShootServerGroupPolicy = "anti-affinity"
+	SoftAntiAffinity GardenerShootServerGroupPolicy = "soft-anti-affinity"
+)
+
+// Valid indicates whether the value is a known member of the GardenerShootServerGroupPolicy enum.
+func (e GardenerShootServerGroupPolicy) Valid() bool {
+	switch e {
+	case Affinity:
+		return true
+	case AntiAffinity:
+		return true
+	case SoftAntiAffinity:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for GardenerShootTunnel.
 const (
 	Disabled GardenerShootTunnel = "disabled"
@@ -452,6 +648,114 @@ func (e IdentityPasswordActionType) Valid() bool {
 	case ChangePassword:
 		return true
 	case InitPassword:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OpenStackBlockStorageCinderBackupStatus.
+const (
+	OpenStackBlockStorageCinderBackupStatusAvailable     OpenStackBlockStorageCinderBackupStatus = "available"
+	OpenStackBlockStorageCinderBackupStatusCreating      OpenStackBlockStorageCinderBackupStatus = "creating"
+	OpenStackBlockStorageCinderBackupStatusDeleting      OpenStackBlockStorageCinderBackupStatus = "deleting"
+	OpenStackBlockStorageCinderBackupStatusError         OpenStackBlockStorageCinderBackupStatus = "error"
+	OpenStackBlockStorageCinderBackupStatusErrorDeleting OpenStackBlockStorageCinderBackupStatus = "error_deleting"
+	OpenStackBlockStorageCinderBackupStatusRestoring     OpenStackBlockStorageCinderBackupStatus = "restoring"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackBlockStorageCinderBackupStatus enum.
+func (e OpenStackBlockStorageCinderBackupStatus) Valid() bool {
+	switch e {
+	case OpenStackBlockStorageCinderBackupStatusAvailable:
+		return true
+	case OpenStackBlockStorageCinderBackupStatusCreating:
+		return true
+	case OpenStackBlockStorageCinderBackupStatusDeleting:
+		return true
+	case OpenStackBlockStorageCinderBackupStatusError:
+		return true
+	case OpenStackBlockStorageCinderBackupStatusErrorDeleting:
+		return true
+	case OpenStackBlockStorageCinderBackupStatusRestoring:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OpenStackBlockStorageSnapshotStatus.
+const (
+	OpenStackBlockStorageSnapshotStatusAvailable     OpenStackBlockStorageSnapshotStatus = "available"
+	OpenStackBlockStorageSnapshotStatusBackingUp     OpenStackBlockStorageSnapshotStatus = "backing-up"
+	OpenStackBlockStorageSnapshotStatusCreating      OpenStackBlockStorageSnapshotStatus = "creating"
+	OpenStackBlockStorageSnapshotStatusDeleted       OpenStackBlockStorageSnapshotStatus = "deleted"
+	OpenStackBlockStorageSnapshotStatusDeleting      OpenStackBlockStorageSnapshotStatus = "deleting"
+	OpenStackBlockStorageSnapshotStatusError         OpenStackBlockStorageSnapshotStatus = "error"
+	OpenStackBlockStorageSnapshotStatusErrorDeleting OpenStackBlockStorageSnapshotStatus = "error_deleting"
+	OpenStackBlockStorageSnapshotStatusRestoring     OpenStackBlockStorageSnapshotStatus = "restoring"
+	OpenStackBlockStorageSnapshotStatusUnmanaging    OpenStackBlockStorageSnapshotStatus = "unmanaging"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackBlockStorageSnapshotStatus enum.
+func (e OpenStackBlockStorageSnapshotStatus) Valid() bool {
+	switch e {
+	case OpenStackBlockStorageSnapshotStatusAvailable:
+		return true
+	case OpenStackBlockStorageSnapshotStatusBackingUp:
+		return true
+	case OpenStackBlockStorageSnapshotStatusCreating:
+		return true
+	case OpenStackBlockStorageSnapshotStatusDeleted:
+		return true
+	case OpenStackBlockStorageSnapshotStatusDeleting:
+		return true
+	case OpenStackBlockStorageSnapshotStatusError:
+		return true
+	case OpenStackBlockStorageSnapshotStatusErrorDeleting:
+		return true
+	case OpenStackBlockStorageSnapshotStatusRestoring:
+		return true
+	case OpenStackBlockStorageSnapshotStatusUnmanaging:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus.
+const (
+	OpenStackBlockStorageVolumeDisasterRecoveryServiceStatusActive   OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus = "active"
+	OpenStackBlockStorageVolumeDisasterRecoveryServiceStatusStopped  OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus = "stopped"
+	OpenStackBlockStorageVolumeDisasterRecoveryServiceStatusStopping OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus = "stopping"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus enum.
+func (e OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus) Valid() bool {
+	switch e {
+	case OpenStackBlockStorageVolumeDisasterRecoveryServiceStatusActive:
+		return true
+	case OpenStackBlockStorageVolumeDisasterRecoveryServiceStatusStopped:
+		return true
+	case OpenStackBlockStorageVolumeDisasterRecoveryServiceStatusStopping:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OpenStackIdentityIdentityAuthorityStatus.
+const (
+	Available   OpenStackIdentityIdentityAuthorityStatus = "available"
+	Provisioned OpenStackIdentityIdentityAuthorityStatus = "provisioned"
+)
+
+// Valid indicates whether the value is a known member of the OpenStackIdentityIdentityAuthorityStatus enum.
+func (e OpenStackIdentityIdentityAuthorityStatus) Valid() bool {
+	switch e {
+	case Available:
+		return true
+	case Provisioned:
 		return true
 	default:
 		return false
@@ -604,6 +908,12 @@ type AuthToken struct {
 	Token string `json:"token"`
 }
 
+// BackupRecoverServiceWorkStatus defines model for Backup_RecoverServiceWorkStatus.
+type BackupRecoverServiceWorkStatus string
+
+// BackupRecoveryServiceRestoreWorkTarget defines model for Backup_RecoveryServiceRestoreWorkTarget.
+type BackupRecoveryServiceRestoreWorkTarget string
+
 // CommonCurrency defines model for Common_Currency.
 type CommonCurrency struct {
 	Code string `json:"code"`
@@ -616,7 +926,7 @@ type CommonOpenStackDomain struct {
 	Area    CommonOpenStackDomainArea `json:"area"`
 	Enabled *bool                     `json:"enabled,omitempty"`
 	Error   *string                   `json:"error,omitempty"`
-	Id      string                    `json:"id"`
+	Id      *string                   `json:"id,omitempty"`
 	Name    *string                   `json:"name,omitempty"`
 	Status  string                    `json:"status"`
 }
@@ -634,6 +944,15 @@ type CommonOpenStackRegion struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 	Tag  string `json:"tag"`
+}
+
+// CommonOpenStackVolumeStatus defines model for Common_OpenStackVolumeStatus.
+type CommonOpenStackVolumeStatus string
+
+// CommonRecoverServiceRequest defines model for Common_RecoverServiceRequest.
+type CommonRecoverServiceRequest struct {
+	Immutable     bool `json:"immutable"`
+	RetentionDays int  `json:"retention_days"`
 }
 
 // CommonTwoFactorLoginSms defines model for Common_TwoFactorLoginSms.
@@ -754,6 +1073,9 @@ type GardenerAnnotation struct {
 	Value string `json:"value"`
 }
 
+// GardenerAudienceMatchPolicy defines model for Gardener_AudienceMatchPolicy.
+type GardenerAudienceMatchPolicy string
+
 // GardenerCaRotationStage defines model for Gardener_CaRotationStage.
 type GardenerCaRotationStage struct {
 	Stage K8sCaRotationStage `json:"stage"`
@@ -761,15 +1083,19 @@ type GardenerCaRotationStage struct {
 
 // GardenerCloudProfileCloudProfile defines model for Gardener_CloudProfile_CloudProfile.
 type GardenerCloudProfileCloudProfile struct {
-	Kubernetes     GardenerCloudProfileKubernetes     `json:"kubernetes"`
-	MachineImages  []GardenerCloudProfileMachineImage `json:"machine_images"`
-	MachineTypes   []GardenerCloudProfileMachineType  `json:"machine_types"`
-	Name           string                             `json:"name"`
-	ProviderConfig GardenerCloudProfileProviderConfig `json:"provider_config"`
-	Regions        []GardenerCloudProfileRegion       `json:"regions"`
-	Type           string                             `json:"type"`
-	VolumeTypes    []GardenerCloudProfileVolumeType   `json:"volume_types"`
+	Kind           GardenerCloudProfileCloudProfileKind `json:"kind"`
+	Kubernetes     GardenerCloudProfileKubernetes       `json:"kubernetes"`
+	MachineImages  []GardenerCloudProfileMachineImage   `json:"machine_images"`
+	MachineTypes   []GardenerCloudProfileMachineType    `json:"machine_types"`
+	Name           string                               `json:"name"`
+	ProviderConfig GardenerCloudProfileProviderConfig   `json:"provider_config"`
+	Regions        []GardenerCloudProfileRegion         `json:"regions"`
+	Type           string                               `json:"type"`
+	VolumeTypes    []GardenerCloudProfileVolumeType     `json:"volume_types"`
 }
+
+// GardenerCloudProfileCloudProfileKind defines model for Gardener_CloudProfile_CloudProfileKind.
+type GardenerCloudProfileCloudProfileKind string
 
 // GardenerCloudProfileConstraints defines model for Gardener_CloudProfile_Constraints.
 type GardenerCloudProfileConstraints struct {
@@ -933,28 +1259,30 @@ type GardenerCreateShootProvider struct {
 
 // GardenerCreateShootShoot defines model for Gardener_CreateShoot_Shoot.
 type GardenerCreateShootShoot struct {
-	AllowedCidrs         *[]string                                 `json:"allowed_cidrs,omitempty"`
-	EnableHaControlPlane *bool                                     `json:"enable_ha_control_plane,omitempty"`
-	HibernationSchedules *[]GardenerCreateShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
-	KubernetesVersion    string                                    `json:"kubernetes_version"`
-	Maintenance          *GardenerCreateShootMaintenance           `json:"maintenance,omitempty"`
-	Name                 string                                    `json:"name"`
-	Networking           *GardenerCreateShootNetworking            `json:"networking,omitempty"`
-	ShootProvider        GardenerCreateShootProvider               `json:"shoot_provider"`
+	AllowedCidrs                    *[]string                                 `json:"allowed_cidrs,omitempty"`
+	AuthenticationConfigurationName *string                                   `json:"authentication_configuration_name,omitempty"`
+	EnableHaControlPlane            *bool                                     `json:"enable_ha_control_plane,omitempty"`
+	HibernationSchedules            *[]GardenerCreateShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
+	KubernetesVersion               string                                    `json:"kubernetes_version"`
+	Maintenance                     *GardenerCreateShootMaintenance           `json:"maintenance,omitempty"`
+	Name                            string                                    `json:"name"`
+	Networking                      *GardenerCreateShootNetworking            `json:"networking,omitempty"`
+	ShootProvider                   GardenerCreateShootProvider               `json:"shoot_provider"`
 }
 
 // GardenerCreateShootWorker defines model for Gardener_CreateShoot_Worker.
 type GardenerCreateShootWorker struct {
-	Annotations *[]GardenerAnnotation           `json:"annotations,omitempty"`
-	Labels      *[]GardenerLabel                `json:"labels,omitempty"`
-	Machine     GardenerMachine                 `json:"machine"`
-	MaxSurge    *int                            `json:"max_surge,omitempty"`
-	Maximum     *int                            `json:"maximum,omitempty"`
-	Minimum     *int                            `json:"minimum,omitempty"`
-	Name        *string                         `json:"name,omitempty"`
-	Taints      *[]GardenerCreateShootNodeTaint `json:"taints,omitempty"`
-	VolumeSize  *string                         `json:"volume_size,omitempty"`
-	Zones       *[]string                       `json:"zones,omitempty"`
+	Annotations       *[]GardenerAnnotation           `json:"annotations,omitempty"`
+	Labels            *[]GardenerLabel                `json:"labels,omitempty"`
+	Machine           GardenerMachine                 `json:"machine"`
+	MaxSurge          *int                            `json:"max_surge,omitempty"`
+	Maximum           *int                            `json:"maximum,omitempty"`
+	Minimum           *int                            `json:"minimum,omitempty"`
+	Name              *string                         `json:"name,omitempty"`
+	ServerGroupPolicy *GardenerShootServerGroupPolicy `json:"server_group_policy,omitempty"`
+	Taints            *[]GardenerCreateShootNodeTaint `json:"taints,omitempty"`
+	VolumeSize        *string                         `json:"volume_size,omitempty"`
+	Zones             *[]string                       `json:"zones,omitempty"`
 }
 
 // GardenerEditShootAutoUpdate defines model for Gardener_EditShoot_AutoUpdate.
@@ -1001,26 +1329,28 @@ type GardenerEditShootNodeTaint struct {
 
 // GardenerEditShootPatchShoot defines model for Gardener_EditShoot_PatchShoot.
 type GardenerEditShootPatchShoot struct {
-	AllowedCidrs         *[]string                               `json:"allowed_cidrs,omitempty"`
-	EnableHaControlPlane *bool                                   `json:"enable_ha_control_plane,omitempty"`
-	HibernationSchedules *[]GardenerEditShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
-	Kubernetes           *string                                 `json:"kubernetes,omitempty"`
-	Maintenance          *GardenerEditShootMaintenance           `json:"maintenance,omitempty"`
-	Networking           *GardenerEditShootNetworking            `json:"networking,omitempty"`
+	AllowedCidrs                    *[]string                               `json:"allowed_cidrs,omitempty"`
+	AuthenticationConfigurationName *string                                 `json:"authentication_configuration_name,omitempty"`
+	EnableHaControlPlane            *bool                                   `json:"enable_ha_control_plane,omitempty"`
+	HibernationSchedules            *[]GardenerEditShootHibernationSchedule `json:"hibernation_schedules,omitempty"`
+	Kubernetes                      *string                                 `json:"kubernetes,omitempty"`
+	Maintenance                     *GardenerEditShootMaintenance           `json:"maintenance,omitempty"`
+	Networking                      *GardenerEditShootNetworking            `json:"networking,omitempty"`
 }
 
 // GardenerEditShootWorker defines model for Gardener_EditShoot_Worker.
 type GardenerEditShootWorker struct {
-	Annotations *[]GardenerAnnotation         `json:"annotations,omitempty"`
-	Labels      *[]GardenerLabel              `json:"labels,omitempty"`
-	Machine     *GardenerMachine              `json:"machine,omitempty"`
-	MaxSurge    *int                          `json:"max_surge,omitempty"`
-	Maximum     *int                          `json:"maximum,omitempty"`
-	Minimum     *int                          `json:"minimum,omitempty"`
-	Name        *string                       `json:"name,omitempty"`
-	Taints      *[]GardenerEditShootNodeTaint `json:"taints,omitempty"`
-	VolumeSize  *string                       `json:"volume_size,omitempty"`
-	Zones       *[]string                     `json:"zones,omitempty"`
+	Annotations       *[]GardenerAnnotation           `json:"annotations,omitempty"`
+	Labels            *[]GardenerLabel                `json:"labels,omitempty"`
+	Machine           *GardenerMachine                `json:"machine,omitempty"`
+	MaxSurge          *int                            `json:"max_surge,omitempty"`
+	Maximum           *int                            `json:"maximum,omitempty"`
+	Minimum           *int                            `json:"minimum,omitempty"`
+	Name              *string                         `json:"name,omitempty"`
+	ServerGroupPolicy *GardenerShootServerGroupPolicy `json:"server_group_policy,omitempty"`
+	Taints            *[]GardenerEditShootNodeTaint   `json:"taints,omitempty"`
+	VolumeSize        *string                         `json:"volume_size,omitempty"`
+	Zones             *[]string                       `json:"zones,omitempty"`
 }
 
 // GardenerGardenerClusterUpgradeResponseOutcome defines model for Gardener_GardenerClusterUpgradeResponseOutcome.
@@ -1035,6 +1365,132 @@ type GardenerGetShootMonitoringResponse struct {
 // GardenerGetShootNodeNamesResponse defines model for Gardener_GetShootNodeNamesResponse.
 type GardenerGetShootNodeNamesResponse struct {
 	NodeNames []string `json:"node_names"`
+}
+
+// GardenerIdentityProviderAudienceReference defines model for Gardener_IdentityProvider_AudienceReference.
+type GardenerIdentityProviderAudienceReference struct {
+	Key  string `json:"key"`
+	Name string `json:"name"`
+}
+
+// GardenerIdentityProviderAuthenticationConfiguration defines model for Gardener_IdentityProvider_AuthenticationConfiguration.
+type GardenerIdentityProviderAuthenticationConfiguration struct {
+	Issuers []GardenerIdentityProviderIssuer `json:"issuers"`
+	Name    string                           `json:"name"`
+}
+
+// GardenerIdentityProviderClaimMapping defines model for Gardener_IdentityProvider_ClaimMapping.
+type GardenerIdentityProviderClaimMapping struct {
+	Claim  string  `json:"claim"`
+	Prefix *string `json:"prefix,omitempty"`
+}
+
+// GardenerIdentityProviderClaimMappings defines model for Gardener_IdentityProvider_ClaimMappings.
+type GardenerIdentityProviderClaimMappings struct {
+	Extra    *[]GardenerIdentityProviderExtraClaimMapping        `json:"extra,omitempty"`
+	Groups   *GardenerIdentityProviderClaimWithExpressionMapping `json:"groups,omitempty"`
+	Uid      *GardenerIdentityProviderClaimMapping               `json:"uid,omitempty"`
+	Username GardenerIdentityProviderClaimMapping                `json:"username"`
+}
+
+// GardenerIdentityProviderClaimValidationRule defines model for Gardener_IdentityProvider_ClaimValidationRule.
+type GardenerIdentityProviderClaimValidationRule struct {
+	Claim         string `json:"claim"`
+	RequiredValue string `json:"required_value"`
+}
+
+// GardenerIdentityProviderClaimValidationRules defines model for Gardener_IdentityProvider_ClaimValidationRules.
+type GardenerIdentityProviderClaimValidationRules struct {
+	ClaimRules      *[]GardenerIdentityProviderClaimValidationRule      `json:"claim_rules,omitempty"`
+	ExpressionRules *[]GardenerIdentityProviderExpressionValidationRule `json:"expression_rules,omitempty"`
+}
+
+// GardenerIdentityProviderClaimWithExpressionMapping defines model for Gardener_IdentityProvider_ClaimWithExpressionMapping.
+type GardenerIdentityProviderClaimWithExpressionMapping struct {
+	Claim      *string `json:"claim,omitempty"`
+	Expression *string `json:"expression,omitempty"`
+	Prefix     *string `json:"prefix,omitempty"`
+}
+
+// GardenerIdentityProviderCreateAuthenticationConfiguration defines model for Gardener_IdentityProvider_CreateAuthenticationConfiguration.
+type GardenerIdentityProviderCreateAuthenticationConfiguration struct {
+	Issuers []GardenerIdentityProviderIssuer `json:"issuers"`
+	Name    string                           `json:"name"`
+}
+
+// GardenerIdentityProviderExpressionValidationRule defines model for Gardener_IdentityProvider_ExpressionValidationRule.
+type GardenerIdentityProviderExpressionValidationRule struct {
+	Expression string `json:"expression"`
+	Message    string `json:"message"`
+}
+
+// GardenerIdentityProviderExtraClaimMapping defines model for Gardener_IdentityProvider_ExtraClaimMapping.
+type GardenerIdentityProviderExtraClaimMapping struct {
+	Key             string `json:"key"`
+	ValueExpression string `json:"value_expression"`
+}
+
+// GardenerIdentityProviderIssuer defines model for Gardener_IdentityProvider_Issuer.
+type GardenerIdentityProviderIssuer struct {
+	Alias                string                                        `json:"alias"`
+	AudienceMatchPolicy  *GardenerAudienceMatchPolicy                  `json:"audience_match_policy,omitempty"`
+	Audiences            []string                                      `json:"audiences"`
+	CertificateAuthority *string                                       `json:"certificate_authority,omitempty"`
+	ClaimMappings        GardenerIdentityProviderClaimMappings         `json:"claim_mappings"`
+	ClaimValidationRules *GardenerIdentityProviderClaimValidationRules `json:"claim_validation_rules,omitempty"`
+	Url                  string                                        `json:"url"`
+	UserValidationRules  *[]GardenerIdentityProviderUserValidationRule `json:"user_validation_rules,omitempty"`
+}
+
+// GardenerIdentityProviderIssuerReference defines model for Gardener_IdentityProvider_IssuerReference.
+type GardenerIdentityProviderIssuerReference struct {
+	Alias     string                                      `json:"alias"`
+	Audiences []GardenerIdentityProviderAudienceReference `json:"audiences"`
+	Url       string                                      `json:"url"`
+}
+
+// GardenerIdentityProviderLastOperation defines model for Gardener_IdentityProvider_LastOperation.
+type GardenerIdentityProviderLastOperation struct {
+	Description    string                          `json:"description"`
+	LastUpdateTime time.Time                       `json:"last_update_time"`
+	Progress       int                             `json:"progress"`
+	State          GardenerShootLastOperationState `json:"state"`
+	Type           GardenerShootLastOperationType  `json:"type"`
+}
+
+// GardenerIdentityProviderOidcKubeconfig defines model for Gardener_IdentityProvider_OidcKubeconfig.
+type GardenerIdentityProviderOidcKubeconfig struct {
+	Kubeconfig string `json:"kubeconfig"`
+}
+
+// GardenerIdentityProviderShootReconcileResult defines model for Gardener_IdentityProvider_ShootReconcileResult.
+type GardenerIdentityProviderShootReconcileResult struct {
+	Name               string                                       `json:"name"`
+	OpenstackProjectId string                                       `json:"openstack_project_id"`
+	OpenstackRegionTag string                                       `json:"openstack_region_tag"`
+	Status             GardenerIdentityProviderShootReconcileStatus `json:"status"`
+}
+
+// GardenerIdentityProviderShootReconcileStatus defines model for Gardener_IdentityProvider_ShootReconcileStatus.
+type GardenerIdentityProviderShootReconcileStatus string
+
+// GardenerIdentityProviderShootReference defines model for Gardener_IdentityProvider_ShootReference.
+type GardenerIdentityProviderShootReference struct {
+	LastOperation      *GardenerIdentityProviderLastOperation `json:"last_operation,omitempty"`
+	Name               string                                 `json:"name"`
+	OpenstackProjectId string                                 `json:"openstack_project_id"`
+	OpenstackRegionTag string                                 `json:"openstack_region_tag"`
+}
+
+// GardenerIdentityProviderUpdateAuthenticationConfiguration defines model for Gardener_IdentityProvider_UpdateAuthenticationConfiguration.
+type GardenerIdentityProviderUpdateAuthenticationConfiguration struct {
+	Issuers []GardenerIdentityProviderIssuer `json:"issuers"`
+}
+
+// GardenerIdentityProviderUserValidationRule defines model for Gardener_IdentityProvider_UserValidationRule.
+type GardenerIdentityProviderUserValidationRule struct {
+	Expression string `json:"expression"`
+	Message    string `json:"message"`
 }
 
 // GardenerIsShootNameTaken defines model for Gardener_IsShootNameTaken.
@@ -1219,8 +1675,9 @@ type GardenerShootInfrastructureConfig struct {
 
 // GardenerShootKubernetes defines model for Gardener_Shoot_Kubernetes.
 type GardenerShootKubernetes struct {
-	EnableStaticTokenKubeconfig *bool  `json:"enable_static_token_kubeconfig,omitempty"`
-	Version                     string `json:"version"`
+	AuthenticationConfigurationName *string `json:"authentication_configuration_name,omitempty"`
+	EnableStaticTokenKubeconfig     *bool   `json:"enable_static_token_kubeconfig,omitempty"`
+	Version                         string  `json:"version"`
 }
 
 // GardenerShootLastError defines model for Gardener_Shoot_LastError.
@@ -1290,10 +1747,25 @@ type GardenerShootProvider struct {
 	Workers              []GardenerShootWorker             `json:"workers"`
 }
 
+// GardenerShootProviderConfig defines model for Gardener_Shoot_ProviderConfig.
+type GardenerShootProviderConfig struct {
+	ApiVersion  string                   `json:"api_version"`
+	Kind        string                   `json:"kind"`
+	ServerGroup GardenerShootServerGroup `json:"server_group"`
+}
+
 // GardenerShootRouter defines model for Gardener_Shoot_Router.
 type GardenerShootRouter struct {
 	Id *string `json:"id,omitempty"`
 }
+
+// GardenerShootServerGroup defines model for Gardener_Shoot_ServerGroup.
+type GardenerShootServerGroup struct {
+	Policy GardenerShootServerGroupPolicy `json:"policy"`
+}
+
+// GardenerShootServerGroupPolicy defines model for Gardener_Shoot_ServerGroupPolicy.
+type GardenerShootServerGroupPolicy string
 
 // GardenerShootShoot defines model for Gardener_Shoot_Shoot.
 type GardenerShootShoot struct {
@@ -1348,6 +1820,7 @@ type GardenerShootWorker struct {
 	Maximum        int                              `json:"maximum"`
 	Minimum        int                              `json:"minimum"`
 	Name           string                           `json:"name"`
+	ProviderConfig *GardenerShootProviderConfig     `json:"provider_config,omitempty"`
 	Taints         *[]GardenerShootWorkerTaint      `json:"taints,omitempty"`
 	Volume         GardenerShootVolume              `json:"volume"`
 	Zones          []string                         `json:"zones"`
@@ -1467,6 +1940,207 @@ type IdentityVerifyCurrentUserEmailRequest struct {
 	Email string `json:"email"`
 }
 
+// OpenStackBlockStorageBackup defines model for OpenStack_BlockStorage_Backup.
+type OpenStackBlockStorageBackup struct {
+	Container            *string                                 `json:"container,omitempty"`
+	CreatedAt            time.Time                               `json:"created_at"`
+	Description          *string                                 `json:"description,omitempty"`
+	FailReason           *string                                 `json:"fail_reason,omitempty"`
+	HasDependentBackups  bool                                    `json:"has_dependent_backups"`
+	Id                   openapi_types.UUID                      `json:"id"`
+	IsIncremental        bool                                    `json:"is_incremental"`
+	IsManagedByBackupJob bool                                    `json:"is_managed_by_backup_job"`
+	Name                 *string                                 `json:"name,omitempty"`
+	SizeInGigabytes      int                                     `json:"size_in_gigabytes"`
+	Status               OpenStackBlockStorageCinderBackupStatus `json:"status"`
+	UpdatedAt            time.Time                               `json:"updated_at"`
+	VolumeId             openapi_types.UUID                      `json:"volume_id"`
+}
+
+// OpenStackBlockStorageBackupPolicy defines model for OpenStack_BlockStorage_BackupPolicy.
+type OpenStackBlockStorageBackupPolicy struct {
+	DaysImmutable int    `json:"days_immutable"`
+	Description   string `json:"description"`
+	Id            int    `json:"id"`
+	Immutable     bool   `json:"immutable"`
+	Name          string `json:"name"`
+}
+
+// OpenStackBlockStorageCinderBackupStatus defines model for OpenStack_BlockStorage_CinderBackupStatus.
+type OpenStackBlockStorageCinderBackupStatus string
+
+// OpenStackBlockStorageCreateBackupRequest defines model for OpenStack_BlockStorage_CreateBackupRequest.
+type OpenStackBlockStorageCreateBackupRequest struct {
+	BackupPolicyId int     `json:"backup_policy_id"`
+	Description    *string `json:"description,omitempty"`
+	Force          *bool   `json:"force,omitempty"`
+
+	// Incremental If true, tries to perform an incremental backup. If false, performs a full backup that includes all data on the volume.
+	Incremental *bool   `json:"incremental,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	SnapshotId  *string `json:"snapshot_id,omitempty"`
+	VolumeId    string  `json:"volume_id"`
+}
+
+// OpenStackBlockStorageCreateSnapshotRequest defines model for OpenStack_BlockStorage_CreateSnapshotRequest.
+type OpenStackBlockStorageCreateSnapshotRequest struct {
+	Description *string                 `json:"description,omitempty"`
+	Force       bool                    `json:"force"`
+	Metadata    *map[string]interface{} `json:"metadata,omitempty"`
+	Name        string                  `json:"name"`
+	VolumeId    string                  `json:"volume_id"`
+}
+
+// OpenStackBlockStorageCreateVolumeRequest defines model for OpenStack_BlockStorage_CreateVolumeRequest.
+type OpenStackBlockStorageCreateVolumeRequest struct {
+	AvailabilityZone *string `json:"availability_zone,omitempty"`
+
+	// BackupId The UUID of a backup to create the volume from, restoring the backed up data into it.
+	BackupId       *openapi_types.UUID          `json:"backup_id,omitempty"`
+	Bootable       *bool                        `json:"bootable,omitempty"`
+	Description    *string                      `json:"description,omitempty"`
+	ImageRef       *openapi_types.UUID          `json:"image_ref,omitempty"`
+	Name           string                       `json:"name"`
+	RecoverService *CommonRecoverServiceRequest `json:"recover_service,omitempty"`
+	Size           int                          `json:"size"`
+	SnapshotId     *openapi_types.UUID          `json:"snapshot_id,omitempty"`
+	SourceVolid    *openapi_types.UUID          `json:"source_volid,omitempty"`
+	VolumeType     *string                      `json:"volume_type,omitempty"`
+}
+
+// OpenStackBlockStorageDisasterRecoveryRequest defines model for OpenStack_BlockStorage_DisasterRecoveryRequest.
+type OpenStackBlockStorageDisasterRecoveryRequest struct {
+	Created    time.Time                      `json:"created"`
+	LastMsg    string                         `json:"last_msg"`
+	LastUpdate *time.Time                     `json:"last_update,omitempty"`
+	Status     BackupRecoverServiceWorkStatus `json:"status"`
+}
+
+// OpenStackBlockStorageDisasterRecoveryService defines model for OpenStack_BlockStorage_DisasterRecoveryService.
+type OpenStackBlockStorageDisasterRecoveryService struct {
+	Id            int                                                      `json:"id"`
+	Immutable     bool                                                     `json:"immutable"`
+	RetentionDays int                                                      `json:"retention_days"`
+	Started       time.Time                                                `json:"started"`
+	Status        OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus `json:"status"`
+}
+
+// OpenStackBlockStorageEditSnapshotRequest defines model for OpenStack_BlockStorage_EditSnapshotRequest.
+type OpenStackBlockStorageEditSnapshotRequest struct {
+	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
+// OpenStackBlockStorageEditVolumeRequest defines model for OpenStack_BlockStorage_EditVolumeRequest.
+type OpenStackBlockStorageEditVolumeRequest struct {
+	Description    *string                      `json:"description,omitempty"`
+	Name           *string                      `json:"name,omitempty"`
+	RecoverService *CommonRecoverServiceRequest `json:"recover_service,omitempty"`
+}
+
+// OpenStackBlockStorageExtendVolumeRequest defines model for OpenStack_BlockStorage_ExtendVolumeRequest.
+type OpenStackBlockStorageExtendVolumeRequest struct {
+	NewSize int `json:"new_size"`
+}
+
+// OpenStackBlockStorageInitiateDisasterRecoveryRequest defines model for OpenStack_BlockStorage_InitiateDisasterRecoveryRequest.
+type OpenStackBlockStorageInitiateDisasterRecoveryRequest struct {
+	AutoStartConnect *bool                                  `json:"auto_start_connect,omitempty"`
+	RestoreDate      time.Time                              `json:"restore_date"`
+	Target           BackupRecoveryServiceRestoreWorkTarget `json:"target"`
+}
+
+// OpenStackBlockStorageRestoreBackupRequest defines model for OpenStack_BlockStorage_RestoreBackupRequest.
+type OpenStackBlockStorageRestoreBackupRequest struct {
+	Name     *string `json:"name,omitempty"`
+	VolumeId *string `json:"volume_id,omitempty"`
+}
+
+// OpenStackBlockStorageSetVolumeBootableStatusRequest defines model for OpenStack_BlockStorage_SetVolumeBootableStatusRequest.
+type OpenStackBlockStorageSetVolumeBootableStatusRequest struct {
+	Bootable bool `json:"bootable"`
+}
+
+// OpenStackBlockStorageSnapshot defines model for OpenStack_BlockStorage_Snapshot.
+type OpenStackBlockStorageSnapshot struct {
+	CreatedAt            time.Time                           `json:"created_at"`
+	Description          *string                             `json:"description,omitempty"`
+	Id                   string                              `json:"id"`
+	Metadata             *map[string]interface{}             `json:"metadata,omitempty"`
+	Name                 *string                             `json:"name,omitempty"`
+	Size                 int                                 `json:"size"`
+	Status               OpenStackBlockStorageSnapshotStatus `json:"status"`
+	UpdatedAt            *time.Time                          `json:"updated_at,omitempty"`
+	VolumeId             string                              `json:"volume_id"`
+	AdditionalProperties map[string]interface{}              `json:"-"`
+}
+
+// OpenStackBlockStorageSnapshotStatus defines model for OpenStack_BlockStorage_SnapshotStatus.
+type OpenStackBlockStorageSnapshotStatus string
+
+// OpenStackBlockStorageStorageType defines model for OpenStack_BlockStorage_StorageType.
+type OpenStackBlockStorageStorageType struct {
+	Description              *string                                `json:"description,omitempty"`
+	DisasterRecoverAvailable bool                                   `json:"disaster_recover_available"`
+	IsDefault                bool                                   `json:"is_default"`
+	IsPublic                 bool                                   `json:"is_public"`
+	Name                     string                                 `json:"name"`
+	Price                    *OpenStackBlockStorageStorageTypePrice `json:"price,omitempty"`
+}
+
+// OpenStackBlockStorageStorageTypePrice defines model for OpenStack_BlockStorage_StorageTypePrice.
+type OpenStackBlockStorageStorageTypePrice struct {
+	CostItem string                                         `json:"cost_item"`
+	Currency *OpenStackBlockStorageStorageTypePriceCurrency `json:"currency,omitempty"`
+	Regions  []OpenStackBlockStorageStorageTypePriceRegion  `json:"regions"`
+}
+
+// OpenStackBlockStorageStorageTypePriceCurrency defines model for OpenStack_BlockStorage_StorageTypePriceCurrency.
+type OpenStackBlockStorageStorageTypePriceCurrency struct {
+	Code string `json:"code"`
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+// OpenStackBlockStorageStorageTypePriceRegion defines model for OpenStack_BlockStorage_StorageTypePriceRegion.
+type OpenStackBlockStorageStorageTypePriceRegion struct {
+	CostPerHour  float32 `json:"cost_per_hour"`
+	CostPerMonth float32 `json:"cost_per_month"`
+	Region       string  `json:"region"`
+	ZoneId       int     `json:"zone_id"`
+}
+
+// OpenStackBlockStorageVolume defines model for OpenStack_BlockStorage_Volume.
+type OpenStackBlockStorageVolume struct {
+	Attachments            []OpenStackBlockStorageVolumeAttachment       `json:"attachments"`
+	Bootable               string                                        `json:"bootable"`
+	CreatedAt              time.Time                                     `json:"created_at"`
+	Description            *string                                       `json:"description,omitempty"`
+	DisasterRecoverService *OpenStackBlockStorageDisasterRecoveryService `json:"disaster_recover_service,omitempty"`
+	Encrypted              bool                                          `json:"encrypted"`
+	Id                     openapi_types.UUID                            `json:"id"`
+	Metadata               map[string]interface{}                        `json:"metadata"`
+	Name                   *string                                       `json:"name,omitempty"`
+	Size                   int                                           `json:"size"`
+	SnapshotId             *openapi_types.UUID                           `json:"snapshot_id,omitempty"`
+	SourceVolid            *string                                       `json:"source_volid,omitempty"`
+	Status                 CommonOpenStackVolumeStatus                   `json:"status"`
+	VolumeType             string                                        `json:"volume_type"`
+	AdditionalProperties   map[string]interface{}                        `json:"-"`
+}
+
+// OpenStackBlockStorageVolumeAttachment defines model for OpenStack_BlockStorage_VolumeAttachment.
+type OpenStackBlockStorageVolumeAttachment struct {
+	Device               string                 `json:"device"`
+	HostName             *string                `json:"host_name,omitempty"`
+	Id                   openapi_types.UUID     `json:"id"`
+	ServerId             openapi_types.UUID     `json:"server_id"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus defines model for OpenStack_BlockStorage_VolumeDisasterRecoveryServiceStatus.
+type OpenStackBlockStorageVolumeDisasterRecoveryServiceStatus string
+
 // OpenStackIdentityCreateProjectRequest defines model for OpenStack_Identity_CreateProjectRequest.
 type OpenStackIdentityCreateProjectRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -1479,6 +2153,15 @@ type OpenStackIdentityCreateUserRequest struct {
 	Name        string                                   `json:"name"`
 	Password    string                                   `json:"password"`
 	Projects    *[]OpenStackIdentityProjectAccessRequest `json:"projects,omitempty"`
+}
+
+// OpenStackIdentityDomain defines model for OpenStack_Identity_Domain.
+type OpenStackIdentityDomain struct {
+	Description          *string `json:"description,omitempty"`
+	Enabled              bool    `json:"enabled"`
+	Id                   string  `json:"id"`
+	IdentityAuthorityTag string  `json:"identity_authority_tag"`
+	Name                 string  `json:"name"`
 }
 
 // OpenStackIdentityDomainEndpoint defines model for OpenStack_Identity_DomainEndpoint.
@@ -1516,6 +2199,17 @@ type OpenStackIdentityGrantProjectAccessRequest struct {
 	Projects []OpenStackIdentityProjectAccessRequest `json:"projects"`
 }
 
+// OpenStackIdentityIdentityAuthority defines model for OpenStack_Identity_IdentityAuthority.
+type OpenStackIdentityIdentityAuthority struct {
+	Name    string                                   `json:"name"`
+	Regions []OpenStackIdentityRegionWithStatus      `json:"regions"`
+	Status  OpenStackIdentityIdentityAuthorityStatus `json:"status"`
+	Tag     string                                   `json:"tag"`
+}
+
+// OpenStackIdentityIdentityAuthorityStatus defines model for OpenStack_Identity_IdentityAuthorityStatus.
+type OpenStackIdentityIdentityAuthorityStatus string
+
 // OpenStackIdentityProject defines model for OpenStack_Identity_Project.
 type OpenStackIdentityProject struct {
 	Description *string `json:"description,omitempty"`
@@ -1552,7 +2246,7 @@ type OpenStackIdentityProjectLog struct {
 	Action      string    `json:"action"`
 	Date        time.Time `json:"date"`
 	Ip          string    `json:"ip"`
-	Login       string    `json:"login"`
+	Login       *string   `json:"login,omitempty"`
 	Meta        string    `json:"meta"`
 	ProjectId   string    `json:"project_id"`
 	RegionId    int       `json:"region_id"`
@@ -1611,6 +2305,12 @@ type OpenStackIdentityRegionWithProjects struct {
 	Region   OpenStackIdentityRegion    `json:"region"`
 }
 
+// OpenStackIdentityRegionWithStatus defines model for OpenStack_Identity_RegionWithStatus.
+type OpenStackIdentityRegionWithStatus struct {
+	IsActive bool   `json:"is_active"`
+	Tag      string `json:"tag"`
+}
+
 // OpenStackIdentityUser defines model for OpenStack_Identity_User.
 type OpenStackIdentityUser struct {
 	DefaultProjectId *string `json:"default_project_id,omitempty"`
@@ -1664,6 +2364,22 @@ type GardenerRevertShootUpgradeConditionsParams struct {
 	TargetVersion string `form:"target_version" json:"target_version"`
 }
 
+// OpenStackBlockStorageListBackupsParams defines parameters for OpenStackBlockStorageListBackups.
+type OpenStackBlockStorageListBackupsParams struct {
+	VolumeId *openapi_types.UUID `form:"volumeId,omitempty" json:"volumeId,omitempty"`
+}
+
+// OpenStackBlockStorageListSnapshotsParams defines parameters for OpenStackBlockStorageListSnapshots.
+type OpenStackBlockStorageListSnapshotsParams struct {
+	VolumeId *string `form:"volume_id,omitempty" json:"volume_id,omitempty"`
+}
+
+// OpenStackBlockStorageListDisasterRecoveriesParams defines parameters for OpenStackBlockStorageListDisasterRecoveries.
+type OpenStackBlockStorageListDisasterRecoveriesParams struct {
+	Status *BackupRecoverServiceWorkStatus `form:"status,omitempty" json:"status,omitempty"`
+	Limit  *int                            `form:"limit,omitempty" json:"limit,omitempty"`
+}
+
 // OpenStackIdentityListProjectLogsParams defines parameters for OpenStackIdentityListProjectLogs.
 type OpenStackIdentityListProjectLogsParams struct {
 	Limit  *int `form:"limit,omitempty" json:"limit,omitempty"`
@@ -1690,6 +2406,12 @@ type AuthCreateTokenByHashJSONRequestBody = AuthCreateTokenByHashRequest
 
 // AuthCreateTokenBySmsCodeJSONRequestBody defines body for AuthCreateTokenBySmsCode for application/json ContentType.
 type AuthCreateTokenBySmsCodeJSONRequestBody = AuthCreateTokenBySmsRequest
+
+// GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody defines body for GardenerIdentityProviderCreateAuthenticationConfiguration for application/json ContentType.
+type GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody = GardenerIdentityProviderCreateAuthenticationConfiguration
+
+// GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody defines body for GardenerIdentityProviderUpdateAuthenticationConfiguration for application/json ContentType.
+type GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody = GardenerIdentityProviderUpdateAuthenticationConfiguration
 
 // GardenerCreateShootJSONRequestBody defines body for GardenerCreateShoot for application/json ContentType.
 type GardenerCreateShootJSONRequestBody = GardenerCreateShootShoot
@@ -1727,6 +2449,33 @@ type IdentityCreateUserJSONRequestBody = IdentityCreateUserRequest
 // IdentityEditUserJSONRequestBody defines body for IdentityEditUser for application/json ContentType.
 type IdentityEditUserJSONRequestBody = IdentityEditUserRequest
 
+// OpenStackBlockStorageCreateBackupJSONRequestBody defines body for OpenStackBlockStorageCreateBackup for application/json ContentType.
+type OpenStackBlockStorageCreateBackupJSONRequestBody = OpenStackBlockStorageCreateBackupRequest
+
+// OpenStackBlockStorageRestoreBackupJSONRequestBody defines body for OpenStackBlockStorageRestoreBackup for application/json ContentType.
+type OpenStackBlockStorageRestoreBackupJSONRequestBody = OpenStackBlockStorageRestoreBackupRequest
+
+// OpenStackBlockStorageCreateSnapshotJSONRequestBody defines body for OpenStackBlockStorageCreateSnapshot for application/json ContentType.
+type OpenStackBlockStorageCreateSnapshotJSONRequestBody = OpenStackBlockStorageCreateSnapshotRequest
+
+// OpenStackBlockStorageEditSnapshotJSONRequestBody defines body for OpenStackBlockStorageEditSnapshot for application/json ContentType.
+type OpenStackBlockStorageEditSnapshotJSONRequestBody = OpenStackBlockStorageEditSnapshotRequest
+
+// OpenStackBlockStorageCreateVolumeJSONRequestBody defines body for OpenStackBlockStorageCreateVolume for application/json ContentType.
+type OpenStackBlockStorageCreateVolumeJSONRequestBody = OpenStackBlockStorageCreateVolumeRequest
+
+// OpenStackBlockStorageEditVolumeJSONRequestBody defines body for OpenStackBlockStorageEditVolume for application/json ContentType.
+type OpenStackBlockStorageEditVolumeJSONRequestBody = OpenStackBlockStorageEditVolumeRequest
+
+// OpenStackBlockStorageSetVolumeBootableStatusJSONRequestBody defines body for OpenStackBlockStorageSetVolumeBootableStatus for application/json ContentType.
+type OpenStackBlockStorageSetVolumeBootableStatusJSONRequestBody = OpenStackBlockStorageSetVolumeBootableStatusRequest
+
+// OpenStackBlockStorageExtendVolumeJSONRequestBody defines body for OpenStackBlockStorageExtendVolume for application/json ContentType.
+type OpenStackBlockStorageExtendVolumeJSONRequestBody = OpenStackBlockStorageExtendVolumeRequest
+
+// OpenStackBlockStorageInitiateDisasterRecoveryJSONRequestBody defines body for OpenStackBlockStorageInitiateDisasterRecovery for application/json ContentType.
+type OpenStackBlockStorageInitiateDisasterRecoveryJSONRequestBody = OpenStackBlockStorageInitiateDisasterRecoveryRequest
+
 // OpenStackIdentityCreateProjectJSONRequestBody defines body for OpenStackIdentityCreateProject for application/json ContentType.
 type OpenStackIdentityCreateProjectJSONRequestBody = OpenStackIdentityCreateProjectRequest
 
@@ -1741,6 +2490,540 @@ type OpenStackIdentityEditUserJSONRequestBody = OpenStackIdentityEditUserRequest
 
 // OpenStackIdentityGrantProjectAccessJSONRequestBody defines body for OpenStackIdentityGrantProjectAccess for application/json ContentType.
 type OpenStackIdentityGrantProjectAccessJSONRequestBody = OpenStackIdentityGrantProjectAccessRequest
+
+// Getter for additional properties for OpenStackBlockStorageSnapshot. Returns the specified
+// element and whether it was found
+func (a OpenStackBlockStorageSnapshot) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for OpenStackBlockStorageSnapshot
+func (a *OpenStackBlockStorageSnapshot) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for OpenStackBlockStorageSnapshot to handle AdditionalProperties
+func (a *OpenStackBlockStorageSnapshot) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["created_at"]; found {
+		err = json.Unmarshal(raw, &a.CreatedAt)
+		if err != nil {
+			return fmt.Errorf("error reading 'created_at': %w", err)
+		}
+		delete(object, "created_at")
+	}
+
+	if raw, found := object["description"]; found {
+		err = json.Unmarshal(raw, &a.Description)
+		if err != nil {
+			return fmt.Errorf("error reading 'description': %w", err)
+		}
+		delete(object, "description")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["metadata"]; found {
+		err = json.Unmarshal(raw, &a.Metadata)
+		if err != nil {
+			return fmt.Errorf("error reading 'metadata': %w", err)
+		}
+		delete(object, "metadata")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["size"]; found {
+		err = json.Unmarshal(raw, &a.Size)
+		if err != nil {
+			return fmt.Errorf("error reading 'size': %w", err)
+		}
+		delete(object, "size")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if raw, found := object["updated_at"]; found {
+		err = json.Unmarshal(raw, &a.UpdatedAt)
+		if err != nil {
+			return fmt.Errorf("error reading 'updated_at': %w", err)
+		}
+		delete(object, "updated_at")
+	}
+
+	if raw, found := object["volume_id"]; found {
+		err = json.Unmarshal(raw, &a.VolumeId)
+		if err != nil {
+			return fmt.Errorf("error reading 'volume_id': %w", err)
+		}
+		delete(object, "volume_id")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for OpenStackBlockStorageSnapshot to handle AdditionalProperties
+func (a OpenStackBlockStorageSnapshot) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["created_at"], err = json.Marshal(a.CreatedAt)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'created_at': %w", err)
+	}
+
+	if a.Description != nil {
+		object["description"], err = json.Marshal(a.Description)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'description': %w", err)
+		}
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	if a.Metadata != nil {
+		object["metadata"], err = json.Marshal(a.Metadata)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'metadata': %w", err)
+		}
+	}
+
+	if a.Name != nil {
+		object["name"], err = json.Marshal(a.Name)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'name': %w", err)
+		}
+	}
+
+	object["size"], err = json.Marshal(a.Size)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'size': %w", err)
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	if a.UpdatedAt != nil {
+		object["updated_at"], err = json.Marshal(a.UpdatedAt)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'updated_at': %w", err)
+		}
+	}
+
+	object["volume_id"], err = json.Marshal(a.VolumeId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'volume_id': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for OpenStackBlockStorageVolume. Returns the specified
+// element and whether it was found
+func (a OpenStackBlockStorageVolume) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for OpenStackBlockStorageVolume
+func (a *OpenStackBlockStorageVolume) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for OpenStackBlockStorageVolume to handle AdditionalProperties
+func (a *OpenStackBlockStorageVolume) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["attachments"]; found {
+		err = json.Unmarshal(raw, &a.Attachments)
+		if err != nil {
+			return fmt.Errorf("error reading 'attachments': %w", err)
+		}
+		delete(object, "attachments")
+	}
+
+	if raw, found := object["bootable"]; found {
+		err = json.Unmarshal(raw, &a.Bootable)
+		if err != nil {
+			return fmt.Errorf("error reading 'bootable': %w", err)
+		}
+		delete(object, "bootable")
+	}
+
+	if raw, found := object["created_at"]; found {
+		err = json.Unmarshal(raw, &a.CreatedAt)
+		if err != nil {
+			return fmt.Errorf("error reading 'created_at': %w", err)
+		}
+		delete(object, "created_at")
+	}
+
+	if raw, found := object["description"]; found {
+		err = json.Unmarshal(raw, &a.Description)
+		if err != nil {
+			return fmt.Errorf("error reading 'description': %w", err)
+		}
+		delete(object, "description")
+	}
+
+	if raw, found := object["disaster_recover_service"]; found {
+		err = json.Unmarshal(raw, &a.DisasterRecoverService)
+		if err != nil {
+			return fmt.Errorf("error reading 'disaster_recover_service': %w", err)
+		}
+		delete(object, "disaster_recover_service")
+	}
+
+	if raw, found := object["encrypted"]; found {
+		err = json.Unmarshal(raw, &a.Encrypted)
+		if err != nil {
+			return fmt.Errorf("error reading 'encrypted': %w", err)
+		}
+		delete(object, "encrypted")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["metadata"]; found {
+		err = json.Unmarshal(raw, &a.Metadata)
+		if err != nil {
+			return fmt.Errorf("error reading 'metadata': %w", err)
+		}
+		delete(object, "metadata")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["size"]; found {
+		err = json.Unmarshal(raw, &a.Size)
+		if err != nil {
+			return fmt.Errorf("error reading 'size': %w", err)
+		}
+		delete(object, "size")
+	}
+
+	if raw, found := object["snapshot_id"]; found {
+		err = json.Unmarshal(raw, &a.SnapshotId)
+		if err != nil {
+			return fmt.Errorf("error reading 'snapshot_id': %w", err)
+		}
+		delete(object, "snapshot_id")
+	}
+
+	if raw, found := object["source_volid"]; found {
+		err = json.Unmarshal(raw, &a.SourceVolid)
+		if err != nil {
+			return fmt.Errorf("error reading 'source_volid': %w", err)
+		}
+		delete(object, "source_volid")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if raw, found := object["volume_type"]; found {
+		err = json.Unmarshal(raw, &a.VolumeType)
+		if err != nil {
+			return fmt.Errorf("error reading 'volume_type': %w", err)
+		}
+		delete(object, "volume_type")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for OpenStackBlockStorageVolume to handle AdditionalProperties
+func (a OpenStackBlockStorageVolume) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Attachments != nil {
+		object["attachments"], err = json.Marshal(a.Attachments)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'attachments': %w", err)
+		}
+	}
+
+	object["bootable"], err = json.Marshal(a.Bootable)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bootable': %w", err)
+	}
+
+	object["created_at"], err = json.Marshal(a.CreatedAt)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'created_at': %w", err)
+	}
+
+	if a.Description != nil {
+		object["description"], err = json.Marshal(a.Description)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'description': %w", err)
+		}
+	}
+
+	if a.DisasterRecoverService != nil {
+		object["disaster_recover_service"], err = json.Marshal(a.DisasterRecoverService)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'disaster_recover_service': %w", err)
+		}
+	}
+
+	object["encrypted"], err = json.Marshal(a.Encrypted)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'encrypted': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	if a.Metadata != nil {
+		object["metadata"], err = json.Marshal(a.Metadata)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'metadata': %w", err)
+		}
+	}
+
+	if a.Name != nil {
+		object["name"], err = json.Marshal(a.Name)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'name': %w", err)
+		}
+	}
+
+	object["size"], err = json.Marshal(a.Size)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'size': %w", err)
+	}
+
+	if a.SnapshotId != nil {
+		object["snapshot_id"], err = json.Marshal(a.SnapshotId)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'snapshot_id': %w", err)
+		}
+	}
+
+	if a.SourceVolid != nil {
+		object["source_volid"], err = json.Marshal(a.SourceVolid)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'source_volid': %w", err)
+		}
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	object["volume_type"], err = json.Marshal(a.VolumeType)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'volume_type': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for OpenStackBlockStorageVolumeAttachment. Returns the specified
+// element and whether it was found
+func (a OpenStackBlockStorageVolumeAttachment) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for OpenStackBlockStorageVolumeAttachment
+func (a *OpenStackBlockStorageVolumeAttachment) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for OpenStackBlockStorageVolumeAttachment to handle AdditionalProperties
+func (a *OpenStackBlockStorageVolumeAttachment) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["device"]; found {
+		err = json.Unmarshal(raw, &a.Device)
+		if err != nil {
+			return fmt.Errorf("error reading 'device': %w", err)
+		}
+		delete(object, "device")
+	}
+
+	if raw, found := object["host_name"]; found {
+		err = json.Unmarshal(raw, &a.HostName)
+		if err != nil {
+			return fmt.Errorf("error reading 'host_name': %w", err)
+		}
+		delete(object, "host_name")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["server_id"]; found {
+		err = json.Unmarshal(raw, &a.ServerId)
+		if err != nil {
+			return fmt.Errorf("error reading 'server_id': %w", err)
+		}
+		delete(object, "server_id")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for OpenStackBlockStorageVolumeAttachment to handle AdditionalProperties
+func (a OpenStackBlockStorageVolumeAttachment) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["device"], err = json.Marshal(a.Device)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'device': %w", err)
+	}
+
+	if a.HostName != nil {
+		object["host_name"], err = json.Marshal(a.HostName)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'host_name': %w", err)
+		}
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["server_id"], err = json.Marshal(a.ServerId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'server_id': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -1856,6 +3139,34 @@ type ClientInterface interface {
 	// AuthValidateToken request
 	AuthValidateToken(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GardenerIdentityProviderListAuthenticationConfigurations request
+	GardenerIdentityProviderListAuthenticationConfigurations(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderCreateAuthenticationConfigurationWithBody request with any body
+	GardenerIdentityProviderCreateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	GardenerIdentityProviderCreateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderDeleteAuthenticationConfiguration request
+	GardenerIdentityProviderDeleteAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderGetAuthenticationConfiguration request
+	GardenerIdentityProviderGetAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody request with any body
+	GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	GardenerIdentityProviderUpdateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderListIssuersForAuthenticationConfiguration request
+	GardenerIdentityProviderListIssuersForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderListShootsForAuthenticationConfiguration request
+	GardenerIdentityProviderListShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration request
+	GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GardenerListCloudProfiles request
 	GardenerListCloudProfiles(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -1896,6 +3207,9 @@ type ClientInterface interface {
 
 	// GardenerHibernateShoot request
 	GardenerHibernateShoot(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GardenerIdentityProviderGetShootOidcKubeConfig request
+	GardenerIdentityProviderGetShootOidcKubeConfig(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GardenerTriggerShootMaintenance request
 	GardenerTriggerShootMaintenance(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2012,8 +3326,89 @@ type ClientInterface interface {
 
 	IdentityEditUser(ctx context.Context, userId string, body IdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenStackBlockStorageListBackupPolicies request
+	OpenStackBlockStorageListBackupPolicies(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageListBackups request
+	OpenStackBlockStorageListBackups(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListBackupsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageCreateBackupWithBody request with any body
+	OpenStackBlockStorageCreateBackupWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageCreateBackup(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageDeleteBackup request
+	OpenStackBlockStorageDeleteBackup(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageRestoreBackupWithBody request with any body
+	OpenStackBlockStorageRestoreBackupWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageRestoreBackup(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, body OpenStackBlockStorageRestoreBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageListSnapshots request
+	OpenStackBlockStorageListSnapshots(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListSnapshotsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageCreateSnapshotWithBody request with any body
+	OpenStackBlockStorageCreateSnapshotWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageCreateSnapshot(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageDeleteSnapshot request
+	OpenStackBlockStorageDeleteSnapshot(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageEditSnapshotWithBody request with any body
+	OpenStackBlockStorageEditSnapshotWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageEditSnapshot(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, body OpenStackBlockStorageEditSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageListStorageTypes request
+	OpenStackBlockStorageListStorageTypes(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageListVolumes request
+	OpenStackBlockStorageListVolumes(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageCreateVolumeWithBody request with any body
+	OpenStackBlockStorageCreateVolumeWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageCreateVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageDeleteVolume request
+	OpenStackBlockStorageDeleteVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageGetVolume request
+	OpenStackBlockStorageGetVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageEditVolumeWithBody request with any body
+	OpenStackBlockStorageEditVolumeWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageEditVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageEditVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageSetVolumeBootableStatusWithBody request with any body
+	OpenStackBlockStorageSetVolumeBootableStatusWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageSetVolumeBootableStatus(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageSetVolumeBootableStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageExtendVolumeWithBody request with any body
+	OpenStackBlockStorageExtendVolumeWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageExtendVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, body OpenStackBlockStorageExtendVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageCancelDisasterRecoveryVolume request
+	OpenStackBlockStorageCancelDisasterRecoveryVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageListDisasterRecoveries request
+	OpenStackBlockStorageListDisasterRecoveries(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, params *OpenStackBlockStorageListDisasterRecoveriesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackBlockStorageInitiateDisasterRecoveryWithBody request with any body
+	OpenStackBlockStorageInitiateDisasterRecoveryWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenStackBlockStorageInitiateDisasterRecovery(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageInitiateDisasterRecoveryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenStackIdentityListRegionsWithProjects request
 	OpenStackIdentityListRegionsWithProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListIdentityAuthorities request
+	OpenStackIdentityListIdentityAuthorities(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenStackIdentityListDomains request
 	OpenStackIdentityListDomains(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2072,6 +3467,9 @@ type ClientInterface interface {
 
 	// OpenStackIdentityListProjectLogs request
 	OpenStackIdentityListProjectLogs(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenStackIdentityListDomainsV3 request
+	OpenStackIdentityListDomainsV3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) AuthRequestLoginWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -2266,6 +3664,126 @@ func (c *Client) AuthValidateToken(ctx context.Context, reqEditors ...RequestEdi
 	return c.Client.Do(req)
 }
 
+func (c *Client) GardenerIdentityProviderListAuthenticationConfigurations(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderListAuthenticationConfigurationsRequest(c.Server, gardenerRegionTag)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderCreateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody(c.Server, gardenerRegionTag, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderCreateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderCreateAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderDeleteAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderDeleteAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderGetAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderGetAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody(c.Server, gardenerRegionTag, name, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderUpdateAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderListIssuersForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderListIssuersForAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderListShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderListShootsForAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationRequest(c.Server, gardenerRegionTag, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GardenerListCloudProfiles(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGardenerListCloudProfilesRequest(c.Server, gardenerRegionTag)
 	if err != nil {
@@ -2436,6 +3954,18 @@ func (c *Client) GardenerEnableHighlyAvailableControlPlane(ctx context.Context, 
 
 func (c *Client) GardenerHibernateShoot(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGardenerHibernateShootRequest(c.Server, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GardenerIdentityProviderGetShootOidcKubeConfig(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGardenerIdentityProviderGetShootOidcKubeConfigRequest(c.Server, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, issuerAlias, audienceKey)
 	if err != nil {
 		return nil, err
 	}
@@ -2938,8 +4468,368 @@ func (c *Client) IdentityEditUser(ctx context.Context, userId string, body Ident
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenStackBlockStorageListBackupPolicies(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageListBackupPoliciesRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageListBackups(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListBackupsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageListBackupsRequest(c.Server, openStackRegionTag, openStackProjectId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageCreateBackupWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageCreateBackupRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageCreateBackup(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageCreateBackupRequest(c.Server, openStackRegionTag, openStackProjectId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageDeleteBackup(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageDeleteBackupRequest(c.Server, openStackRegionTag, openStackProjectId, backupId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageRestoreBackupWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageRestoreBackupRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, backupId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageRestoreBackup(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, body OpenStackBlockStorageRestoreBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageRestoreBackupRequest(c.Server, openStackRegionTag, openStackProjectId, backupId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageListSnapshots(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListSnapshotsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageListSnapshotsRequest(c.Server, openStackRegionTag, openStackProjectId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageCreateSnapshotWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageCreateSnapshotRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageCreateSnapshot(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageCreateSnapshotRequest(c.Server, openStackRegionTag, openStackProjectId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageDeleteSnapshot(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageDeleteSnapshotRequest(c.Server, openStackRegionTag, openStackProjectId, snapshotId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageEditSnapshotWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageEditSnapshotRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, snapshotId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageEditSnapshot(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, body OpenStackBlockStorageEditSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageEditSnapshotRequest(c.Server, openStackRegionTag, openStackProjectId, snapshotId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageListStorageTypes(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageListStorageTypesRequest(c.Server, openStackRegionTag, openStackProjectId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageListVolumes(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageListVolumesRequest(c.Server, openStackRegionTag, openStackProjectId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageCreateVolumeWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageCreateVolumeRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageCreateVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageCreateVolumeRequest(c.Server, openStackRegionTag, openStackProjectId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageDeleteVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageDeleteVolumeRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageGetVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageGetVolumeRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageEditVolumeWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageEditVolumeRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, volumeId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageEditVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageEditVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageEditVolumeRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageSetVolumeBootableStatusWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageSetVolumeBootableStatusRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, volumeId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageSetVolumeBootableStatus(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageSetVolumeBootableStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageSetVolumeBootableStatusRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageExtendVolumeWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageExtendVolumeRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, volumeId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageExtendVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, body OpenStackBlockStorageExtendVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageExtendVolumeRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageCancelDisasterRecoveryVolume(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageCancelDisasterRecoveryVolumeRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageListDisasterRecoveries(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, params *OpenStackBlockStorageListDisasterRecoveriesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageListDisasterRecoveriesRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageInitiateDisasterRecoveryWithBody(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageInitiateDisasterRecoveryRequestWithBody(c.Server, openStackRegionTag, openStackProjectId, volumeId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackBlockStorageInitiateDisasterRecovery(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageInitiateDisasterRecoveryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackBlockStorageInitiateDisasterRecoveryRequest(c.Server, openStackRegionTag, openStackProjectId, volumeId, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenStackIdentityListRegionsWithProjects(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenStackIdentityListRegionsWithProjectsRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListIdentityAuthorities(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListIdentityAuthoritiesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3192,6 +5082,18 @@ func (c *Client) OpenStackIdentityRevokeProjectAccess(ctx context.Context, domai
 
 func (c *Client) OpenStackIdentityListProjectLogs(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenStackIdentityListProjectLogsRequest(c.Server, projectName, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenStackIdentityListDomainsV3(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenStackIdentityListDomainsV3Request(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -3519,6 +5421,346 @@ func NewAuthValidateTokenRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/auth/v2/tokens/validate")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderListAuthenticationConfigurationsRequest generates requests for GardenerIdentityProviderListAuthenticationConfigurations
+func NewGardenerIdentityProviderListAuthenticationConfigurationsRequest(server string, gardenerRegionTag string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderCreateAuthenticationConfigurationRequest calls the generic GardenerIdentityProviderCreateAuthenticationConfiguration builder with application/json body
+func NewGardenerIdentityProviderCreateAuthenticationConfigurationRequest(server string, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody(server, gardenerRegionTag, "application/json", bodyReader)
+}
+
+// NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody generates requests for GardenerIdentityProviderCreateAuthenticationConfiguration with any type of body
+func NewGardenerIdentityProviderCreateAuthenticationConfigurationRequestWithBody(server string, gardenerRegionTag string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderDeleteAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderDeleteAuthenticationConfiguration
+func NewGardenerIdentityProviderDeleteAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderGetAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderGetAuthenticationConfiguration
+func NewGardenerIdentityProviderGetAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequest calls the generic GardenerIdentityProviderUpdateAuthenticationConfiguration builder with application/json body
+func NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody(server, gardenerRegionTag, name, "application/json", bodyReader)
+}
+
+// NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody generates requests for GardenerIdentityProviderUpdateAuthenticationConfiguration with any type of body
+func NewGardenerIdentityProviderUpdateAuthenticationConfigurationRequestWithBody(server string, gardenerRegionTag string, name string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderListIssuersForAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderListIssuersForAuthenticationConfiguration
+func NewGardenerIdentityProviderListIssuersForAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s/issuers", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderListShootsForAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderListShootsForAuthenticationConfiguration
+func NewGardenerIdentityProviderListShootsForAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s/shoots", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationRequest generates requests for GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration
+func NewGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationRequest(server string, gardenerRegionTag string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "name", name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/authentication-configurations/%s/shoots/reconcile", pathParam0, pathParam1)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -4151,6 +6393,75 @@ func NewGardenerHibernateShootRequest(server string, gardenerRegionTag string, o
 	}
 
 	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGardenerIdentityProviderGetShootOidcKubeConfigRequest generates requests for GardenerIdentityProviderGetShootOidcKubeConfig
+func NewGardenerIdentityProviderGetShootOidcKubeConfigRequest(server string, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "gardenerRegionTag", gardenerRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam3 string
+
+	pathParam3, err = runtime.StyleParamWithOptions("simple", false, "shootName", shootName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam4 string
+
+	pathParam4, err = runtime.StyleParamWithOptions("simple", false, "issuerAlias", issuerAlias, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam5 string
+
+	pathParam5, err = runtime.StyleParamWithOptions("simple", false, "audienceKey", audienceKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/gardener/v2/%s/shoots/%s/%s/%s/kubeconfig/%s/%s", pathParam0, pathParam1, pathParam2, pathParam3, pathParam4, pathParam5)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -5831,6 +8142,1106 @@ func NewIdentityEditUserRequestWithBody(server string, userId string, contentTyp
 	return req, nil
 }
 
+// NewOpenStackBlockStorageListBackupPoliciesRequest generates requests for OpenStackBlockStorageListBackupPolicies
+func NewOpenStackBlockStorageListBackupPoliciesRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/backup-policies")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageListBackupsRequest generates requests for OpenStackBlockStorageListBackups
+func NewOpenStackBlockStorageListBackupsRequest(server string, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListBackupsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/backups/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.VolumeId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "volumeId", *params.VolumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageCreateBackupRequest calls the generic OpenStackBlockStorageCreateBackup builder with application/json body
+func NewOpenStackBlockStorageCreateBackupRequest(server string, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateBackupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageCreateBackupRequestWithBody(server, openStackRegionTag, openStackProjectId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageCreateBackupRequestWithBody generates requests for OpenStackBlockStorageCreateBackup with any type of body
+func NewOpenStackBlockStorageCreateBackupRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/backups/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageDeleteBackupRequest generates requests for OpenStackBlockStorageDeleteBackup
+func NewOpenStackBlockStorageDeleteBackupRequest(server string, openStackRegionTag string, openStackProjectId string, backupId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "backupId", backupId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/backups/%s/%s/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageRestoreBackupRequest calls the generic OpenStackBlockStorageRestoreBackup builder with application/json body
+func NewOpenStackBlockStorageRestoreBackupRequest(server string, openStackRegionTag string, openStackProjectId string, backupId string, body OpenStackBlockStorageRestoreBackupJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageRestoreBackupRequestWithBody(server, openStackRegionTag, openStackProjectId, backupId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageRestoreBackupRequestWithBody generates requests for OpenStackBlockStorageRestoreBackup with any type of body
+func NewOpenStackBlockStorageRestoreBackupRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, backupId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "backupId", backupId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/backups/%s/%s/%s/restore", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageListSnapshotsRequest generates requests for OpenStackBlockStorageListSnapshots
+func NewOpenStackBlockStorageListSnapshotsRequest(server string, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListSnapshotsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/snapshots/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.VolumeId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "volume_id", *params.VolumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageCreateSnapshotRequest calls the generic OpenStackBlockStorageCreateSnapshot builder with application/json body
+func NewOpenStackBlockStorageCreateSnapshotRequest(server string, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateSnapshotJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageCreateSnapshotRequestWithBody(server, openStackRegionTag, openStackProjectId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageCreateSnapshotRequestWithBody generates requests for OpenStackBlockStorageCreateSnapshot with any type of body
+func NewOpenStackBlockStorageCreateSnapshotRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/snapshots/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageDeleteSnapshotRequest generates requests for OpenStackBlockStorageDeleteSnapshot
+func NewOpenStackBlockStorageDeleteSnapshotRequest(server string, openStackRegionTag string, openStackProjectId string, snapshotId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "snapshotId", snapshotId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/snapshots/%s/%s/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageEditSnapshotRequest calls the generic OpenStackBlockStorageEditSnapshot builder with application/json body
+func NewOpenStackBlockStorageEditSnapshotRequest(server string, openStackRegionTag string, openStackProjectId string, snapshotId string, body OpenStackBlockStorageEditSnapshotJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageEditSnapshotRequestWithBody(server, openStackRegionTag, openStackProjectId, snapshotId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageEditSnapshotRequestWithBody generates requests for OpenStackBlockStorageEditSnapshot with any type of body
+func NewOpenStackBlockStorageEditSnapshotRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, snapshotId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "snapshotId", snapshotId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/snapshots/%s/%s/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageListStorageTypesRequest generates requests for OpenStackBlockStorageListStorageTypes
+func NewOpenStackBlockStorageListStorageTypesRequest(server string, openStackRegionTag string, openStackProjectId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/storage-types/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageListVolumesRequest generates requests for OpenStackBlockStorageListVolumes
+func NewOpenStackBlockStorageListVolumesRequest(server string, openStackRegionTag string, openStackProjectId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageCreateVolumeRequest calls the generic OpenStackBlockStorageCreateVolume builder with application/json body
+func NewOpenStackBlockStorageCreateVolumeRequest(server string, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateVolumeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageCreateVolumeRequestWithBody(server, openStackRegionTag, openStackProjectId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageCreateVolumeRequestWithBody generates requests for OpenStackBlockStorageCreateVolume with any type of body
+func NewOpenStackBlockStorageCreateVolumeRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageDeleteVolumeRequest generates requests for OpenStackBlockStorageDeleteVolume
+func NewOpenStackBlockStorageDeleteVolumeRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageGetVolumeRequest generates requests for OpenStackBlockStorageGetVolume
+func NewOpenStackBlockStorageGetVolumeRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageEditVolumeRequest calls the generic OpenStackBlockStorageEditVolume builder with application/json body
+func NewOpenStackBlockStorageEditVolumeRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageEditVolumeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageEditVolumeRequestWithBody(server, openStackRegionTag, openStackProjectId, volumeId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageEditVolumeRequestWithBody generates requests for OpenStackBlockStorageEditVolume with any type of body
+func NewOpenStackBlockStorageEditVolumeRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageSetVolumeBootableStatusRequest calls the generic OpenStackBlockStorageSetVolumeBootableStatus builder with application/json body
+func NewOpenStackBlockStorageSetVolumeBootableStatusRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageSetVolumeBootableStatusJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageSetVolumeBootableStatusRequestWithBody(server, openStackRegionTag, openStackProjectId, volumeId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageSetVolumeBootableStatusRequestWithBody generates requests for OpenStackBlockStorageSetVolumeBootableStatus with any type of body
+func NewOpenStackBlockStorageSetVolumeBootableStatusRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s/bootable", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageExtendVolumeRequest calls the generic OpenStackBlockStorageExtendVolume builder with application/json body
+func NewOpenStackBlockStorageExtendVolumeRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId string, body OpenStackBlockStorageExtendVolumeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageExtendVolumeRequestWithBody(server, openStackRegionTag, openStackProjectId, volumeId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageExtendVolumeRequestWithBody generates requests for OpenStackBlockStorageExtendVolume with any type of body
+func NewOpenStackBlockStorageExtendVolumeRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, volumeId string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s/extend", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageCancelDisasterRecoveryVolumeRequest generates requests for OpenStackBlockStorageCancelDisasterRecoveryVolume
+func NewOpenStackBlockStorageCancelDisasterRecoveryVolumeRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s/recovery-service-restore", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageListDisasterRecoveriesRequest generates requests for OpenStackBlockStorageListDisasterRecoveries
+func NewOpenStackBlockStorageListDisasterRecoveriesRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId string, params *OpenStackBlockStorageListDisasterRecoveriesParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s/recovery-service-restore", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "status", *params.Status, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackBlockStorageInitiateDisasterRecoveryRequest calls the generic OpenStackBlockStorageInitiateDisasterRecovery builder with application/json body
+func NewOpenStackBlockStorageInitiateDisasterRecoveryRequest(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageInitiateDisasterRecoveryJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenStackBlockStorageInitiateDisasterRecoveryRequestWithBody(server, openStackRegionTag, openStackProjectId, volumeId, "application/json", bodyReader)
+}
+
+// NewOpenStackBlockStorageInitiateDisasterRecoveryRequestWithBody generates requests for OpenStackBlockStorageInitiateDisasterRecovery with any type of body
+func NewOpenStackBlockStorageInitiateDisasterRecoveryRequestWithBody(server string, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "openStackRegionTag", openStackRegionTag, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "openStackProjectId", openStackProjectId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam2 string
+
+	pathParam2, err = runtime.StyleParamWithOptions("simple", false, "volumeId", volumeId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/block-storage/v2/volumes/%s/%s/%s/recovery-service-restore", pathParam0, pathParam1, pathParam2)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenStackIdentityListRegionsWithProjectsRequest generates requests for OpenStackIdentityListRegionsWithProjects
 func NewOpenStackIdentityListRegionsWithProjectsRequest(server string) (*http.Request, error) {
 	var err error
@@ -5841,6 +9252,33 @@ func NewOpenStackIdentityListRegionsWithProjectsRequest(server string) (*http.Re
 	}
 
 	operationPath := fmt.Sprintf("/openstack/identity/v1/current-user/projects")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenStackIdentityListIdentityAuthoritiesRequest generates requests for OpenStackIdentityListIdentityAuthorities
+func NewOpenStackIdentityListIdentityAuthoritiesRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v1/identity-authorities")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -6597,6 +10035,33 @@ func NewOpenStackIdentityListProjectLogsRequest(server string, projectName strin
 	return req, nil
 }
 
+// NewOpenStackIdentityListDomainsV3Request generates requests for OpenStackIdentityListDomainsV3
+func NewOpenStackIdentityListDomainsV3Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/openstack/identity/v3/domains")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -6681,6 +10146,34 @@ type ClientWithResponsesInterface interface {
 	// AuthValidateTokenWithResponse request
 	AuthValidateTokenWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AuthValidateTokenAPIResponse, error)
 
+	// GardenerIdentityProviderListAuthenticationConfigurationsWithResponse request
+	GardenerIdentityProviderListAuthenticationConfigurationsWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse, error)
+
+	// GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse request with any body
+	GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error)
+
+	GardenerIdentityProviderCreateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderGetAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderGetAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse request with any body
+	GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error)
+
+	GardenerIdentityProviderUpdateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse, error)
+
+	// GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse request
+	GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse, error)
+
 	// GardenerListCloudProfilesWithResponse request
 	GardenerListCloudProfilesWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerListCloudProfilesAPIResponse, error)
 
@@ -6721,6 +10214,9 @@ type ClientWithResponsesInterface interface {
 
 	// GardenerHibernateShootWithResponse request
 	GardenerHibernateShootWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*GardenerHibernateShootAPIResponse, error)
+
+	// GardenerIdentityProviderGetShootOidcKubeConfigWithResponse request
+	GardenerIdentityProviderGetShootOidcKubeConfigWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse, error)
 
 	// GardenerTriggerShootMaintenanceWithResponse request
 	GardenerTriggerShootMaintenanceWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, reqEditors ...RequestEditorFn) (*GardenerTriggerShootMaintenanceAPIResponse, error)
@@ -6837,8 +10333,89 @@ type ClientWithResponsesInterface interface {
 
 	IdentityEditUserWithResponse(ctx context.Context, userId string, body IdentityEditUserJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityEditUserAPIResponse, error)
 
+	// OpenStackBlockStorageListBackupPoliciesWithResponse request
+	OpenStackBlockStorageListBackupPoliciesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListBackupPoliciesAPIResponse, error)
+
+	// OpenStackBlockStorageListBackupsWithResponse request
+	OpenStackBlockStorageListBackupsWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListBackupsParams, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListBackupsAPIResponse, error)
+
+	// OpenStackBlockStorageCreateBackupWithBodyWithResponse request with any body
+	OpenStackBlockStorageCreateBackupWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateBackupAPIResponse, error)
+
+	OpenStackBlockStorageCreateBackupWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateBackupAPIResponse, error)
+
+	// OpenStackBlockStorageDeleteBackupWithResponse request
+	OpenStackBlockStorageDeleteBackupWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageDeleteBackupAPIResponse, error)
+
+	// OpenStackBlockStorageRestoreBackupWithBodyWithResponse request with any body
+	OpenStackBlockStorageRestoreBackupWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageRestoreBackupAPIResponse, error)
+
+	OpenStackBlockStorageRestoreBackupWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, body OpenStackBlockStorageRestoreBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageRestoreBackupAPIResponse, error)
+
+	// OpenStackBlockStorageListSnapshotsWithResponse request
+	OpenStackBlockStorageListSnapshotsWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListSnapshotsParams, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListSnapshotsAPIResponse, error)
+
+	// OpenStackBlockStorageCreateSnapshotWithBodyWithResponse request with any body
+	OpenStackBlockStorageCreateSnapshotWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateSnapshotAPIResponse, error)
+
+	OpenStackBlockStorageCreateSnapshotWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateSnapshotAPIResponse, error)
+
+	// OpenStackBlockStorageDeleteSnapshotWithResponse request
+	OpenStackBlockStorageDeleteSnapshotWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageDeleteSnapshotAPIResponse, error)
+
+	// OpenStackBlockStorageEditSnapshotWithBodyWithResponse request with any body
+	OpenStackBlockStorageEditSnapshotWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditSnapshotAPIResponse, error)
+
+	OpenStackBlockStorageEditSnapshotWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, body OpenStackBlockStorageEditSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditSnapshotAPIResponse, error)
+
+	// OpenStackBlockStorageListStorageTypesWithResponse request
+	OpenStackBlockStorageListStorageTypesWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListStorageTypesAPIResponse, error)
+
+	// OpenStackBlockStorageListVolumesWithResponse request
+	OpenStackBlockStorageListVolumesWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListVolumesAPIResponse, error)
+
+	// OpenStackBlockStorageCreateVolumeWithBodyWithResponse request with any body
+	OpenStackBlockStorageCreateVolumeWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateVolumeAPIResponse, error)
+
+	OpenStackBlockStorageCreateVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateVolumeAPIResponse, error)
+
+	// OpenStackBlockStorageDeleteVolumeWithResponse request
+	OpenStackBlockStorageDeleteVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageDeleteVolumeAPIResponse, error)
+
+	// OpenStackBlockStorageGetVolumeWithResponse request
+	OpenStackBlockStorageGetVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageGetVolumeAPIResponse, error)
+
+	// OpenStackBlockStorageEditVolumeWithBodyWithResponse request with any body
+	OpenStackBlockStorageEditVolumeWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditVolumeAPIResponse, error)
+
+	OpenStackBlockStorageEditVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageEditVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditVolumeAPIResponse, error)
+
+	// OpenStackBlockStorageSetVolumeBootableStatusWithBodyWithResponse request with any body
+	OpenStackBlockStorageSetVolumeBootableStatusWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageSetVolumeBootableStatusAPIResponse, error)
+
+	OpenStackBlockStorageSetVolumeBootableStatusWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageSetVolumeBootableStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageSetVolumeBootableStatusAPIResponse, error)
+
+	// OpenStackBlockStorageExtendVolumeWithBodyWithResponse request with any body
+	OpenStackBlockStorageExtendVolumeWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageExtendVolumeAPIResponse, error)
+
+	OpenStackBlockStorageExtendVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, body OpenStackBlockStorageExtendVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageExtendVolumeAPIResponse, error)
+
+	// OpenStackBlockStorageCancelDisasterRecoveryVolumeWithResponse request
+	OpenStackBlockStorageCancelDisasterRecoveryVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse, error)
+
+	// OpenStackBlockStorageListDisasterRecoveriesWithResponse request
+	OpenStackBlockStorageListDisasterRecoveriesWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, params *OpenStackBlockStorageListDisasterRecoveriesParams, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListDisasterRecoveriesAPIResponse, error)
+
+	// OpenStackBlockStorageInitiateDisasterRecoveryWithBodyWithResponse request with any body
+	OpenStackBlockStorageInitiateDisasterRecoveryWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse, error)
+
+	OpenStackBlockStorageInitiateDisasterRecoveryWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageInitiateDisasterRecoveryJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse, error)
+
 	// OpenStackIdentityListRegionsWithProjectsWithResponse request
 	OpenStackIdentityListRegionsWithProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListRegionsWithProjectsAPIResponse, error)
+
+	// OpenStackIdentityListIdentityAuthoritiesWithResponse request
+	OpenStackIdentityListIdentityAuthoritiesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListIdentityAuthoritiesAPIResponse, error)
 
 	// OpenStackIdentityListDomainsWithResponse request
 	OpenStackIdentityListDomainsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsAPIResponse, error)
@@ -6897,6 +10474,9 @@ type ClientWithResponsesInterface interface {
 
 	// OpenStackIdentityListProjectLogsWithResponse request
 	OpenStackIdentityListProjectLogsWithResponse(ctx context.Context, projectName string, params *OpenStackIdentityListProjectLogsParams, reqEditors ...RequestEditorFn) (*OpenStackIdentityListProjectLogsAPIResponse, error)
+
+	// OpenStackIdentityListDomainsV3WithResponse request
+	OpenStackIdentityListDomainsV3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsV3APIResponse, error)
 }
 
 type AuthRequestLoginAPIResponse struct {
@@ -7176,6 +10756,277 @@ func (r AuthValidateTokenAPIResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r AuthValidateTokenAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]GardenerIdentityProviderAuthenticationConfiguration
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *GardenerIdentityProviderAuthenticationConfiguration
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GardenerIdentityProviderAuthenticationConfiguration
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *GardenerIdentityProviderAuthenticationConfiguration
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]GardenerIdentityProviderIssuerReference
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]GardenerIdentityProviderShootReference
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *[]GardenerIdentityProviderShootReconcileResult
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -7544,6 +11395,41 @@ func (r GardenerHibernateShootAPIResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r GardenerHibernateShootAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GardenerIdentityProviderOidcKubeconfig
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -8648,6 +12534,671 @@ func (r IdentityEditUserAPIResponse) ContentType() string {
 	return ""
 }
 
+type OpenStackBlockStorageListBackupPoliciesAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackBlockStorageBackupPolicy
+	JSON401      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageListBackupPoliciesAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageListBackupPoliciesAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageListBackupPoliciesAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageListBackupsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackBlockStorageBackup
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageListBackupsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageListBackupsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageListBackupsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageCreateBackupAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageCreateBackupAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageCreateBackupAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageCreateBackupAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageDeleteBackupAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageDeleteBackupAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageDeleteBackupAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageDeleteBackupAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageRestoreBackupAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageRestoreBackupAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageRestoreBackupAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageRestoreBackupAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageListSnapshotsAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackBlockStorageSnapshot
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageListSnapshotsAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageListSnapshotsAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageListSnapshotsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageCreateSnapshotAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *OpenStackBlockStorageSnapshot
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageCreateSnapshotAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageCreateSnapshotAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageCreateSnapshotAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageDeleteSnapshotAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageDeleteSnapshotAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageDeleteSnapshotAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageDeleteSnapshotAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageEditSnapshotAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackBlockStorageSnapshot
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageEditSnapshotAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageEditSnapshotAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageEditSnapshotAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageListStorageTypesAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackBlockStorageStorageType
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageListStorageTypesAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageListStorageTypesAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageListStorageTypesAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageListVolumesAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackBlockStorageVolume
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageListVolumesAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageListVolumesAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageListVolumesAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageCreateVolumeAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *OpenStackBlockStorageVolume
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageCreateVolumeAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageCreateVolumeAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageCreateVolumeAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageDeleteVolumeAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageDeleteVolumeAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageDeleteVolumeAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageDeleteVolumeAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageGetVolumeAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackBlockStorageVolume
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageGetVolumeAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageGetVolumeAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageGetVolumeAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageEditVolumeAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackBlockStorageVolume
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageEditVolumeAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageEditVolumeAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageEditVolumeAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageSetVolumeBootableStatusAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageSetVolumeBootableStatusAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageSetVolumeBootableStatusAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageSetVolumeBootableStatusAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageExtendVolumeAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageExtendVolumeAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageExtendVolumeAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageExtendVolumeAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageListDisasterRecoveriesAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackBlockStorageDisasterRecoveryRequest
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageListDisasterRecoveriesAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageListDisasterRecoveriesAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageListDisasterRecoveriesAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON400      *FrameworkHttpErrorResponse
+	JSON401      *FrameworkHttpErrorResponse
+	JSON404      *FrameworkHttpErrorResponse
+	JSON409      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenStackIdentityListRegionsWithProjectsAPIResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -8677,6 +13228,38 @@ func (r OpenStackIdentityListRegionsWithProjectsAPIResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r OpenStackIdentityListRegionsWithProjectsAPIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenStackIdentityListIdentityAuthoritiesAPIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityIdentityAuthority
+	JSON401      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListIdentityAuthoritiesAPIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListIdentityAuthoritiesAPIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListIdentityAuthoritiesAPIResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -9213,6 +13796,38 @@ func (r OpenStackIdentityListProjectLogsAPIResponse) ContentType() string {
 	return ""
 }
 
+type OpenStackIdentityListDomainsV3APIResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OpenStackIdentityDomain
+	JSON401      *FrameworkHttpErrorResponse
+	JSON500      *FrameworkHttpErrorResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenStackIdentityListDomainsV3APIResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenStackIdentityListDomainsV3APIResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenStackIdentityListDomainsV3APIResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // AuthRequestLoginWithBodyWithResponse request with arbitrary body returning *AuthRequestLoginAPIResponse
 func (c *ClientWithResponses) AuthRequestLoginWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AuthRequestLoginAPIResponse, error) {
 	rsp, err := c.AuthRequestLoginWithBody(ctx, contentType, body, reqEditors...)
@@ -9350,6 +13965,94 @@ func (c *ClientWithResponses) AuthValidateTokenWithResponse(ctx context.Context,
 	return ParseAuthValidateTokenAPIResponse(rsp)
 }
 
+// GardenerIdentityProviderListAuthenticationConfigurationsWithResponse request returning *GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderListAuthenticationConfigurationsWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderListAuthenticationConfigurations(ctx, gardenerRegionTag, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderListAuthenticationConfigurationsAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse request with arbitrary body returning *GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderCreateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderCreateAuthenticationConfigurationWithBody(ctx, gardenerRegionTag, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) GardenerIdentityProviderCreateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, body GardenerIdentityProviderCreateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderCreateAuthenticationConfiguration(ctx, gardenerRegionTag, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderDeleteAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderGetAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderGetAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderGetAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderGetAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse request with arbitrary body returning *GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderUpdateAuthenticationConfigurationWithBodyWithResponse(ctx context.Context, gardenerRegionTag string, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderUpdateAuthenticationConfigurationWithBody(ctx, gardenerRegionTag, name, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) GardenerIdentityProviderUpdateAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, body GardenerIdentityProviderUpdateAuthenticationConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderUpdateAuthenticationConfiguration(ctx, gardenerRegionTag, name, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderListIssuersForAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderListShootsForAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse request returning *GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse(ctx context.Context, gardenerRegionTag string, name string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderReconcileShootsForAuthenticationConfiguration(ctx, gardenerRegionTag, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse(rsp)
+}
+
 // GardenerListCloudProfilesWithResponse request returning *GardenerListCloudProfilesAPIResponse
 func (c *ClientWithResponses) GardenerListCloudProfilesWithResponse(ctx context.Context, gardenerRegionTag string, reqEditors ...RequestEditorFn) (*GardenerListCloudProfilesAPIResponse, error) {
 	rsp, err := c.GardenerListCloudProfiles(ctx, gardenerRegionTag, reqEditors...)
@@ -9479,6 +14182,15 @@ func (c *ClientWithResponses) GardenerHibernateShootWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseGardenerHibernateShootAPIResponse(rsp)
+}
+
+// GardenerIdentityProviderGetShootOidcKubeConfigWithResponse request returning *GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse
+func (c *ClientWithResponses) GardenerIdentityProviderGetShootOidcKubeConfigWithResponse(ctx context.Context, gardenerRegionTag string, openStackRegionTag string, openStackProjectId string, shootName string, issuerAlias string, audienceKey string, reqEditors ...RequestEditorFn) (*GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse, error) {
+	rsp, err := c.GardenerIdentityProviderGetShootOidcKubeConfig(ctx, gardenerRegionTag, openStackRegionTag, openStackProjectId, shootName, issuerAlias, audienceKey, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGardenerIdentityProviderGetShootOidcKubeConfigAPIResponse(rsp)
 }
 
 // GardenerTriggerShootMaintenanceWithResponse request returning *GardenerTriggerShootMaintenanceAPIResponse
@@ -9842,6 +14554,258 @@ func (c *ClientWithResponses) IdentityEditUserWithResponse(ctx context.Context, 
 	return ParseIdentityEditUserAPIResponse(rsp)
 }
 
+// OpenStackBlockStorageListBackupPoliciesWithResponse request returning *OpenStackBlockStorageListBackupPoliciesAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageListBackupPoliciesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListBackupPoliciesAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageListBackupPolicies(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageListBackupPoliciesAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageListBackupsWithResponse request returning *OpenStackBlockStorageListBackupsAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageListBackupsWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListBackupsParams, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListBackupsAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageListBackups(ctx, openStackRegionTag, openStackProjectId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageListBackupsAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageCreateBackupWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageCreateBackupAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageCreateBackupWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateBackupAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageCreateBackupWithBody(ctx, openStackRegionTag, openStackProjectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageCreateBackupAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageCreateBackupWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateBackupAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageCreateBackup(ctx, openStackRegionTag, openStackProjectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageCreateBackupAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageDeleteBackupWithResponse request returning *OpenStackBlockStorageDeleteBackupAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageDeleteBackupWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageDeleteBackupAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageDeleteBackup(ctx, openStackRegionTag, openStackProjectId, backupId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageDeleteBackupAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageRestoreBackupWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageRestoreBackupAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageRestoreBackupWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageRestoreBackupAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageRestoreBackupWithBody(ctx, openStackRegionTag, openStackProjectId, backupId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageRestoreBackupAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageRestoreBackupWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, backupId string, body OpenStackBlockStorageRestoreBackupJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageRestoreBackupAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageRestoreBackup(ctx, openStackRegionTag, openStackProjectId, backupId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageRestoreBackupAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageListSnapshotsWithResponse request returning *OpenStackBlockStorageListSnapshotsAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageListSnapshotsWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, params *OpenStackBlockStorageListSnapshotsParams, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListSnapshotsAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageListSnapshots(ctx, openStackRegionTag, openStackProjectId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageListSnapshotsAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageCreateSnapshotWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageCreateSnapshotAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageCreateSnapshotWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateSnapshotAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageCreateSnapshotWithBody(ctx, openStackRegionTag, openStackProjectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageCreateSnapshotAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageCreateSnapshotWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateSnapshotAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageCreateSnapshot(ctx, openStackRegionTag, openStackProjectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageCreateSnapshotAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageDeleteSnapshotWithResponse request returning *OpenStackBlockStorageDeleteSnapshotAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageDeleteSnapshotWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageDeleteSnapshotAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageDeleteSnapshot(ctx, openStackRegionTag, openStackProjectId, snapshotId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageDeleteSnapshotAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageEditSnapshotWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageEditSnapshotAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageEditSnapshotWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditSnapshotAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageEditSnapshotWithBody(ctx, openStackRegionTag, openStackProjectId, snapshotId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageEditSnapshotAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageEditSnapshotWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, snapshotId string, body OpenStackBlockStorageEditSnapshotJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditSnapshotAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageEditSnapshot(ctx, openStackRegionTag, openStackProjectId, snapshotId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageEditSnapshotAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageListStorageTypesWithResponse request returning *OpenStackBlockStorageListStorageTypesAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageListStorageTypesWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListStorageTypesAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageListStorageTypes(ctx, openStackRegionTag, openStackProjectId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageListStorageTypesAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageListVolumesWithResponse request returning *OpenStackBlockStorageListVolumesAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageListVolumesWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListVolumesAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageListVolumes(ctx, openStackRegionTag, openStackProjectId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageListVolumesAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageCreateVolumeWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageCreateVolumeAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageCreateVolumeWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageCreateVolumeWithBody(ctx, openStackRegionTag, openStackProjectId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageCreateVolumeAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageCreateVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, body OpenStackBlockStorageCreateVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCreateVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageCreateVolume(ctx, openStackRegionTag, openStackProjectId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageCreateVolumeAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageDeleteVolumeWithResponse request returning *OpenStackBlockStorageDeleteVolumeAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageDeleteVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageDeleteVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageDeleteVolume(ctx, openStackRegionTag, openStackProjectId, volumeId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageDeleteVolumeAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageGetVolumeWithResponse request returning *OpenStackBlockStorageGetVolumeAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageGetVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageGetVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageGetVolume(ctx, openStackRegionTag, openStackProjectId, volumeId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageGetVolumeAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageEditVolumeWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageEditVolumeAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageEditVolumeWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageEditVolumeWithBody(ctx, openStackRegionTag, openStackProjectId, volumeId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageEditVolumeAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageEditVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageEditVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageEditVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageEditVolume(ctx, openStackRegionTag, openStackProjectId, volumeId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageEditVolumeAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageSetVolumeBootableStatusWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageSetVolumeBootableStatusAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageSetVolumeBootableStatusWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageSetVolumeBootableStatusAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageSetVolumeBootableStatusWithBody(ctx, openStackRegionTag, openStackProjectId, volumeId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageSetVolumeBootableStatusAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageSetVolumeBootableStatusWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageSetVolumeBootableStatusJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageSetVolumeBootableStatusAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageSetVolumeBootableStatus(ctx, openStackRegionTag, openStackProjectId, volumeId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageSetVolumeBootableStatusAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageExtendVolumeWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageExtendVolumeAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageExtendVolumeWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageExtendVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageExtendVolumeWithBody(ctx, openStackRegionTag, openStackProjectId, volumeId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageExtendVolumeAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageExtendVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, body OpenStackBlockStorageExtendVolumeJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageExtendVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageExtendVolume(ctx, openStackRegionTag, openStackProjectId, volumeId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageExtendVolumeAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageCancelDisasterRecoveryVolumeWithResponse request returning *OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageCancelDisasterRecoveryVolumeWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageCancelDisasterRecoveryVolume(ctx, openStackRegionTag, openStackProjectId, volumeId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageListDisasterRecoveriesWithResponse request returning *OpenStackBlockStorageListDisasterRecoveriesAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageListDisasterRecoveriesWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId string, params *OpenStackBlockStorageListDisasterRecoveriesParams, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageListDisasterRecoveriesAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageListDisasterRecoveries(ctx, openStackRegionTag, openStackProjectId, volumeId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageListDisasterRecoveriesAPIResponse(rsp)
+}
+
+// OpenStackBlockStorageInitiateDisasterRecoveryWithBodyWithResponse request with arbitrary body returning *OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse
+func (c *ClientWithResponses) OpenStackBlockStorageInitiateDisasterRecoveryWithBodyWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageInitiateDisasterRecoveryWithBody(ctx, openStackRegionTag, openStackProjectId, volumeId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageInitiateDisasterRecoveryAPIResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenStackBlockStorageInitiateDisasterRecoveryWithResponse(ctx context.Context, openStackRegionTag string, openStackProjectId string, volumeId openapi_types.UUID, body OpenStackBlockStorageInitiateDisasterRecoveryJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse, error) {
+	rsp, err := c.OpenStackBlockStorageInitiateDisasterRecovery(ctx, openStackRegionTag, openStackProjectId, volumeId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackBlockStorageInitiateDisasterRecoveryAPIResponse(rsp)
+}
+
 // OpenStackIdentityListRegionsWithProjectsWithResponse request returning *OpenStackIdentityListRegionsWithProjectsAPIResponse
 func (c *ClientWithResponses) OpenStackIdentityListRegionsWithProjectsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListRegionsWithProjectsAPIResponse, error) {
 	rsp, err := c.OpenStackIdentityListRegionsWithProjects(ctx, reqEditors...)
@@ -9849,6 +14813,15 @@ func (c *ClientWithResponses) OpenStackIdentityListRegionsWithProjectsWithRespon
 		return nil, err
 	}
 	return ParseOpenStackIdentityListRegionsWithProjectsAPIResponse(rsp)
+}
+
+// OpenStackIdentityListIdentityAuthoritiesWithResponse request returning *OpenStackIdentityListIdentityAuthoritiesAPIResponse
+func (c *ClientWithResponses) OpenStackIdentityListIdentityAuthoritiesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListIdentityAuthoritiesAPIResponse, error) {
+	rsp, err := c.OpenStackIdentityListIdentityAuthorities(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListIdentityAuthoritiesAPIResponse(rsp)
 }
 
 // OpenStackIdentityListDomainsWithResponse request returning *OpenStackIdentityListDomainsAPIResponse
@@ -10033,6 +15006,15 @@ func (c *ClientWithResponses) OpenStackIdentityListProjectLogsWithResponse(ctx c
 		return nil, err
 	}
 	return ParseOpenStackIdentityListProjectLogsAPIResponse(rsp)
+}
+
+// OpenStackIdentityListDomainsV3WithResponse request returning *OpenStackIdentityListDomainsV3APIResponse
+func (c *ClientWithResponses) OpenStackIdentityListDomainsV3WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenStackIdentityListDomainsV3APIResponse, error) {
+	rsp, err := c.OpenStackIdentityListDomainsV3(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenStackIdentityListDomainsV3APIResponse(rsp)
 }
 
 // ParseAuthRequestLoginAPIResponse parses an HTTP response from a AuthRequestLoginWithResponse call
@@ -10347,6 +15329,431 @@ func ParseAuthValidateTokenAPIResponse(rsp *http.Response) (*AuthValidateTokenAP
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderListAuthenticationConfigurationsAPIResponse parses an HTTP response from a GardenerIdentityProviderListAuthenticationConfigurationsWithResponse call
+func ParseGardenerIdentityProviderListAuthenticationConfigurationsAPIResponse(rsp *http.Response) (*GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderListAuthenticationConfigurationsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderCreateAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderCreateAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderDeleteAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderDeleteAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderGetAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderGetAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderGetAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderGetAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderUpdateAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderUpdateAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest GardenerIdentityProviderAuthenticationConfiguration
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderListIssuersForAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderListIssuersForAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []GardenerIdentityProviderIssuerReference
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderListShootsForAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderListShootsForAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []GardenerIdentityProviderShootReference
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse parses an HTTP response from a GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationWithResponse call
+func ParseGardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse(rsp *http.Response) (*GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderReconcileShootsForAuthenticationConfigurationAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest []GardenerIdentityProviderShootReconcileResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
@@ -10899,6 +16306,67 @@ func ParseGardenerHibernateShootAPIResponse(rsp *http.Response) (*GardenerHibern
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGardenerIdentityProviderGetShootOidcKubeConfigAPIResponse parses an HTTP response from a GardenerIdentityProviderGetShootOidcKubeConfigWithResponse call
+func ParseGardenerIdentityProviderGetShootOidcKubeConfigAPIResponse(rsp *http.Response) (*GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GardenerIdentityProviderGetShootOidcKubeConfigAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GardenerIdentityProviderOidcKubeconfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
@@ -12526,6 +17994,981 @@ func ParseIdentityEditUserAPIResponse(rsp *http.Response) (*IdentityEditUserAPIR
 	return response, nil
 }
 
+// ParseOpenStackBlockStorageListBackupPoliciesAPIResponse parses an HTTP response from a OpenStackBlockStorageListBackupPoliciesWithResponse call
+func ParseOpenStackBlockStorageListBackupPoliciesAPIResponse(rsp *http.Response) (*OpenStackBlockStorageListBackupPoliciesAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageListBackupPoliciesAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackBlockStorageBackupPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageListBackupsAPIResponse parses an HTTP response from a OpenStackBlockStorageListBackupsWithResponse call
+func ParseOpenStackBlockStorageListBackupsAPIResponse(rsp *http.Response) (*OpenStackBlockStorageListBackupsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageListBackupsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackBlockStorageBackup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageCreateBackupAPIResponse parses an HTTP response from a OpenStackBlockStorageCreateBackupWithResponse call
+func ParseOpenStackBlockStorageCreateBackupAPIResponse(rsp *http.Response) (*OpenStackBlockStorageCreateBackupAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageCreateBackupAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageDeleteBackupAPIResponse parses an HTTP response from a OpenStackBlockStorageDeleteBackupWithResponse call
+func ParseOpenStackBlockStorageDeleteBackupAPIResponse(rsp *http.Response) (*OpenStackBlockStorageDeleteBackupAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageDeleteBackupAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageRestoreBackupAPIResponse parses an HTTP response from a OpenStackBlockStorageRestoreBackupWithResponse call
+func ParseOpenStackBlockStorageRestoreBackupAPIResponse(rsp *http.Response) (*OpenStackBlockStorageRestoreBackupAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageRestoreBackupAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageListSnapshotsAPIResponse parses an HTTP response from a OpenStackBlockStorageListSnapshotsWithResponse call
+func ParseOpenStackBlockStorageListSnapshotsAPIResponse(rsp *http.Response) (*OpenStackBlockStorageListSnapshotsAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageListSnapshotsAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackBlockStorageSnapshot
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageCreateSnapshotAPIResponse parses an HTTP response from a OpenStackBlockStorageCreateSnapshotWithResponse call
+func ParseOpenStackBlockStorageCreateSnapshotAPIResponse(rsp *http.Response) (*OpenStackBlockStorageCreateSnapshotAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageCreateSnapshotAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest OpenStackBlockStorageSnapshot
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageDeleteSnapshotAPIResponse parses an HTTP response from a OpenStackBlockStorageDeleteSnapshotWithResponse call
+func ParseOpenStackBlockStorageDeleteSnapshotAPIResponse(rsp *http.Response) (*OpenStackBlockStorageDeleteSnapshotAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageDeleteSnapshotAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageEditSnapshotAPIResponse parses an HTTP response from a OpenStackBlockStorageEditSnapshotWithResponse call
+func ParseOpenStackBlockStorageEditSnapshotAPIResponse(rsp *http.Response) (*OpenStackBlockStorageEditSnapshotAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageEditSnapshotAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackBlockStorageSnapshot
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageListStorageTypesAPIResponse parses an HTTP response from a OpenStackBlockStorageListStorageTypesWithResponse call
+func ParseOpenStackBlockStorageListStorageTypesAPIResponse(rsp *http.Response) (*OpenStackBlockStorageListStorageTypesAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageListStorageTypesAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackBlockStorageStorageType
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageListVolumesAPIResponse parses an HTTP response from a OpenStackBlockStorageListVolumesWithResponse call
+func ParseOpenStackBlockStorageListVolumesAPIResponse(rsp *http.Response) (*OpenStackBlockStorageListVolumesAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageListVolumesAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackBlockStorageVolume
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageCreateVolumeAPIResponse parses an HTTP response from a OpenStackBlockStorageCreateVolumeWithResponse call
+func ParseOpenStackBlockStorageCreateVolumeAPIResponse(rsp *http.Response) (*OpenStackBlockStorageCreateVolumeAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageCreateVolumeAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest OpenStackBlockStorageVolume
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageDeleteVolumeAPIResponse parses an HTTP response from a OpenStackBlockStorageDeleteVolumeWithResponse call
+func ParseOpenStackBlockStorageDeleteVolumeAPIResponse(rsp *http.Response) (*OpenStackBlockStorageDeleteVolumeAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageDeleteVolumeAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageGetVolumeAPIResponse parses an HTTP response from a OpenStackBlockStorageGetVolumeWithResponse call
+func ParseOpenStackBlockStorageGetVolumeAPIResponse(rsp *http.Response) (*OpenStackBlockStorageGetVolumeAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageGetVolumeAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackBlockStorageVolume
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageEditVolumeAPIResponse parses an HTTP response from a OpenStackBlockStorageEditVolumeWithResponse call
+func ParseOpenStackBlockStorageEditVolumeAPIResponse(rsp *http.Response) (*OpenStackBlockStorageEditVolumeAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageEditVolumeAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackBlockStorageVolume
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageSetVolumeBootableStatusAPIResponse parses an HTTP response from a OpenStackBlockStorageSetVolumeBootableStatusWithResponse call
+func ParseOpenStackBlockStorageSetVolumeBootableStatusAPIResponse(rsp *http.Response) (*OpenStackBlockStorageSetVolumeBootableStatusAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageSetVolumeBootableStatusAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageExtendVolumeAPIResponse parses an HTTP response from a OpenStackBlockStorageExtendVolumeWithResponse call
+func ParseOpenStackBlockStorageExtendVolumeAPIResponse(rsp *http.Response) (*OpenStackBlockStorageExtendVolumeAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageExtendVolumeAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse parses an HTTP response from a OpenStackBlockStorageCancelDisasterRecoveryVolumeWithResponse call
+func ParseOpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse(rsp *http.Response) (*OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageCancelDisasterRecoveryVolumeAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageListDisasterRecoveriesAPIResponse parses an HTTP response from a OpenStackBlockStorageListDisasterRecoveriesWithResponse call
+func ParseOpenStackBlockStorageListDisasterRecoveriesAPIResponse(rsp *http.Response) (*OpenStackBlockStorageListDisasterRecoveriesAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageListDisasterRecoveriesAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackBlockStorageDisasterRecoveryRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackBlockStorageInitiateDisasterRecoveryAPIResponse parses an HTTP response from a OpenStackBlockStorageInitiateDisasterRecoveryWithResponse call
+func ParseOpenStackBlockStorageInitiateDisasterRecoveryAPIResponse(rsp *http.Response) (*OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackBlockStorageInitiateDisasterRecoveryAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenStackIdentityListRegionsWithProjectsAPIResponse parses an HTTP response from a OpenStackIdentityListRegionsWithProjectsWithResponse call
 func ParseOpenStackIdentityListRegionsWithProjectsAPIResponse(rsp *http.Response) (*OpenStackIdentityListRegionsWithProjectsAPIResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -12574,6 +19017,46 @@ func ParseOpenStackIdentityListRegionsWithProjectsAPIResponse(rsp *http.Response
 			return nil, err
 		}
 		response.JSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListIdentityAuthoritiesAPIResponse parses an HTTP response from a OpenStackIdentityListIdentityAuthoritiesWithResponse call
+func ParseOpenStackIdentityListIdentityAuthoritiesAPIResponse(rsp *http.Response) (*OpenStackIdentityListIdentityAuthoritiesAPIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListIdentityAuthoritiesAPIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityIdentityAuthority
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
@@ -13340,6 +19823,46 @@ func ParseOpenStackIdentityListProjectLogsAPIResponse(rsp *http.Response) (*Open
 			return nil, err
 		}
 		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenStackIdentityListDomainsV3APIResponse parses an HTTP response from a OpenStackIdentityListDomainsV3WithResponse call
+func ParseOpenStackIdentityListDomainsV3APIResponse(rsp *http.Response) (*OpenStackIdentityListDomainsV3APIResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenStackIdentityListDomainsV3APIResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OpenStackIdentityDomain
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest FrameworkHttpErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest FrameworkHttpErrorResponse
